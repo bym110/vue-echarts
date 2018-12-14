@@ -5,6 +5,9 @@ import App from './App'
 import router from './router'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
+import echarts from 'echarts'
+
+Vue.prototype.$echarts = echarts 
 
 Vue.config.productionTip = false;
 Vue.use(iView);

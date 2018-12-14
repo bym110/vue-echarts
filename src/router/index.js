@@ -18,13 +18,18 @@ export default new Router({
         },
         {
           path:'/',
-          name:'circle',
-          component: () => import('@/views/circle')
+          name:'mobileMaket',
+          component: () => import('@/views/mobileMaket')
         },
         {
-          path:'radar',
-          name:'radar',
-          component: () => import('@/views/radar')
+          path:'soldierMood',
+          name:'soldierMood',
+          component: () => import('@/views/soldierMood')
+        },
+        {
+          path:'easternAirline',
+          name:'easternAirline',
+          component: () => import('@/views/easternAirline')
         }
       ]
     }

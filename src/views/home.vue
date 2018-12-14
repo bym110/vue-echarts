@@ -6,9 +6,10 @@
                 
            </div>
            <div class='btn'>
-                    <a @click="$router.push({name:'circle'})">昨日</a>
+                    <a @click="$router.push({name:'mobileMaket'})">昨日</a>
                     <a @click="$router.push({name:'map'})">近一周</a>
-                    <a @click="$router.push({name:'radar'})">近一月</a>
+                    <a @click="$router.push({name:'soldierMood'})">近一月</a>
+                    <a @click="$router.push({name:'easternAirline'})">近两月</a>
                 </div>
         </div>
         <div class="page" >
