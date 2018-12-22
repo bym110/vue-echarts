@@ -1,536 +1,440 @@
 <template>
-    <div id="bottom_1"></div>
+    <div style="height:100%;" :id="id"></div>
 </template>
 
 <script>
     export default {
         name: '',
+        props:{
+            id:String
+        },
         data() {
             return {
                 
             }
         },
         methods: {
-            // 金钱交易分析
+            setOptionData () {
+                let data =[
+                    {name:'社交',value:380,data:[3600,7200,4800,9000,5200,1800,2400,600]},
+                    {name:'游戏',value:300,data:[2800,5800,3600,7000,6400,3600,5400,4600]},
+                    {name:'直播',value:240,data:[2600,3200,5800,2000,3200,5800,7400,2600]},
+                    {name:'金融理财',value:200,data:[1600,4200,2800,1000,7200,5800,3400,5600]},
+                    {name:'生活',value:150,data:[5600,6200,6800,3000,1200,5800,4400,2500]},
+                    {name:'购物',value:100,data:[6600,8200,5800,4000,2200,3800,7400,3600]},
+                    {name:'办公学习',value:100,data:[7600,1200,3800,7000,1200,3800,5400,2600]},
+                    {name:'其他',value:50,data:[6600,1200,2800,3000,6200,5800,4400,1600]}
+                    ];
+                let colorList=['#2c7bfe','#c2232a','#feed2c','#a262f2','#62d5f2','#fe672c','#2c7bfe','#69f262'];
+                let arr=[];
+                for (let i =0;i<data.length;i++) {
+                     let values=[0,0,0,0,0,0,0,0];
+                    values.splice(i,1,data[i].value);
+                    let obj ={
+                        name:data[i].name,
+                        type:'bar',
+                        z:3,
+                        barWidth: 10,
+                        barGap:'-100%',
+                        itemStyle: {
+                            color:colorList[i]
+                        },
+                        data:values
+                    }
+                    
+                    arr.push(obj);
+                };
+                for (let i = 0;i<data.length;i++) {
+                    let obj={
+                        type:'line',
+                        name:data[i].name,
+                        symbol:'circle',
+                        smooth:true,
+                        symbolSize:4,
+                        xAxisIndex:2,
+                        yAxisIndex:3,
+                        data:data[i].data,
+                        lineStyle:{
+                            width:1
+                        },
+                        itemStyle:{
+                            color:colorList[i]
+                        }
+                    };
+                    let obj1={
+                        type:'line',
+                        name:data[i].name,
+                         symbol:'circle',
+                         symbolSize:4,
+                        smooth:true,
+                        xAxisIndex:3,
+                        yAxisIndex:5,
+                        data:data[i].data,
+                        lineStyle:{
+                            width:1
+                        },
+                        itemStyle:{
+                            color:colorList[i]
+                        }
+                    };
+                    
+                     arr.push(obj);
+                     arr.push(obj1);
+                }
+                let arr1=[
+                    {
+                        name:'辅助',
+                        type:'bar',
+                        barWidth: 10,
+                        barGap:'-100%',
+                        itemStyle: {
+                            color:'#252448'
+                        },
+                            data:[500, 500, 500, 500, 500, 500, 500,500]
+                    },
+                    {
+                        name:'辅助',
+                        xAxisIndex:1,
+                        yAxisIndex:1,
+                        type:'bar',
+                        barWidth: 10,
+                            barGap:'-100%',
+                            itemStyle: {
+                                color:'#252448'
+                        },
+                        data:[500, 500, 500, 500, 500, 500, 500]
+                    },
+                    {
+                        xAxisIndex:1,
+                        yAxisIndex:1,
+                        type:'bar',
+                        z:3,
+                        barWidth: 10,
+                            itemStyle: {
+                            color:'#2c7bfe'
+                        },
+                        data:[390, 330, 280, 220, 160, 100, 40]
+                    },
+                ]
+                arr = arr.concat(arr1);
+                
+                return arr;
+            },
+            /**
+             * 时间秒数格式化
+             * @param s 时间戳（单位：秒）
+             * @returns {*} 格式化后的时分秒
+             */
+            formateData (s) {
+                var t;
+                if(s > -1){
+                    var hour = Math.floor(s/3600);
+                    var min = Math.floor(s/60) % 60;
+                    var sec = s % 60;
+                    if (hour!=0) {
+                        t = hour+ "时";
+                    }else {
+                         t ="";
+                    }
+                    t += min + "分";
+                    t += sec+"秒";
+                }
+                return t;
+            },
+            // 应用使用行为
                 setChart () {
                     let option = {
-                        grid:[
-                           {
-                                show: false,
-                                left: 0,
-                                top: 45,
-                                bottom: 1,
-                                containLabel: true,
-                                width:'33.6%'
-                            }, 
-                            {
-                                show: false,
-                                left: '32.8%',
-                                top: 45,
-                                bottom: 1,
-                                  containLabel: true,
-                                   width:'33.6%'
+                        tooltip : {
+                            trigger: 'item',
+                            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                type : 'none'        // 默认为直线，可选为：'line' | 'shadow'
                             },
-                            {
-                                show: false,
-                                left:'65.4%',
-                                top: 45,
-                                bottom: 1,
-                                  containLabel: true,
-                                   width:'33.6%'
-                            }
-                        ],
-                        tooltip: {
-                            trigger: 'axis',
-                            axisPointer: {
-                                type: 'cross',
-                                crossStyle: {
-                                    color: '#999'
+                             backgroundColor:'#11367a',
+                            textStyle:{
+                                color:'#6dd0e3',
+                                fontSize:10,
+                            },
+                            formatter:(data)=> {
+                                if (data.componentSubType =='bar' && data.seriesName!='辅助') {
+                                    return data.name+":"+data.value
+                                } else if (data.componentSubType =='line') {
+                                    return data.name+"<br>"+data.seriesName+":"+this.formateData(data.value)
                                 }
                             }
                         },
-                        legend: {
-                            top:15,
+                        title:[
+                            {
+                                text:'【应用类型统计】',
+                                textStyle:{
+                                    color:'#75deef',
+                                    fontSize:12,
+                                    fontWeight:'normal'
+                                },
+                                top:'12%',
+                                left:'15%'
+                            },
+                            {
+                                text:'【应用时长TOP10】',
+                                textStyle:{
+                                    color:'#75deef',
+                                    fontSize:12,
+                                    fontWeight:'normal'
+                                },
+                                top:'12%',
+                                right:'14%'
+                            },
+                            {
+                                text:'【应用使用时长日分布】',
+                                textStyle:{
+                                    color:'#75deef',
+                                    fontSize:12,
+                                    fontWeight:'normal'
+                                },
+                                top:'53%',
+                                left:'14%'
+                            },
+                            {
+                                text:'【应用使用时长时段分布】',
+                                textStyle:{
+                                    color:'#75deef',
+                                    fontSize:12,
+                                    fontWeight:'normal'
+                                },
+                                top:'53%',
+                                right:'12%'
+                            }
+                        ],
+                        legend: [
+                            {
+                            top:'6%',
+                            left:'10%',
                             itemWidth:7,
                             itemheight:7,
                             textStyle:{
-                                color:'rgb(105,200,216)'
+                                color:'#75deef',
+                                fontSize:12,
                             },
+                            z:2,
                             right:10,
                             data:[
-                                {name:'收入笔数',icon:'circle'},
-                                {name:'支出笔数',icon:'circle'},
-                                {name:'收入金额',icon:'circle'},
-                                {name:'支出金额',icon:'circle'},
+                                {name:'社交',icon:'circle'},
+                                {name:'游戏',icon:'circle'},
+                                {name:'直播',icon:'circle'},
+                                {name:'金融理财',icon:'circle'},
+                                {name:'生活',icon:'circle'},
+                                {name:'购物',icon:'circle'},
+                                {name:'办公学习',icon:'circle'},
+                                {name:'其他',icon:'circle'},
                             ]
-                        },
-                        xAxis: [
+                        }
+                        ],
+                        grid: [
                             {
-                                type: 'category',
-                                data: ['1月','2月','3月','4月','5月','6月','7月','8月'],
-                                axisLabel: {
-                                    formatter: '{value}',
-                                    fontSize:8,
-                                    color:'rgb(88,168,183)',
-                                    interval:0,
-                                },
-                                 axisLine:{
-                                    lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
-                                },
-                                splitLine:{
-                                    show:false,
-                                },
-                                axisTick:{
-                                    show:false,
-                                     lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
+                            left: 10,
+                            top:'20%',
+                            right: '52%',
+                            bottom: '48%',
+                            containLabel: true
+                            },
+                            {
+                            left: '52%',
+                            top:"20%",
+                            right: 10,
+                            bottom: "48%",
+                            containLabel: true
+                            },
+                            {
+                            left: 10,
+                            top:'62%',
+                            right: '52%',
+                            bottom: '3%',
+                            containLabel: true
+                            },
+                            {
+                            left: '48%',
+                              top:"62%",
+                            right: 20,
+                            bottom: "3%",
+                            containLabel: true
+                            },
+                        ],
+                        xAxis : [
+                            {
+                                type : 'category',
+                                 data:['社交','游戏','直播','金融理财','生活','购物','办公','其他'],
+                                 axisLabel:{
+                                      interval:0,
+                                      fontSize:9,
+                                       color:'#75deef'
+                                 },
+                                axisLine:{show:false},
+                                axisTick: {
+                                   show:false
                                 }
                             },
                             {
+                                type : 'category',
                                 gridIndex:1,
-                                 type: 'category',
-                                data: ['1月','2月','3月','4月','5月','6月','7月','8月'],
-                                axisLabel: {
-                                     formatter: '{value}',
-                                    fontSize:8,
-                                    color:'rgb(88,168,183)',
-                                    interval:0 
-                                },
-                                 axisLine:{
-                                     
-                                    lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
-                                },
-                                splitLine:{
-                                    show:false,
-                                },
-                                axisTick:{
-                                     show:false,
-                                     lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
+                                data : ['微信', 'QQ音乐', '钉钉', '抖音', '直播', '互动吧', '其他'],
+                                axisLine:{show:false},
+                                axisLabel:{
+                                      interval:0,
+                                      fontSize:9,
+                                       color:'#75deef'
+                                 },
+                                axisTick: {
+                                   show:false
                                 }
                             },
                             {
+                                type : 'category',
                                 gridIndex:2,
-                                 type: 'category',
-                                data: ['1月','2月','3月','4月','5月','6月','7月','8月'],
-                                axisLabel: {
-                                     formatter: '{value}',
-                                    fontSize:8,
-                                    color:'rgb(88,168,183)',
-                                    interval:0 
-                                },
-                                 axisLine:{
+                                boundaryGap:false,
+                                data : ['8.1', '8.2', '8.3', '8.4', '8.5', '8.6', '8.7'],
+                                axisLine:{show:true,
                                     lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
+                                            color:'#1a3c58'
+                                        }
                                 },
-                                splitLine:{
-                                    show:false,
+                                axisLabel:{
+                                      interval:0,
+                                      fontSize:9,
+                                       color:'#75deef'
+                                 },
+                                axisTick: {
+                                   show:true
+                                }
+                            },
+                            {
+                                type : 'category',
+                                gridIndex:3,
+                                boundaryGap:false,
+                                data : ['0.00', '4.00', '8.00', '12.00', '16.00', '20.00', '24.00'],
+                                axisLine:{show:true,
+                                    lineStyle:{
+                                            color:'#1a3c58'
+                                        }
                                 },
-                                axisTick:{
-                                     show:false,
-                                     lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
+                                axisLabel:{
+                                      interval:0,
+                                      fontSize:9,
+                                       color:'#75deef'
+                                 },
+                                axisTick: {
+                                   show:true
                                 }
                             },
                         ],
-                        yAxis: [
+                        yAxis : [
                             {
-                                type: 'value',
-                                 splitLine:{
-                                    show:false,
-                                },
-                                min: 0,
-                                max: 300,
-                                 splitNumber:5,
-                                axisLabel: {
-                                    formatter: function (value) {
-                                        if(value==300){
-                                        value='(笔)';
-                                        }
-                                        return value;
-                                        },
-                                    showMaxLabel:true,
-                                    fontSize:8,
-                                    color:'rgb(88,168,183)'
-                                },
-                                axisLine:{
-                                    lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
-                                },
-                                axisTick:{
-                                    length:3,
-                                     lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
+                                type : 'value',
+                                splitLine:{show:false},
+                                axisLabel:{show:false},
+                                 axisLine:{show:false},
+                                axisTick: {
+                                   show:false
                                 }
                             },
                             {
-                                type: 'value',
-                                min: 0,
-                                max: 300,
-                                interval: 50,
-                                  splitLine:{
-                                    show:false,
-                                },
-                                axisLabel: {
-                                    formatter: function (value) {
-                                        if(value==300){
-                                        value='(万)';
-                                        }
-                                        return value;
-                                        },
-                                     showMaxLabel:true,
-                                    fontSize:8,
-                                    color:'rgb(88,168,183)'
-                                },
-                                 axisLine:{
-                                     
-                                    lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
-                                },
-                                axisTick:{
-                                     length:3,
-                                     lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
-                                }
-                            },
-                            {   
+                                type : 'value',
                                 gridIndex:1,
-                                  type: 'value',
-                                 splitLine:{
-                                    show:false,
-                                },
-                                min: 0,
-                                max: 300,
-                                interval: 50,
-                                  splitLine:{
-                                    show:false,
-                                },
-                                axisLabel: {
-                                    formatter: function (value) {
-                                        if(value==300){
-                                        value='(笔)';
-                                        }
-                                        return value;
-                                        },
-                                     showMaxLabel:true,
-                                    fontSize:8,
-                                    color:'rgb(88,168,183)'
-                                },
-                                axisLine:{
-                                    lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
-                                },
-                                axisTick:{
-                                     length:3,
-                                     lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
+                                axisLabel:{show:false},
+                                splitLine:{show:false},
+                                 axisLine:{show:false},
+                                axisTick: {
+                                   show:false
                                 }
-                            },
-                            {
-                                gridIndex:1,
-                                  splitLine:{
-                                    show:false,
-                                },
-                                nameTextStyle:{
-                                    color:'rgb(88,168,183)',
-                                    fontSize:8,
-                                },
-                                min: 0,
-                                max: 300,
-                                interval: 50,
-                                axisLabel: {
-                                    formatter: function (value) {
-                                        if(value==300){
-                                        value='(万)';
-                                        }
-                                        return value;
-                                        },
-                                     showMaxLabel:true,
-                                    fontSize:8,
-                                    color:'rgb(88,168,183)'
-                                },
-                                 axisLine:{
-                                    lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
-                                },
-                                axisTick:{
-                                     length:3,
-                                     lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
-                                }
-                            },
-                            {   
-                                gridIndex:2,
-                                  splitLine:{
-                                    show:false,
-                                },
-                                  type: 'value',
-                                min: 0,
-                                max: 300,
-                                interval: 50,
-                                axisLabel: {
-                                    formatter: function (value) {
-                                        if(value==300){
-                                        value='(笔)';
-                                        }
-                                        return value;
-                                        },
-                                     showMaxLabel:true,
-                                    fontSize:8,
-                                    color:'rgb(88,168,183)'
-                                },
-                                axisLine:{
-                                    lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
-                                },
-                                axisTick:{
-                                     length:3,
-                                     lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
-                                }
-                            },
-                            {
-                                gridIndex:2,
-                                min: 0,
-                                max: 300,
-                                  splitLine:{
-                                    show:false,
-                                },
-                                interval: 50,
-                                axisLabel: {
-                                     formatter: function (value) {
-                                        if(value==300){
-                                        value='(万)';
-                                        }
-                                        return value;
-                                        },
-                                     showMaxLabel:true,
-                                    fontSize:8,
-                                    color:'rgb(88,168,183)'
-                                },
-                                 axisLine:{
-                                    lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
-                                },
-                                axisTick:{
-                                     length:3,
-                                     lineStyle:{
-                                        color:'rgb(88,168,183)'
-                                    }
-                                }
-                            }
-                        ],
-                        series: [
-                             {
-                                name:'支出笔数',
-                                type:'bar',
-                                barGap:0,
-                                itemStyle:{
-                                    color:'rgb(40,112,232)'
-                                },
-                                barWidth:5,
-                                data:[21, 54, 111, 222, 134, 156, 213, 211, ]
-                            },
-                            {
-                                name:'收入笔数',
-                                type:'bar',
-                                barGap:0,
-                                barWidth:5,
-                                itemStyle:{
-                                    color:'rgb(194,35,42)'
-                                },
-                                data:[100, 65, 222, 162.2, 111, 22, 67,76]
-                            },
-                           
-                            {
-                                name:'收入金额',
-                                type:'line',
-                                symbol: 'none',
-                                smooth:true,
-                                yAxisIndex: 1,
-                                 itemStyle:{
-                                    color:'rgb(238,132,24)'
-                                },
-                                lineStyle:{
-                                    width:1,
-                                    shadowBlur:5,
-                                    shadowOffsetY:3,
-                                    shadowColor:'rgb(238,132,24)'
-                                },
-                                data:[120, 212, 233, 145, 163, 102, 203, 234]
-                            },
-                            {
-                                name:'支出金额',
-                                smooth:true,
-                                 symbol: 'none',
-                                type:'line',
-                               yAxisIndex: 1,
-                               itemStyle:{
-                                    color:'rgb(11,227,202)'
-                                },
-                                lineStyle: {
-                                    shadowBlur:5,
-                                    shadowOffsetY:3,
-                                    width:1,
-                                    shadowColor:'rgb(11,227,202)'
-                                },
-                                data:[63, 102, 203, 234, 240, 115, 220, 262]
-                            },
-                            {
-                                name:'支出笔数',
-                                type:'bar',
-                                barGap:0,
-                                 yAxisIndex: 2,
-                                xAxisIndex: 1,
-                                 itemStyle:{
-                                    color:'rgb(40,112,232)'
-                                },
-                                  barWidth:5,
-                                data:[21, 54, 111, 222, 134, 156, 213, 211, ]
-                            },
-                            {
-                                name:'收入笔数',
-                                type:'bar',
-                                barGap:0,
-                                barWidth:5,
-                                 yAxisIndex: 2,
-                                xAxisIndex: 1,
-                                itemStyle:{
-                                    color:'rgb(194,35,42)'
-                                },
-                                data:[100, 65, 222, 162.2, 111, 22, 67,76]
-                            },
-                            
-                            {
-                                name:'收入金额',
-                                type:'line',
-                                 symbol: 'none',
-                                  smooth:true,
-                                yAxisIndex: 3,
-                                xAxisIndex: 1,
-                                 itemStyle:{
-                                    color:'rgb(238,132,24)'
-                                },
-                                lineStyle:{
-                                    shadowBlur:5,
-                                    shadowOffsetY:3,
-                                    width:1,
-                                    shadowColor:'rgb(238,132,24)'
-                                },
-                                data:[220, 212, 111, 123, 63, 102, 203, 234]
-                            },
-                            {
-                                name:'支出金额',
-                                smooth:true,
-                                 symbol: 'none',
-                                type:'line',
-                                 yAxisIndex: 3,
-                                xAxisIndex: 1,
-                                 itemStyle:{
-                                    color:'rgb(11,227,202)'
-                                },
-                                lineStyle: {
-                                    shadowBlur:5,
-                                    shadowOffsetY:3,
-                                    width:1,
-                                    shadowColor:'rgb(11,227,202)'
-                                },
-                                data:[63, 102, 203, 234, 230, 165, 120, 62]
                             },
                              {
-                                name:'支出笔数',
-                                type:'bar',
-                                barGap:0,
-                                 yAxisIndex: 4,
-                                xAxisIndex: 2,
-                                  barWidth:5,
-                                   itemStyle:{
-                                    color:'rgb(40,112,232)'
-                                },
-                                data:[21, 54, 111, 222, 134, 156, 213, 211, ]
+                                type : 'value',
+                                gridIndex:2,
+                                axisLabel:{
+                                      interval:0,
+                                      fontSize:9,
+                                       color:'#75deef',
+                                       formatter:(value)=>{
+                                           if (value==6) {
+                                               value ='(小时)'
+                                           }
+                                           return value
+                                       }
+                                 },
+                                 min:0,
+                                 max:6,
+                                splitLine:{show:false},
+                                 axisLine:{
+                                     show:true,
+                                     lineStyle:{
+                                            color:'#1a3c58'
+                                        }
+                                 },
+                                axisTick: {
+                                   show:true
+                                }
+                            },
+                             {
+                                type : 'value',
+                                gridIndex:2,
+                                axisLabel:{show:false},
+                                splitLine:{show:false},
+                                 axisLine:{show:false},
+                                axisTick: {
+                                   show:false
+                                }
                             },
                             {
-                                name:'收入笔数',
-                                type:'bar',
-                                barGap:0,
-                                barWidth:5,
-                                itemStyle:{
-                                    color:'rgb(194,35,42)'
+                                type : 'value',
+                                gridIndex:3,
+                                 axisLabel:{
+                                      interval:0,
+                                      fontSize:9,
+                                       color:'#75deef',
+                                       formatter:(value)=>{
+                                           if (value==6) {
+                                               value ='(小时)'
+                                           }
+                                           return value
+                                       }
+                                 },
+                                  min:0,
+                                 max:6,
+                                splitLine:{show:false,
+                                    
                                 },
-                                 yAxisIndex: 4,
-                                xAxisIndex: 2,
-                                data:[100, 65, 222, 162.2, 111, 22, 67,76]
-                            },
-                           
-                            {
-                                name:'收入金额',
-                                type:'line',
-                                 symbol: 'none',
-                                  smooth:true,
-                                yAxisIndex: 5,
-                                xAxisIndex: 2,
-                                 itemStyle:{
-                                    color:'rgb(238,132,24)'
-                                },
-                                lineStyle:{
-                                    width:1,
-                                    shadowBlur:5,
-                                    shadowOffsetY:3,
-                                    shadowColor:'rgb(238,132,24)'
-                                },
-                                data:[209, 212, 123, 145, 163, 102, 203, 234]
+                                 axisLine:{
+                                     show:true,
+                                      lineStyle:{
+                                            color:'#1a3c58'
+                                        }
+                                 },
+                                axisTick: {
+                                   show:true
+                                }
                             },
                             {
-                                name:'支出金额',
-                                smooth:true,
-                                 symbol: 'none',
-                                type:'line',
-                                 yAxisIndex: 5,
-                                xAxisIndex: 2,
-                                 itemStyle:{
-                                    color:'rgb(11,227,202)'
-                                },
-                                lineStyle: {
-                                    width:1,
-                                    shadowBlur:5,
-                                    shadowOffsetY:3,
-                                    shadowColor:'rgb(11,227,202)'
-                                },
-                                data:[200, 102, 203, 234, 230, 165, 120, 62]
+                                type : 'value',
+                                gridIndex:3,
+                                 axisLabel:{show:false},
+                                splitLine:{show:false},
+                                 axisLine:{show:false},
+                                axisTick: {
+                                   show:false
+                                }
                             },
                         ],
-                        
+                        series : this.setOptionData()
                     };
-                     let myChart = this.$echarts.init(document.getElementById('bottom_1'));
+                     let myChart = this.$echarts.init(document.getElementById(this.id));
             
                     myChart.clear();
                     myChart.resize(
                         {
-                            width:document.getElementById('bottom_1').offsetWidth,
-                        height:document.getElementById('bottom_1').offsetHidth
+                            width:document.getElementById(this.id).offsetWidth,
+                        height:document.getElementById(this.id).offsetHidth
                         }
                     )
                     myChart.setOption(option);
-                },
+                }
         },
         mounted() {
             this.setChart ();
@@ -539,8 +443,5 @@
 </script>
 
 <style lang="less" scoped>
-    #bottom_1 {
-        height:100%;
-        width: 100%;
-    }
+    
 </style>

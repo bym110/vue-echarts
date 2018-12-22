@@ -29,9 +29,17 @@
                     tooltip : {
                             trigger: 'axis',
                             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                                type : 'none'        // 默认为直线，可选为：'line' | 'shadow'
                             },
-                            formatter:"{b}:<br>{c1}个"
+                           backgroundColor:'#11367a',
+                            textStyle:{
+                                color:'#6dd0e3',
+                                fontSize:10,
+                            },
+                           formatter:(params)=> {
+                               params[1].number=this.data.number
+                               return params[1].name+"<br>"+params[1].seriesName+":"+params[1].number+"/"+params[1].value+"人"
+                           }
                         },
                     grid:{
                         left: '4%',
@@ -48,7 +56,7 @@
                             axisLine: {
                                 show:true,
                                 lineStyle: {
-                                    color: '#1E415B'
+                                    color: '#1a3c58'
                                 }
                             },
                             axisTick: {
@@ -58,7 +66,7 @@
                                 show: true,
                                 margin:13,
                                 fontSize:10,
-                                color:'#74DCED'
+                                color:'#75deef'
                             },
                             data:this.data.data
                         },
@@ -85,7 +93,7 @@
                         type: 'bar',
                         stack: '总量',
                         barCategoryGap: 20,
-                        barWidth: 6,
+                        barWidth: 8,
                         itemStyle: {
                             normal: {
                                 color: 'rgba(0,0,0,0)'
@@ -94,11 +102,11 @@
                             data:this.setData()
                     },
                     {
-                        name: '数据',
+                        name: this.data.name,
                         type: 'bar',
                         stack: '总量',
                         barCategoryGap: 20,
-                        barWidth: 6,
+                        barWidth: 8,
                         itemStyle: {
                             normal: {
                                 color: { // 颜色线性渐变

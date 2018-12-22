@@ -1,7 +1,7 @@
 <template>
     <div class="webPie" >
         <div class="webPie-title">
-            <span class="title"><span class="leftCircle" :style="{background:data.color}"></span>{{data.title}}比<span class="rightCircle" :style="{background:data.color}"></span></span>
+            <span class="subtitle"><span class="leftCircle" :style="{background:data.color}"></span>{{data.title}}<span class="rightCircle" :style="{background:data.color}"></span></span>
         </div>
         <div class="webPie-content" :id="id">
             
@@ -26,16 +26,21 @@
                 let option = {
                     tooltip : {
                         trigger: 'item',
-                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        backgroundColor:'#11367a',
+                            textStyle:{
+                                color:'#6dd0e3',
+                                fontSize:10,
+                            },
+                        formatter: "{b}:{d}%"
                     },
                     series : [
                         {
                             type: 'pie',
-                            radius : '60%',
-                            center: ['50%', '45%'],
+                            radius : '70%',
+                            center: ['50%', '50%'],
                             label:{
-                                color:'rgb(105,200,216)',
-                                 fontSize:8,
+                                color:'#75deef',
+                                 fontSize:10,
                                  formatter:function (data) {
                                      return data.data.name+data.percent.toFixed(0)+'%';
                                  }
@@ -78,9 +83,10 @@
         .webPie-title {
             height:20%;
             text-align: center;
-            .title {
+            .subtitle {
                 color:#68C6D6;
                 position: relative;
+                font-size: 14px;
                .leftCircle {
                     display:block;
                     width: 6px;
@@ -88,7 +94,7 @@
                     border-radius: 50%;
                     position: absolute;
                     left:-15px;
-                    top: 3px;
+                    top: 5px;
                 }
                .rightCircle {
                      display: block;
@@ -97,7 +103,7 @@
                      border-radius: 50%;
                     position: absolute;
                     right:-15px;
-                    top:3px;
+                    top:5px;
                 } 
             }
         }

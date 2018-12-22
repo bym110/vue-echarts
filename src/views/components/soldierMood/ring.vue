@@ -19,58 +19,46 @@
               let option = {
                             title : {
                                 text: '【'+this.data.title+'】',
-                                top:15,
+                                top:20,
                                 x:'center',
                                 textStyle:{
-                                    color:'rgb(109,208,224)',
-                                    fontSize:10
+                                    color:'#75deef',
+                                    fontSize:14,
+                                    fontWeight:'normal'
                                 }
                             },
                             tooltip: {
                                 trigger: 'item',
-                                formatter: "{b}: {c} ({d}%)"
-                            },
-                            legend: {
-                                itemWidth:7,
-                                itemHeight:7,
-                                itemGap:2,
-                                top:35,
+                                formatter: "{b}: {c} ({d}%)",
+                                backgroundColor:'#11367a',
                                 textStyle:{
-                                    color:'rgb(109,208,224)',
-                                    fontSize:8
+                                    color:'#6dd0e3',
+                                    fontSize:10,
                                 },
-                                x: 'center',
-                                data:[
-                                    { name:'自杀',icon:'circle'},
-                                    { name:'法轮功',icon:'circle'},
-                                    { name:'赌博',icon:'circle'},
-                                    { name:'其他',icon:'circle'},
-                                    { name:'贪污',icon:'circle'},
-                                ]
                             },
                             series: [
                                 {
                                     name:this.data.title,
                                     type:'pie',
                                     radius: ['40%', '60%'],
-                                    center: ['50%','67%'],
+                                    center: ['50%','55%'],
                                     avoidLabelOverlap: true,
                                     label: {
                                         normal: {
-                                            show: false,
-                                            position: 'center',
+                                            show: true,
+                                            position: 'outside',
+                                            fontSize:10,
+                                            color:'#75deef'
                                         },
-                                        emphasis: {
-                                            show: false,
-                                            textStyle: {
-                                                fontSize: '30',
-                                                fontWeight: 'bold'
-                                            }
-                                        }
                                     },
                                     labelLine: {
                                         normal: {
-                                            show: false
+                                            show: true,
+                                            length:8,
+                                            length2:5,
+                                            lineStyle: {
+                                                color:'#303851'
+                                            }
                                         }
                                     },
                                     data:this.data.data

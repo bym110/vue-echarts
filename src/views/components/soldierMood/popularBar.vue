@@ -11,90 +11,353 @@
             }
         },
         methods: {
+            setOptionData () {
+                let nameData = ['色情同性恋', '暴力枪支', '赌博彩票', '赌品药品','自杀抑郁','宗教迷信','其他'];
+                let data= [45, 33, 13, 25,30,35,45];
+                let colorList = ['#2871ea','#fbe831','#2ea5fe','#fc662f','#9f56f0','#bf232c','#64cef2'];
+                let arr=[];
+                for (let i = 0; i<data.length;i++) {
+                    let obj ={
+                        name:nameData[i],
+                        value:data[i],
+                        itemStyle:{
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 1,
+                                y2: 0,
+                                colorStops: [{
+                                    offset: 0, color: colorList[i] // 0% 处的颜色
+                                }, {
+                                    offset: 1, color: '#922aea' // 100% 处的颜色
+                                }],
+                                globalCoord: false // 缺省为 false
+                            }
+                        }
+                    }
+                    arr.push(obj)
+                }
+                return arr;
+            },
             setChart () {
                 let option = {
-                            grid:{
+                            grid:[{
                                 top:20,
-                                bottom:20,
-                                right:'1%',
-                                left:'35%'
+                                bottom:'15%',
+                                right:'5%',
+                                left:'52.5%'
                             },
+                            {
+                                top:20,
+                                bottom:'15%',
+                                right:'52.5%',
+                                left:'5%'
+                            }
+                            ],
                             tooltip : {
                                 trigger: 'axis',
                                 axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                                    type : 'none'        // 默认为直线，可选为：'line' | 'shadow'
                                 },
-                                formatter:"{b}<br />{c1}人"
+                                backgroundColor:'#11367a',
+                                textStyle:{
+                                    color:'#6dd0e3',
+                                    fontSize:10,
+                                },
+                                formatter:(params) =>{
+                                    if (params[5].seriesName=='人数') {
+                                        return params[5].name+':'+params[5].value+'人'
+                                    }else {
+                                        return params[5].name+':'+params[5].value+'次'
+                                    }
+                                    
+                                }
                             },
-                            yAxis: [
+                            yAxis:[ 
                                 {
                                 data: ['色情同性恋', '暴力枪支', '赌博彩票', '赌品药品','自杀抑郁','宗教迷信','其他'],
-                                axisTick: {show: false},
-                                 axisLine: {show: false},
+                                axisTick: {
+                                    show: true,
+                                    inside:true,
+                                },
+                                 axisLine: {
+                                     show: true,
+                                    lineStyle:{
+                                        color:'#1a3c58'
+                                    }
+                                },
                                  inverse:true,
                                 axisLabel: {
+                                    show:false,
                                     fontSize:10,
-                                    margin:60,
-                                    align:'left',
+                                    margin:8,
+                                    inside:true,
                                     color:'rgb(113,227,247)'
                                 }
                             },
                             {
-                                data: [45, 33, 13, 25,30,35,45],
-                                axisTick: {show: false},
-                                 axisLine: {show: false},
+                                data: ['色情同性恋', '暴力枪支', '赌博彩票', '赌品药品','自杀抑郁','宗教迷信','其他'],
+                                gridIndex:1,
+                                position:'right',
+                                axisTick: {
+                                    show: true,
+                                    inside:true,
+                                },
+                                 axisLine: {
+                                     show: true,
+                                    lineStyle:{
+                                        color:'#1a3c58'
+                                    }
+                                },
                                  inverse:true,
-                                 offset:-35,
-                                 z:2,
                                 axisLabel: {
-                                    fontSize:12,
-                                    formatter: '{value}人',
-                                    color:'rgb(113,227,247)',
+                                    show:false,
+                                    fontSize:10,
+                                    margin:8,
+                                    inside:true,
+                                    color:'rgb(113,227,247)'
                                 }
-                            }
-                            ],
-                            xAxis: {
-                                splitLine: {show: false},
-                                axisTick: {show: false},
-                                axisLabel: {show: false},
-                                axisLine: {show: false},
                             },
-                            series: [{
+                            ],
+                            xAxis: [{
+                                type:'value',
+                                
+                                splitLine: {show: false},
+                                axisTick: {show: true},
+                                axisLabel: {
+                                    show: true,
+                                    color:'#75deef',
+                                    fontSize:9, 
+                                    formatter: function (value,index) {
+                                        if(index==5){
+                                        value='(人)';
+                                        }
+                                        return value;
+                                        },
+                                 showMaxLabel:true,   
+                                },
+                                max:60,
+                                splitNumber:6,
+                                min:10,
+                                scale:true,
+                                axisLine: {
+                                    show: true,
+                                    lineStyle:{
+                                        color:'#1a3c58'
+                                    }
+                                },
+                            },
+                            {
+                                type:'value',
+                                 inverse:true,
+                                splitLine: {show: false},
+                                axisTick: {show: true},
+                                gridIndex:1,
+                                axisLabel: {
+                                    show: true,
+                                    color:'#75deef',
+                                    fontSize:9, 
+                                    formatter: function (value,index) {
+                                        if(index==5){
+                                        value='(次)';
+                                        }
+                                        return value;
+                                        },
+                                 showMaxLabel:true,   
+                                },
+                                max:60,
+                                splitNumber:7,
+                                min:10,
+                                scale:true,
+                                axisLine: {
+                                    show: true,
+                                    lineStyle:{
+                                        color:'#1a3c58'
+                                    }
+                                },
+                            },
+                            ],
+                            series: [
+                                {
+                                    name: '辅助',
+                                    type: 'bar',
+                                    stack: 'a',
+                                    barWidth: 5,
+                                    itemStyle: {
+                                        normal: {
+                                            color: 'rgba(0,0,0,0)'
+                                        },
+                                    },
+                                        data:[15,15,15,15,15,15,15]
+                                },
+                                {
+                                    name: '辅助',
+                                    type: 'bar',
+                                    stack: 'a',
+                                    barWidth: 5,
+                                    itemStyle: {
+                                        normal: {
+                                            color: 'rgba(0,0,0,0)'
+                                        },
+                                    },
+                                        data:[13,13,13,13,13,13,13]
+                                },
+                                {
                                 type: 'bar',
+                                  stack: 'a',
                                 itemStyle: {
                                     normal: {
                                         color: '#ddd'
                                     }
                                 },
                                 silent: true,
-                                barWidth: 10,
-                                barCategoryGap:20,
+                                barWidth: 5,
                                 barGap: '-100%', // Make series be overlap
-                                data: [60, 60, 60, 60,60,60,60],
+                                data: [50,50,50,50,50,50,50],
                                 itemStyle:{
-                                    color:'rgb(37,36,72)'
+                                    color:'#242346'
                                 }
 
-                            }, {
+                            },
+                             {
+                                    name: '辅助',
+                                    type: 'bar',
+                                    stack: 'b',
+                                    barWidth: 5,
+                                    itemStyle: {
+                                        normal: {
+                                            color: 'rgba(0,0,0,0)'
+                                        },
+                                    },
+                                        data:[15,15,15,15,15,15,15]
+                                },
+                                {
+                                    name: '辅助',
+                                    type: 'bar',
+                                    stack: 'b',
+                                    barWidth: 5,
+                                    itemStyle: {
+                                        normal: {
+                                            color: '#c0232a'
+                                        },
+                                    },
+                                        data:[13,13,13,13,13,13,13]
+                                },
+                            {
+                                name:'人数',
                                 type: 'bar',
-                                barWidth: 10,
+                                barWidth: 5,
+                                 stack: 'b',
                                 barCategoryGap:20,
                                 z: 10,
-                                data: [45, 33, 13, 25,30,35,45],
-                                itemStyle:{
-                                     //通常情况下：
-                                    normal:{  
-                    　　　　　　　　　　　　//每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
-                                        color: function (params){
-                                        var colorList = [ 
-                                                'rgb(40,113,234)','rgb(254,237,44)','rgb(44,168,254)','rgb(254,103,44)' ,'rgb(62,98,242)' ,'rgb(92,35,42)' ,'rgb(98,213,242)'  
-                                                ];
-                                            return colorList[params.dataIndex];
-                                        }
-                                    },
+                                label:{
+                                    show:true,
+                                    formatter:'{b}',
+                                    position:'insideBottomLeft',
+                                    offset:[-10,0],
+                                    fontSize:12,
+                                    color:'#75deef'
                                 },
+                                data: this.setOptionData(),
                                 
-                            }]
+                            },
+                            {
+                                    name: '辅助',
+                                    xAxisIndex:1,
+                                    yAxisIndex:1,
+                                    type: 'bar',
+                                    stack: 'c',
+                                    barWidth: 5,
+                                    itemStyle: {
+                                        normal: {
+                                            color: 'rgba(0,0,0,0)'
+                                        },
+                                    },
+                                        data:[15,15,15,15,15,15,15]
+                                },
+                                {
+                                    name: '辅助',
+                                    type: 'bar',
+                                     xAxisIndex:1,
+                                    yAxisIndex:1,
+                                    stack: 'c',
+                                    barWidth: 5,
+                                    itemStyle: {
+                                        normal: {
+                                            color: 'rgba(0,0,0,0)'
+                                        },
+                                    },
+                                        data:[13,13,13,13,13,13,13]
+                                },
+                                {
+                                type: 'bar',
+                                 xAxisIndex:1,
+                                    yAxisIndex:1,
+                                  stack: 'c',
+                                itemStyle: {
+                                    normal: {
+                                        color: '#ddd'
+                                    }
+                                },
+                                silent: true,
+                                barWidth: 5,
+                                barGap: '-100%', // Make series be overlap
+                                data: [50,50,50,50,50,50,50],
+                                itemStyle:{
+                                    color:'#242346'
+                                }
+
+                            },
+                             {
+                                    name: '辅助',
+                                     xAxisIndex:1,
+                                    yAxisIndex:1,
+                                    type: 'bar',
+                                    stack: 'd',
+                                    barWidth: 5,
+                                    itemStyle: {
+                                        normal: {
+                                            color: 'rgba(0,0,0,0)'
+                                        },
+                                    },
+                                        data:[15,15,15,15,15,15,15]
+                                },
+                                {
+                                    name: '辅助',
+                                    type: 'bar',
+                                     xAxisIndex:1,
+                                    yAxisIndex:1,
+                                    stack: 'd',
+                                    barWidth: 5,
+                                    itemStyle: {
+                                        normal: {
+                                            color: '#c0232a'
+                                        },
+                                    },
+                                        data:[13,13,13,13,13,13,13]
+                                },
+                            {
+                                name:'次数',
+                                type: 'bar',
+                                barWidth: 5,
+                                 xAxisIndex:1,
+                                    yAxisIndex:1,
+                                 stack: 'd',
+                                barCategoryGap:20,
+                                z: 10,
+                                label:{
+                                    show:true,
+                                    formatter:'{b}',
+                                    position:'insideBottomRight',
+                                    offset:[10,0],
+                                    fontSize:12,
+                                    color:'#75deef'
+                                },
+                                data: this.setOptionData(),
+                                
+                            }
+                            ]
                         };
                         let myChart = this.$echarts.init(document.getElementById('right_2'));
                         myChart.clear();

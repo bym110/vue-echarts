@@ -15,33 +15,46 @@
             }
         },
         methods: {
+            setOptionData () {
+                let arr = []
+                for (let i =0;i<this.data.length;i++) {
+                    let obj={
+                        itemStyle:{
+                            color:this.data[i].color
+                        },
+                        name:this.data[i].name,
+                        value:this.data[i].value
+                    }
+                }
+            },
             setChart () {
                 let option = {
+                    title:{
+                        text:'【交友方式好友数量】',
+                        textStyle:{
+                            color:'#75deef',
+                            fontSize:12,
+                            fontWeight:'normal'
+                        },
+                        top:'5%',
+                        left:'31%'
+                    },
                         tooltip : {
                             trigger: 'axis',
                             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                            }
-                        },
-                        legend:
-                            {
-                                top:20,
-                                right:40,
-                                itemWidth:7,
-                                itemHeight:7,
-                                textStyle:{
-                                     color:'rgb(111,223,244)',
-                                     fontSize:10,
-                                },
-                                data: [
-                                    {name:'添加好友',icon:'circle'},
-                                    {name:'好友总数',icon:'circle'}
-                                ],
+                                type : 'none'        // 默认为直线，可选为：'line' | 'shadow'
                             },
+                            backgroundColor:'#11367a',
+                            formatter:"{b}:{c1}",
+                            textStyle:{
+                                color:'#6dd0e3',
+                                fontSize:10,
+                            },
+                        },
                         grid: 
                             {
                             top:'25%',
-                            left: '3%',
+                            left: '1%',
                             right: '4%',
                             bottom:'4%',
                             containLabel: true,
@@ -52,11 +65,26 @@
                             type: 'category',
                             axisLabel:{
                                 interval:0,
-                                color:'rgb(111,223,244)',
-                                fontSize:10
+                                color:'#75deef',
+                                fontSize:9,
+                                showMinLabel:true,
+                                formatter:function (value,index) {
+                                   if (index == 1) {
+                                       return value
+                                   };
+                                   return value;
+                                   
+                                },
+                            },
+                            axisLine:{
+                                lineStyle:{
+                                    color:'#1a3c58',
+                                    width:2
+                                }
                             },
                             axisTick:{show:false},
-                             data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月']
+                            
+                             data: ['漂流瓶','附近','雷达','摇一摇','搜索','群聊','扫一扫','其他']
                             },
                         yAxis: [
                             {
@@ -64,11 +92,11 @@
                             min:0,
                             max:300,
                             axisLabel:{
-                                 color:'rgb(111,223,244)',
-                                fontSize:8,
+                                 color:'#75deef',
+                                fontSize:9,
                                 formatter: function (value) {
                                         if(value==300){
-                                        value='(笔)';
+                                        value='(个)';
                                         }
                                         return value;
                                         },
@@ -77,54 +105,33 @@
                             axisTick:{
                                 length:3
                             },
+                            axisLine:{
+                                lineStyle:{
+                                    color:'#1a3c58'
+                                }
+                            },
                            
                             splitLine:{show:false}
                            
                         },
-                        {
-                            type: 'value',
-                             min:0,
-                            max:300,
-                            axisTick:{
-                                length:3
-                            },
-                             axisLabel:{
-                                 color:'rgb(111,223,244)',
-                                fontSize:8,
-                                formatter: function (value) {
-                                        if(value==300){
-                                        value='(万)';
-                                        }
-                                        return value;
-                                        },
-                                  showMaxLabel:true,
-                            },
-                          
-                             splitLine:{show:false}
-                        },
                         ],
                         series: [
                             {
-                                name: '好友总数',
+                                name: '辅助',
                                 type: 'bar',
-                                 barWidth:7,
-                                stack: '总数',
+                                  barWidth:12,
                                 itemStyle:{
-                                    color:this.data[0].color,
-                                    barBorderRadius:3.5,
+                                    color:"#252448",
                                 },
-                                data: this.data[0].data
+                                data: [300,300,300,300,300,300,300,300]
                             },
                             {
                                 name: '添加好友',
                                 type: 'bar',
-                                 barWidth:7,
-                                stack: '总数',
-                                 itemStyle:{
-                                    color:this.data[1].color,
-                                     barBorderRadius:3.5,
-                                },
-                                data: this.data[1].data
+                                 barWidth:12,
+                                 barGap:'-100%',
+                                
+                                data: this.data
                             },
                         ]
                     };
@@ -150,6 +157,6 @@
 
 <style lang="less" scoped>
     .behaviorBar {
-        height:50%;
+        height:45%;
     }
 </style>
