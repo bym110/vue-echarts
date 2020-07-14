@@ -7,7 +7,7 @@
         name: '',
         data() {
             return {
-                
+
             }
         },
         methods: {
@@ -23,8 +23,8 @@
                     legend: {
                             data:[
                                 {name:'热词排行',icon:'circle'},
-                                {name:'士兵传播排行',icon:'circle'},
-                               
+                                {name:'用户传播排行',icon:'circle'},
+
                                 ],
                             gridIndex:3,
                             left:"28.5%",
@@ -355,7 +355,7 @@
                                 ]
                             },
                             {
-                                name:'士兵传播排行',
+                                name:'用户传播排行',
                                 type:'bar',
                                 xAxisIndex:2,
                                 yAxisIndex:3,
@@ -457,7 +457,7 @@
                                 ]
                             },
                             {
-                                name:'士兵传播排行',
+                                name:'用户传播排行',
                                 type:'bar',
                                 xAxisIndex:5,
                                 yAxisIndex:7,
@@ -559,7 +559,7 @@
                                 ]
                             },
                             {
-                                name:'士兵传播排行',
+                                name:'用户传播排行',
                                 type:'bar',
                                 xAxisIndex:8,
                                 yAxisIndex:11,
@@ -613,7 +613,7 @@
 
                 };
                  let myChart = this.$echarts.init(document.getElementById('right_3'));
-           
+
                     myChart.clear();
                     myChart.resize(
                         {

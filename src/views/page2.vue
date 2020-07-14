@@ -15,7 +15,7 @@
                             <area-chart ref="chart1" id="left_1" :data="chatLineData"></area-chart>
                         </div>
                         <div class="chart-32">
-                            <radar-chart ref="chart2" id="left_2" title='各部门聊天对比' :data="chatRadarData"></radar-chart>
+                            <radar-chart ref="chart2" id="left_2" :data="chatRadarData"></radar-chart>
                         </div>
                     </div>
                 </div>
@@ -30,11 +30,11 @@
                             <bar-chart ref="chart3" id="left_3"></bar-chart>
                         </div>
                         <div class="chart-32">
-                            <radar-chart ref="chart4" id="left_4" title='各部门办公时长对比' :data="officeRadarData"></radar-chart>
+                            <radar-chart ref="chart4" id="left_4" :data="officeRadarData"></radar-chart>
                         </div>
                     </div>
                 </div>
-                
+
             </Col>
             <Col span="8">
                 <div class="circlePie">
@@ -51,12 +51,12 @@
                         <span class="angle3"></span>
                         <span class="angle4"></span>
                         <div class="chart-32">
-                            <radar-chart ref="chart5" id="right_1" title='各部门好友数量对比' :data="friendRadarData"></radar-chart>
+                            <radar-chart ref="chart5" id="right_1" :data="friendRadarData"></radar-chart>
                         </div>
                         <div class="chart-68">
                             <double-bar-chart ref="chart6" id="right_2"></double-bar-chart>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="list">
@@ -67,14 +67,14 @@
                         <span class="angle3"></span>
                         <span class="angle4"></span>
                          <div class="chart-32">
-                            <radar-chart ref="chart7" id="right_3" title='各部门朋友圈数量对比' :data="momentsRadarData"></radar-chart>
+                            <radar-chart ref="chart7" id="right_3" :data="momentsRadarData"></radar-chart>
                         </div>
                         <div class="chart-68">
                             <single-area-chart ref="chart8" id="right_4"></single-area-chart>
                         </div>
                     </div>
                 </div>
-                
+
             </Col>
         </Row>
         <Row class="bottom-list">
@@ -129,15 +129,15 @@
 <script>
 import echarts from 'echarts';
 import $ from 'jquery';
-import areaChart from './components/mobileMaket/areaChart.vue'
-import radarChart from './components/mobileMaket/radarChart.vue'
-import barChart from './components/mobileMaket/barChart.vue'
-import doubleBarChart from './components/mobileMaket/doubleBarChart.vue'
-import singleAreaChart from './components/mobileMaket/singleAreaChart.vue'
-import doubleLine from './components/mobileMaket/doubleLine.vue'
-import threeBarChart from './components/mobileMaket/threeBarChart.vue'
-import pieChart from './components/mobileMaket/pieChart.vue'
-import doubleBars from './components/mobileMaket/doubleBars.vue'
+import areaChart from './components/page2/areaChart.vue'
+import radarChart from './components/radar.vue'
+import barChart from './components/page2/barChart.vue'
+import doubleBarChart from './components/page2/doubleBarChart.vue'
+import singleAreaChart from './components/page2/singleAreaChart.vue'
+import doubleLine from './components/page2/doubleLine.vue'
+import threeBarChart from './components/page2/threeBarChart.vue'
+import pieChart from './components/page2/pieChart.vue'
+import doubleBars from './components/page2/doubleBars.vue'
 export default {
     components:{
         areaChart,
@@ -173,39 +173,91 @@ export default {
                     data: [50, 182, 234, 191, 190, 30, 10],
                 }
             ],
-            chatRadarData:[
-                {
-                    name:'聊天次数',
-                    color:'#0DF5F8',
-                    data: [100, 8, 0.40, -80, 2000,332],
-                },
-                {
-                    name:'聊天人数',
-                    color:'#7921AD',
-                    data: [60, 5, 0.30, -100, 1500,221],
-                }
-            ],
-            officeRadarData:[
-                {
-                    name:'办公时长',
-                    color:'#55D35B',
-                    data: [100, 8, 0.40, -80, 2000,332],
-                }
-            ],
-            friendRadarData:[
-                {
-                    name:'好友总数',
-                    color:'#FA8486',
-                    data: [100, 8, 0.40, -80, 2000,332],
-                }
-            ],
-            momentsRadarData:[
-                 {
-                    name:'朋友圈个数',
-                    color:'#D91748',
-                    data: [100, 8, 0.40, -80, 2000,332],
-                }
-            ],
+            chatRadarData: {
+                title:'各部门聊天对比',
+                position:['center', '85%'],
+                center: ['50%', '50%'],
+                indicator: [
+                    { text: '一部' },
+                    { text: '二部' },
+                    { text: '三部' },
+                    { text: '四部' },
+                    { text: '五部' },
+                    { text: '六部' }
+                ],
+                data: [
+                    {
+                        name: '聊天次数',
+                        color: '#0DF5F8',
+                        value: [100, 8, 0.40, -80, 2000, 332],
+                    },
+                    {
+                        name: '聊天人数',
+                        color: '#7921AD',
+                        value: [60, 5, 0.30, -100, 1500, 221],
+                    }
+                ]
+            },
+            officeRadarData: {
+                title: '各部门办公时长对比',
+                position:['center', '85%'],
+                center: ['50%', '50%'],
+                indicator: [
+                    { text: '一部' },
+                    { text: '二部' },
+                    { text: '三部' },
+                    { text: '四部' },
+                    { text: '五部' },
+                    { text: '六部' }
+                ],
+                data:[
+                    {
+                        name:'办公时长',
+                        color:'#55D35B',
+                        value: [100, 8, 0.40, -80, 2000,332],
+                    }
+                ]
+            },
+            friendRadarData: {
+                title: '各部门好友数量对比',
+                position:['center', '85%'],
+                center: ['50%', '50%'],
+                indicator: [
+                    { text: '一部' },
+                    { text: '二部' },
+                    { text: '三部' },
+                    { text: '四部' },
+                    { text: '五部' },
+                    { text: '六部' }
+                ],
+                data: [
+                    {
+                        name:'好友总数',
+                        color:'#FA8486',
+                        value: [100, 8, 0.40, -80, 2000,332],
+                    }
+                ]
+            },
+            momentsRadarData:{
+                title: '各部门朋友圈数量对比',
+                position:['center', '85%'],
+                center: ['50%', '50%'],
+                indicator: [
+                    { text: '一部' },
+                    { text: '二部' },
+                    { text: '三部' },
+                    { text: '四部' },
+                    { text: '五部' },
+                    { text: '六部' }
+                ],
+                data:[
+                    {
+                        name:'朋友圈个数',
+                        color:'#D91748',
+                        value: [100, 8, 0.40, -80, 2000,332],
+                    }
+                ]
+            },
             warea: {x: 250, y: 250, max: 700},
             dots: []
         }
@@ -246,7 +298,7 @@ export default {
 
 
             // 绘制点
-              ctx.fillStyle = '#013D7A';
+              ctx.fillStyle = '#ffffff';
             ctx.beginPath();
             ctx.arc(dot.x - 0.5,dot.y - 0.5, 1, 0, 2*Math.PI, true);
             ctx.closePath();
@@ -283,7 +335,7 @@ export default {
 
 
                 // 如果两个粒子之间的距离小于粒子对象的max值，则在两个粒子间画线
-               
+
                 if (dis < d2.max) {
 
 
@@ -354,7 +406,7 @@ export default {
             this.everyPer += Math.PI/180;
             var speed = 0.07; //波浪速度，数越大速度越快
             this.xOffset += speed;
-           
+
         },
         drawPie (everyPer) {
                 let context = $("#main").get(0).getContext('2d');
@@ -365,7 +417,7 @@ export default {
                     context.closePath();
                     context.fill();
                      context.restore();
-                    
+
                   //外圆
                     context.save();
                     context.shadowBlur=50;
@@ -395,7 +447,7 @@ export default {
                     context.closePath();
                     context.fill();
                     context.restore();
-                    // 
+                    //
                     context.save();
                     context.fillStyle = '#153776';
                     context.beginPath();
@@ -414,7 +466,7 @@ export default {
                      if (this.IsdrawCircled == false) {
                          this.drawCircle (context);
                      }
-                    
+
                     this.drawSin(this.xOffset,context,nowRange);
                     this.drawText(context,nowRange);
                     context.restore();
@@ -440,7 +492,7 @@ export default {
             ctx.beginPath();
             ctx.arc(this.circle.x,this.circle.y, 120, 0, 2 * Math.PI);
             ctx.clip();
-            
+
         },
         drawSin (xOffset,ctx,nowRange){ //画sin 曲线函数
             var mW = 240;
@@ -468,7 +520,7 @@ export default {
             ctx.lineTo(points[0][0],points[0][1]);
             ctx.fillStyle = '#2C50B1';
             ctx.fill();
-            
+
             ctx.restore();
         },
         drawText (ctx,nowRange){
@@ -479,8 +531,8 @@ export default {
             ctx.textAlign = 'center';
             ctx.fillStyle = "#95EFFF";
             ctx.fillText(nowRange + '%', 120, 120 - size/2 );
-           
-            
+
+
             ctx.restore();
             ctx.save()
              var size = 25;
@@ -499,7 +551,7 @@ export default {
                 index = 0,
                 character;
                 var arr = string.split(':')
-               
+
             context.save();
             context.fillStyle = '#fff';
             context.font = '12px 微软雅黑 ';
@@ -514,7 +566,7 @@ export default {
                      }else {
                          angleDecrement = (startAngle - endAngle) / (string.length -1)
                      }
-                     
+
                 }else {
                      angleDecrement = (startAngle - endAngle) / (string.length +6)
                 }
@@ -592,7 +644,7 @@ export default {
 
                 this.drawDot ();
 
-            }, 100);
+            }, 1000);
         this.act();
         let _this = this;
          window.onresize = function () {
@@ -613,8 +665,8 @@ export default {
     .circle {
         height: 100%;
         width: 100%;
-        padding:80px 50px 30px;
-        background: #09102E;
+        padding:10px 50px 30px;
+        background: #03044A;
         .header {
             text-align: center;
             height:54px;
@@ -657,7 +709,7 @@ export default {
                         height:100%;
                         float: left;
                     }
-                   
+
                     .chart-32 {
                         width: 32%;
                         height:100%;
@@ -732,7 +784,7 @@ export default {
                             //border-radius: 5px;
                             background: radial-gradient(95px 18px ellipse, rgba(7,9,34,.8) 60%,rgb(21,67,145));
                         }
-                        
+
                     }
                 }
             }
@@ -823,7 +875,7 @@ export default {
                                 //border-radius: 5px;
                                 background: radial-gradient(95px 18px ellipse, rgba(7,9,34,.8) 60%,rgb(21,67,145));
                             }
-                            
+
                         }
                     }
                 }
@@ -831,7 +883,7 @@ export default {
                     width: 100%;
                     padding-right: 0;
                     .bottom1 {
-                        width:100%; 
+                        width:100%;
                     }
                 }
             }

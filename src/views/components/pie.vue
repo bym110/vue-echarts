@@ -4,7 +4,7 @@
             <span class="subtitle"><span class="leftCircle" :style="{background:data.color}"></span>{{data.title}}<span class="rightCircle" :style="{background:data.color}"></span></span>
         </div>
         <div class="webPie-content" :id="id">
-            
+
         </div>
     </div>
 </template>
@@ -18,7 +18,7 @@
         },
         data() {
             return {
-                
+
             }
         },
         methods: {
@@ -40,9 +40,9 @@
                             center: ['50%', '50%'],
                             label:{
                                 color:'#75deef',
-                                 fontSize:10,
+                                fontSize:8,
                                  formatter:function (data) {
-                                     return data.data.name+data.percent.toFixed(0)+'%';
+                                     return data.data.name+' '+(data.percent).toFixed(0)+'%';
                                  }
                             },
                             labelLine:{
@@ -57,7 +57,7 @@
                     ]
                 };
                 let myChart = this.$echarts.init(document.getElementById(this.id));
-           
+
                 myChart.clear();
                 myChart.resize(
                     {
@@ -65,7 +65,7 @@
                         height:document.getElementById(this.id).offsetHidth
                     }
                 );
-            
+
                 myChart.setOption(option);
                 }
         },
@@ -77,8 +77,7 @@
 
 <style lang="less" scoped>
     .webPie {
-        float: left;
-        width:40%;
+        width:100%;
         height:100%;
         .webPie-title {
             height:20%;
@@ -86,7 +85,7 @@
             .subtitle {
                 color:#68C6D6;
                 position: relative;
-                font-size: 14px;
+                font-size: 12px;
                .leftCircle {
                     display:block;
                     width: 6px;
@@ -104,7 +103,7 @@
                     position: absolute;
                     right:-15px;
                     top:5px;
-                } 
+                }
             }
         }
         .webPie-content {

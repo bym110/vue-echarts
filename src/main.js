@@ -6,9 +6,10 @@ import router from './router'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import echarts from 'echarts'
+import img from './lib/img'
 
-Vue.prototype.$echarts = echarts 
-
+Vue.prototype.$echarts = echarts
+Vue.prototype.$images = img
 Vue.config.productionTip = false;
 Vue.use(iView);
 

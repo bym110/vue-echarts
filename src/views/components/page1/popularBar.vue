@@ -7,12 +7,12 @@
         name: '',
         data() {
             return {
-                
+
             }
         },
         methods: {
             setOptionData () {
-                let nameData = ['色情同性恋', '暴力枪支', '赌博彩票', '赌品药品','自杀抑郁','宗教迷信','其他'];
+                let nameData = ['数据1', '数据2', '数据3', '数据4','数据5','数据6','其他'];
                 let data= [45, 33, 13, 25,30,35,45];
                 let colorList = ['#2871ea','#fbe831','#2ea5fe','#fc662f','#9f56f0','#bf232c','#64cef2'];
                 let arr=[];
@@ -71,12 +71,12 @@
                                     }else {
                                         return params[5].name+':'+params[5].value+'次'
                                     }
-                                    
+
                                 }
                             },
-                            yAxis:[ 
+                            yAxis:[
                                 {
-                                data: ['色情同性恋', '暴力枪支', '赌博彩票', '赌品药品','自杀抑郁','宗教迷信','其他'],
+                                data: ['数据1', '数据2', '数据3', '数据4','数据5','数据6','其他'],
                                 axisTick: {
                                     show: true,
                                     inside:true,
@@ -97,7 +97,7 @@
                                 }
                             },
                             {
-                                data: ['色情同性恋', '暴力枪支', '赌博彩票', '赌品药品','自杀抑郁','宗教迷信','其他'],
+                                data: ['数据1', '数据2', '数据3', '数据4','数据5','数据6','其他'],
                                 gridIndex:1,
                                 position:'right',
                                 axisTick: {
@@ -122,20 +122,20 @@
                             ],
                             xAxis: [{
                                 type:'value',
-                                
+
                                 splitLine: {show: false},
                                 axisTick: {show: true},
                                 axisLabel: {
                                     show: true,
                                     color:'#75deef',
-                                    fontSize:9, 
+                                    fontSize:9,
                                     formatter: function (value,index) {
                                         if(index==5){
                                         value='(人)';
                                         }
                                         return value;
                                         },
-                                 showMaxLabel:true,   
+                                 showMaxLabel:true,
                                 },
                                 max:60,
                                 splitNumber:6,
@@ -157,14 +157,14 @@
                                 axisLabel: {
                                     show: true,
                                     color:'#75deef',
-                                    fontSize:9, 
+                                    fontSize:9,
                                     formatter: function (value,index) {
                                         if(index==5){
                                         value='(次)';
                                         }
                                         return value;
                                         },
-                                 showMaxLabel:true,   
+                                 showMaxLabel:true,
                                 },
                                 max:60,
                                 splitNumber:7,
@@ -260,7 +260,7 @@
                                     color:'#75deef'
                                 },
                                 data: this.setOptionData(),
-                                
+
                             },
                             {
                                     name: '辅助',
@@ -355,7 +355,7 @@
                                     color:'#75deef'
                                 },
                                 data: this.setOptionData(),
-                                
+
                             }
                             ]
                         };
@@ -380,5 +380,5 @@
    #right_2 {
        height:100%;
        width: 100%;
-   } 
+   }
 </style>

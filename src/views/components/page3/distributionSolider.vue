@@ -11,7 +11,7 @@
         },
         data() {
             return {
-                
+
             }
         },
         methods: {
@@ -70,13 +70,13 @@
                                             // 没有设置 `verticalAlign`，则 `verticalAlign` 为 bottom
                                         }
                                     },
-                                    formatter:function(data){ 
+                                    formatter:function(data){
                                         if( data.data.name.length ==2) {
-                                            return data.data.name.split("").join("\n\n"); 
+                                            return data.data.name.split("").join("\n\n");
                                         }else {
-                                            return data.data.name.split("").join("\n");  
+                                            return data.data.name.split("").join("\n");
                                         }
-                                
+
                                     },
                                  },
                                  itemStyle:{
@@ -105,7 +105,7 @@
                 }
                 return arr;
             },
-            // 士兵排名
+            // 用户排名
                 setChart () {
                     let option ={
                         tooltip: {
@@ -116,7 +116,7 @@
                         formatter:"{b}:{c}"
                     },
                         title:{
-                            text:'重点关注士兵排名',
+                            text:'重点关注用户排名',
                             left:0,
                             top:10,
                             textStyle:{
@@ -130,7 +130,7 @@
                          series:this.setSoliderData('s')
                     };
                     let myChart = this.$echarts.init(document.getElementById(this.id));
-           
+
                     myChart.clear();
                     myChart.resize(
                         {

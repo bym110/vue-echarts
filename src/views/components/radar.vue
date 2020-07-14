@@ -17,11 +17,35 @@
         },
         data() {
             return {
-                
+
             }
         },
         methods:{
             setChart () {
+                let seriesData = []
+                this.data.data.forEach(item => {
+                    console.log(item)
+                    seriesData.push(
+                        {
+                            value: item.value,
+                            name: item.name,
+                            symbol: 'none',
+                            symbolSize: 5,
+                            itemStyle:{
+                                color:item.color
+                            },
+                            lineStyle: {
+                                normal: {
+                                    color:item.color,
+                                    width:1,
+                                },
+                                emphasis:{
+                                    width:2,
+                                }
+                            }
+                        }
+                    )
+                })
                 let option ={
                     tooltip: {
                         trigger: 'item',
@@ -32,19 +56,16 @@
                     title:{
                         text:this.data.title,
                         top:"5%",
-                        left:'5%',
+                        left:this.data.position[0],
                         textStyle:{
                             color:'#fff',
                             fontSize:12,
                         }
                     },
                     legend:{
-                        data:[
-                            {name:this.data.data[0].name,icon:'circle'},
-                            {name:this.data.data[1].name,icon:'circle'},
-                            ],
-                        left:"15%",
-                        top:"14%",
+                        data: this.data.data.map(item => {return {name:item.name,icon:'circle'}}),
+                        left:"center",
+                        top:this.data.position[1],
                         itemWidth:7,
                         itemHeight:7,
                         textStyle:{
@@ -54,7 +75,7 @@
                     },
                     radar:{
                         indicator: this.data.indicator,
-                        center: ['40%', '60%'],
+                        center: this.data.center,
                         radius: "50%",
                         startAngle: 90,
                         splitNumber: 4,
@@ -96,50 +117,14 @@
                                 }
                             }
                         },
-                        data: [
-                            {
-                                value: this.data.data[0].value,
-                                name: this.data.data[0].name,
-                                symbol: 'none',
-                                symbolSize: 5,
-                                itemStyle:{
-                                        color:this.data.data[0].color
-                                },
-                                lineStyle: {
-                                    normal: {
-                                        color:this.data.data[0].color,
-                                        width:1,
-                                    },
-                                    emphasis:{
-                                        width:2,
-                                    }
-                                }
-                            },
-                            {
-                                value: this.data.data[1].value,
-                                name: this.data.data[1].name,
-                                symbol: 'none',
-                                itemStyle:{
-                                        color:this.data.data[1].color
-                                },
-                                lineStyle: {
-                                    normal: {
-                                        color: this.data.data[1].color,
-                                         width:1,
-                                    },
-                                    emphasis:{
-                                        width:2,
-                                    }
-                                }
-                            }
-                        ]
+                        data: seriesData
                     }
                 };
                 if (this.id == 'bottom_1_2') {
                     option.legend.left='5%';
                 }
                 let myChart = this.$echarts.init(document.getElementById(this.id));
-           
+
                     myChart.clear();
                     myChart.resize(
                         {

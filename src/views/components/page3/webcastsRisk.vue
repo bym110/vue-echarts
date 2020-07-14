@@ -1,5 +1,5 @@
 <template>
-    <div id='right_2'></div>
+    <div  id="right_1"></div>
 </template>
 
 <script>
@@ -7,16 +7,16 @@
         name: '',
         data() {
             return {
-                
+
             }
         },
-        methods: {
-              // 设备安全性风险
-            setDeviceSafe () {
+        methods:{
+             // 网播风险分析
+            setWebcasts () {
                 let option = {
-                    title:[
-                        {
-                        text:'重点士兵关注排行',
+
+                    title:{
+                        text:'重点用户关注排行',
                         textStyle:{
                             color:"#fff",
                             fontSize:12
@@ -24,16 +24,6 @@
                         top:'4%',
                         left:'4%'
                     },
-                    {
-                        text:"异常微信网购类型排名",
-                        textStyle:{
-                            color:"#fff",
-                            fontSize:12
-                        },
-                        top:'4%',
-                        left:'55%'
-                    },
-                    ],
                     tooltip : {
                         trigger: 'axis',
                         axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -42,14 +32,14 @@
                     },
                     legend: {
                             data:[
-                                {name:'人数',icon:'circle'},
-                                {name:'金额',icon:'circle'},
-                               
+                                {name:'抖音',icon:'circle'},
+                                {name:'快手',icon:'circle'},
+                                {name:'花椒',icon:'circle'},
+                                {name:'其他',icon:'circle'},
                                 ],
                             gridIndex:3,
-                            orient:'vertical',
-                            right:"44%",
-                            bottom:"6%",
+                            right:"5%",
+                            top:"6%",
                             itemWidth:7,
                             itemHeight:7,
                             textStyle:{
@@ -78,45 +68,13 @@
                         axisLine:{show:false},
                         axisLabel:{
                             color:'#fff',
-                            backgroundColor:'#A34FFA',
+                            backgroundColor:'#4A7AFF',
                             borderRadius:3,
                             margin:0,
                             padding: [1, 3, 1, 3]
                         },
                         inverse:true,
                         data: ['1','2','3','4','5','6','7','8','9','10']
-                    },
-                    angleAxis: {
-                        type: 'category',
-                        axisLine:{
-                            lineStyle:{
-                                color:'#172E6E'
-                            }
-                        },
-                        startAngle:135,
-                        axisLabel:{
-                            color:'#04E8EB',
-                            fontSize:10
-                        },
-                        axisTick:{show:false},
-                        data: ['游戏充值', '其他', '直播打赏', '彩票'],
-                        z: 10
-                    },
-                    radiusAxis: {
-                        splitLine:{
-                            lineStyle:{
-                                color:'#172E6E'
-                            }
-                        },
-                        axisTick:{show:false},
-                        axisLabel:{show:false},
-                        axisLine:{
-                           show:false
-                        }
-                    },
-                    polar: {
-                         center:['72%','55%'],
-                          radius: "65%",
                     },
                     series: [
                         {
@@ -125,17 +83,17 @@
                             stack: '总量',
                             barWidth:8,
                             itemStyle:{
-                                color:'#5304EC',
+                                color:'#142AFE',
                                 barBorderRadius:[0,8,8,0]
                             },
                             label: {
                                 normal: {
                                     show: false,
-                                
+
                                     position: 'insideRight'
                                 }
                             },
-                            data: [100, 90, 80, 70, 60, 50, 40,30,20,15]
+                             data: [100, 90, 80, 70, 60, 50, 40,30,20,15]
                         },
                         {
                             name: '快手',
@@ -143,7 +101,7 @@
                             stack: '总量',
                             barWidth:8,
                             itemStyle:{
-                                color:'#6829EE',
+                                color:'#1456FE',
                                 barBorderRadius:[0,8,8,0]
                             },
                             label: {
@@ -160,7 +118,7 @@
                             stack: '总量',
                             barWidth:8,
                             itemStyle:{
-                                color:'#8040ED',
+                                color:'#1493FE',
                                 barBorderRadius:[0,8,8,0]
                             },
                             label: {
@@ -177,7 +135,7 @@
                             barWidth:8,
                             stack: '总量',
                             itemStyle:{
-                                color:'#9D50EC',
+                                color:'#00CCFF',
                                 barBorderRadius:[0,8,8,0]
                             },
                             label: {
@@ -189,76 +147,81 @@
                             data: [100, 90, 80, 70, 60, 50, 40,30,20,15]
                         },
                         {
-                            name: '其他',
-                            type: 'bar',
-                            barWidth:8,
-                            stack: '总量',
+                             type:'pie',
+                             radius: ['20%', '21%'],
+                            center:['72%','60%'],
+                            data:[{value:'1'}],
+                            label:{show:false},
                             itemStyle:{
-                                color:'#A77BDE',
-                                barBorderRadius:[0,8,8,0]
-                            },
-                            label: {
-                                normal: {
-                                    show: false,
-                                    position: 'insideRight'
-                                }
-                            },
-                             data: [100, 90, 80, 70, 60, 50, 40,30,20,15]
+                                color:'#7D7DA2'
+                            }
                         },
                         {
-                            type: 'bar',
-                            data: [1, 2, 3, 4],
-                            coordinateSystem: 'polar',
-                            name: '金额',
-                            itemStyle:{
-                                color: '#0AB9FE'
-                            },
-                            stack: 'a'
-                        }, {
-                            type: 'bar',
-                            data: [2, 4, 6, 1],
-                            coordinateSystem: 'polar',
-                            name: '人数',
-                            itemStyle:{
-                                color: { // 颜色线性渐变
-                                        type: 'linear',
-                                        x: 0,
-                                        y: 1,
-                                        x2: 0,
-                                        y2: 0,
-                                        colorStops: [{
-                                            offset: 0, color: 'rgba(104,18,147,1)' // 0% 处的颜色
-                                        }, {
-                                            offset: 1, color: '#1D2584' // 100% 处的颜色
-                                        }],
-                                        globalCoord: false // 缺省为 false
+                            type:'pie',
+                            radius: ['40%', '65%'],
+                            roseType : 'area',
+                            center:['72%','60%'],
+                            avoidLabelOverlap: true,
+                            startAngle:180,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    padding:[0,-30],
+                                     formatter: '{c} \n\n',
+                                    position: 'outside',
+                                    color:'#fff'
+                                },
+                                emphasis: {
+                                    show: true,
+                                    textStyle: {
+                                        fontSize: '30',
+                                        fontWeight: 'bold'
                                     }
+                                }
                             },
-                            stack: 'a'
+                            labelLine: {
+                                show: true,
+                                length2:30,
+                                lineStyle:{
+                                    //color:["#408BE8",'#FE405C',"#3E3E7F","#FFC740"]
+                                },
+
+                            },
+                            itemStyle:{
+                                color: function (params) {
+                                    let corList=["#142AFE",'#3FA0FF',"#00CCFF","#1456FE"];
+                                    return corList[params.dataIndex]
+                                }
+                            },
+                            data:[
+                                {value:535, name:'抖音'},
+                                {value:310, name:'快手'},
+                                {value:135, name:'花椒'},
+                                {value:254, name:'其他'},
+                            ]
                         }
-                        
                     ]
                 };
-                 let myChart = this.$echarts.init(document.getElementById('right_2'));
-           
+                 let myChart = this.$echarts.init(document.getElementById('right_1'));
+
                     myChart.clear();
                     myChart.resize(
                         {
-                            width:document.getElementById('right_2').width,
-                        height:document.getElementById('right_2').heidth
+                            width:document.getElementById('right_1').width,
+                        height:document.getElementById('right_1').heidth
                         }
                     )
                     myChart.setOption(option);
             },
         },
         mounted() {
-            this.setDeviceSafe ();
+            this.setWebcasts ()
         },
     }
 </script>
 
 <style lang="less" scoped>
-    #right_2 {
-        height:100%;
+    #right_1 {
+        height: 100%;
     }
 </style>
