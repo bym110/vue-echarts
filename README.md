@@ -2,7 +2,7 @@
 
 > A Vue.js project
 数据可视化
-##项目预览地址
+## 项目预览地址
 https://bym110.github.io/vue-echarts/preview
 ## Build Setup
 
