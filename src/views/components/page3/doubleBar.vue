@@ -73,7 +73,6 @@ export default {
                         axisLabel: {
                             color: '#0DF5F8',
                             fontSize: 0.4*this.rem,
-                            margin: 0,
                             interval: 0,
                         },
                         axisTick: {
