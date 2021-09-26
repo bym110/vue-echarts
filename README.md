@@ -24,5 +24,5 @@ npm run build --report
 ### page2 
 ![image](https://github.com/bym110/vue-echarts/blob/master/src/assets/page2.jpg)
 ### page3 
-![image](https://github.com/bym110/vue-echarts/blob/master/src/assets/page2.jpg)
+![image](https://github.com/bym110/vue-echarts/blob/master/src/assets/page3.jpg)
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
