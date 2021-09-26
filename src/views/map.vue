@@ -1,42 +1,45 @@
 <template>
     <div style="width:100%;height:100%;background:#040619; overflow:hidden;">
-         <div id='main_map'></div>
-         <div class='window'></div>
+        <div id='main_map'></div>
+        <div class='window'></div>
     </div>
 </template>
- 
+
 <style lang="less">
-    #main_map {
-        width:1200px; 
-        height: 1200px;
-        margin: auto;
-        border-radius: 50%;
-        margin-top: -100px;
-        overflow: hidden;
-        box-shadow: 0px -10px 30px #719BC8;
-    }
-    .anchorBL{ 
-        display:none; 
-    }
-    .window {
-        height:90%;
-        width:20%;
-        position: fixed;
-        right: 4%;
-        top:5%;
-    }
+#main_map {
+    width: 1200px;
+    height: 1200px;
+    margin: auto;
+    border-radius: 50%;
+    margin-top: -100px;
+    overflow: hidden;
+    box-shadow: 0px -10px 30px #719BC8;
+}
+
+.anchorBL {
+    display: none;
+}
+
+.window {
+    height: 90%;
+    width: 20%;
+    position: fixed;
+    right: 4%;
+    top: 5%;
+}
 </style>
 
 
- <script>
- import echarts from 'echarts';
- import "../../node_modules/echarts/dist/extension/bmap.js";
- import "../../node_modules/echarts/map/js/world.js"
- import "../../node_modules/echarts/map/js/china.js"
- export default {
-     data () {
-         return {
-             data:[
+<script>
+import echarts from 'echarts';
+import "../../node_modules/echarts/dist/extension/bmap.js";
+import "../../node_modules/echarts/map/js/world.js"
+import "../../node_modules/echarts/map/js/china.js"
+
+export default {
+    data() {
+        return {
+            data: [
                 {name: '海门', value: 9},
                 {name: '鄂尔多斯', value: 12},
                 {name: '招远', value: 12},
@@ -226,75 +229,73 @@
                 {name: '菏泽', value: 194},
                 {name: '合肥', value: 229},
                 {name: '武汉', value: 273},
-                {name: '大庆', value: 279}      
-             ],
-             geoCoordMap: {
-                '海门':[121.15,31.89],
-             
-                '文登':[122.05,37.2],
-                '上海':[121.48,31.22],
-                '攀枝花':[101.718637,26.582347],
-                '威海':[122.1,37.5],
-                '承德':[117.93,40.97],
-                '厦门':[118.1,24.46],
-                '汕尾':[115.375279,22.786211],
-                '潮州':[116.63,23.68],
-                '丹东':[124.37,40.13],
-                '太仓':[121.1,31.45],
-                '曲靖':[103.79,25.51],
-         
-                '揭阳':[116.35,23.55],
-                '荣成':[122.41,37.16],
-                '连云港':[119.16,34.59],
-                '葫芦岛':[120.836932,40.711052],
-                '常熟':[120.74,31.64],
-                '东莞':[113.75,23.04],
-                '河源':[114.68,23.73],
-                '淮安':[119.15,33.5],
-                '泰州':[119.9,32.49],
-                '南宁':[108.33,22.84],
-                '营口':[122.18,40.65],
-                '惠州':[114.4,23.09],
-                '平度':[119.97,36.77],
-                '佛山':[113.11,23.05],
-                '海口':[110.35,20.02],
-                '嘉兴':[120.76,30.77],
-                '长春':[125.35,43.88],
-                '胶州':[120.03336,36.264622],
-                '银川':[106.27,38.47],
-                '西宁':[101.74,36.56],
-                '宜宾':[104.56,29.77],
-                '呼和浩特':[111.65,40.82],
-            
-                '贵阳':[106.71,26.57],
-                '乌鲁木齐':[87.68,43.77],
-                '枣庄':[117.57,34.86],
-                '杭州':[120.19,30.26],
-                '淄博':[118.05,36.78],
-           
-                '芜湖':[118.38,31.33],
-                '莱芜':[117.67,36.19],
-                '常德':[111.69,29.05],
-                '保定':[115.48,38.85],
-                '湘潭':[112.91,27.87],
-                '金华':[119.64,29.12],
-                '岳阳':[113.09,29.37],
-                '长沙':[113,28.21],
-                '衢州':[118.88,28.97],
-                '廊坊':[116.7,39.53],
-                '菏泽':[115.480656,35.23375],
-                '合肥':[117.27,31.86],
-                '武汉':[114.31,30.52],
-                '大庆':[125.03,46.58]
-            }
-         }
-     },
-     methods: {
+                {name: '大庆', value: 279}
+            ],
+            geoCoordMap: {
+                '海门': [121.15, 31.89],
 
-     },
-     mounted () {
-         let _this = this;
-         var convertData = function (data) {
+                '文登': [122.05, 37.2],
+                '上海': [121.48, 31.22],
+                '攀枝花': [101.718637, 26.582347],
+                '威海': [122.1, 37.5],
+                '承德': [117.93, 40.97],
+                '厦门': [118.1, 24.46],
+                '汕尾': [115.375279, 22.786211],
+                '潮州': [116.63, 23.68],
+                '丹东': [124.37, 40.13],
+                '太仓': [121.1, 31.45],
+                '曲靖': [103.79, 25.51],
+
+                '揭阳': [116.35, 23.55],
+                '荣成': [122.41, 37.16],
+                '连云港': [119.16, 34.59],
+                '葫芦岛': [120.836932, 40.711052],
+                '常熟': [120.74, 31.64],
+                '东莞': [113.75, 23.04],
+                '河源': [114.68, 23.73],
+                '淮安': [119.15, 33.5],
+                '泰州': [119.9, 32.49],
+                '南宁': [108.33, 22.84],
+                '营口': [122.18, 40.65],
+                '惠州': [114.4, 23.09],
+                '平度': [119.97, 36.77],
+                '佛山': [113.11, 23.05],
+                '海口': [110.35, 20.02],
+                '嘉兴': [120.76, 30.77],
+                '长春': [125.35, 43.88],
+                '胶州': [120.03336, 36.264622],
+                '银川': [106.27, 38.47],
+                '西宁': [101.74, 36.56],
+                '宜宾': [104.56, 29.77],
+                '呼和浩特': [111.65, 40.82],
+
+                '贵阳': [106.71, 26.57],
+                '乌鲁木齐': [87.68, 43.77],
+                '枣庄': [117.57, 34.86],
+                '杭州': [120.19, 30.26],
+                '淄博': [118.05, 36.78],
+
+                '芜湖': [118.38, 31.33],
+                '莱芜': [117.67, 36.19],
+                '常德': [111.69, 29.05],
+                '保定': [115.48, 38.85],
+                '湘潭': [112.91, 27.87],
+                '金华': [119.64, 29.12],
+                '岳阳': [113.09, 29.37],
+                '长沙': [113, 28.21],
+                '衢州': [118.88, 28.97],
+                '廊坊': [116.7, 39.53],
+                '菏泽': [115.480656, 35.23375],
+                '合肥': [117.27, 31.86],
+                '武汉': [114.31, 30.52],
+                '大庆': [125.03, 46.58]
+            }
+        }
+    },
+    methods: {},
+    mounted() {
+        let _this = this;
+        var convertData = function (data) {
             var res = [];
             for (var i = 0; i < data.length; i++) {
                 var geoCoord = _this.geoCoordMap[data[i].name];
@@ -311,66 +312,66 @@
         var mapChart = echarts.init(canvas);
         mapChart.setOption({
             // backgroundColor: '#404a59',
-            tooltip : {
+            tooltip: {
                 trigger: 'item'
             },
             geo: {
-                map:'world',
+                map: 'world',
                 center: [104.114129, 37.550339],
                 zoom: 5,
                 roam: false,
                 emphasis: {
                     label: {
-                        show:false
+                        show: false
                     },
-                    itemStyle:{
-                         areaColor:'#0D1838',
+                    itemStyle: {
+                        areaColor: '#0D1838',
                     }
                 },
                 itemStyle: {
                     normal: {
-                        areaColor:'#0D1838',
+                        areaColor: '#0D1838',
                         borderWidth: 2,
                         borderColor: '#02030D',
-                       
+
                     }
                 },
 
                 regions: [{
                     name: 'China',
                     itemStyle: {
-                         areaColor:'#3259B6',
-                         borderColor:'#010312',
-                         borderWidth: 6,
+                        areaColor: '#3259B6',
+                        borderColor: '#010312',
+                        borderWidth: 6,
                         //  shadowColor:'#010312',
-                         // shadowBlur:10,
+                        // shadowBlur:10,
                     },
                     emphasis: {
-                    label: {
-                        show:false
+                        label: {
+                            show: false
+                        },
+                        itemStyle: {
+                            areaColor: '#3259B6',
+                        }
                     },
-                    itemStyle:{
-                        areaColor:'#3259B6',
-                    }
                 },
-                },
-                {
-                    name: 'Russia',
-                    itemStyle: {
-                         areaColor:'#010312',
+                    {
+                        name: 'Russia',
+                        itemStyle: {
+                            areaColor: '#010312',
+                        },
+                        emphasis: {
+                            label: {
+                                show: false
+                            },
+                            itemStyle: {
+                                areaColor: '#010312',
+                            }
+                        },
                     },
-                    emphasis: {
-                    label: {
-                        show:false
-                    },
-                    itemStyle:{
-                         areaColor:'#010312',
-                    }
-                },
-                },
                 ],
             },
-            series : [
+            series: [
                 {
                     name: 'Top 5',
                     type: 'effectScatter',
@@ -381,9 +382,9 @@
                     },
                     showEffectOn: 'render',
                     rippleEffect: {
-                        period:4,
+                        period: 4,
                         brushType: 'fill',
-                        scale:2
+                        scale: 2
                     },
                     hoverAnimation: true,
                     label: {
@@ -402,10 +403,10 @@
                     },
                     zlevel: 1
                 },
-                
+
             ]
         });
-     }
- }
- </script>
+    }
+}
+</script>
  

@@ -7,6 +7,10 @@ Vue.use(Router)
 const router = new Router({
     routes: [
         {
+            path: '/',
+            redirect: '/page1'
+        },
+        {
             path: '',
             name: 'home',
             component: home,
@@ -34,15 +38,5 @@ const router = new Router({
             ]
         }
     ]
-})
-router.beforeEach((to, from, next) => {
-    console.log(to)
-    if (to.path === '/') {
-        router.push({
-            name:'page1'
-        })
-    } else {
-        next()
-    }
 })
 export default router

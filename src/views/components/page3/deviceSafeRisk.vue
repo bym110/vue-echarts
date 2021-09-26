@@ -3,262 +3,261 @@
 </template>
 
 <script>
-    export default {
-        name: '',
-        data() {
-            return {
-
-            }
-        },
-        methods: {
-              // 设备安全性风险
-            setDeviceSafe () {
-                let option = {
-                    title:[
-                        {
-                        text:'重点用户关注排行',
-                        textStyle:{
-                            color:"#fff",
-                            fontSize:12
+export default {
+    name: '',
+    inject: ['rem'],
+    data() {
+        return {}
+    },
+    methods: {
+        // 设备安全性风险
+        setDeviceSafe() {
+            let option = {
+                title: [
+                    {
+                        text: '重点用户关注排行',
+                        textStyle: {
+                            color: "#fff",
+                            fontSize: 0.6*this.rem
                         },
-                        top:'4%',
-                        left:'4%'
+                        top: '4%',
+                        left: '4%'
                     },
                     {
-                        text:"异常微信网购类型排名",
-                        textStyle:{
-                            color:"#fff",
-                            fontSize:12
+                        text: "异常微信网购类型排名",
+                        textStyle: {
+                            color: "#fff",
+                            fontSize: 0.6*this.rem
                         },
-                        top:'4%',
-                        left:'55%'
+                        top: '4%',
+                        left: '55%'
                     },
+                ],
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                legend: {
+                    data: [
+                        {name: '人数', icon: 'circle'},
+                        {name: '金额', icon: 'circle'},
+
                     ],
-                    tooltip : {
-                        trigger: 'axis',
-                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    gridIndex: 3,
+                    orient: 'vertical',
+                    right: "44%",
+                    bottom: "6%",
+                    itemWidth: 0.35*this.rem,
+                    itemHeight: 0.35*this.rem,
+                    textStyle: {
+                        color: '#00CCFF',
+                        fontSize: 0.5*this.rem
+                    }
+                },
+                grid: {
+                    top: '15%',
+                    left: '3%',
+                    right: '50%',
+                    bottom: '5%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value',
+                    axisLabel: {show: false},
+                    axisTick: {show: false},
+                    splitLine: {show: false},
+                    axisLine: {show: false}
+                },
+                yAxis: {
+                    type: 'category',
+                    axisTick: {show: false},
+                    splitLine: {show: false},
+                    axisLine: {show: false},
+                    axisLabel: {
+                        color: '#fff',
+                        backgroundColor: '#A34FFA',
+                        borderRadius: 3,
+                        margin: 0,
+                        padding: [1, 3, 1, 3]
+                    },
+                    inverse: true,
+                    data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+                },
+                angleAxis: {
+                    type: 'category',
+                    axisLine: {
+                        lineStyle: {
+                            color: '#172E6E'
                         }
                     },
-                    legend: {
-                            data:[
-                                {name:'人数',icon:'circle'},
-                                {name:'金额',icon:'circle'},
+                    startAngle: 135,
+                    axisLabel: {
+                        color: '#04E8EB',
+                        fontSize: 0.5*this.rem
+                    },
+                    axisTick: {show: false},
+                    data: ['游戏充值', '其他', '直播打赏', '彩票'],
+                    z: 10
+                },
+                radiusAxis: {
+                    splitLine: {
+                        lineStyle: {
+                            color: '#172E6E'
+                        }
+                    },
+                    axisTick: {show: false},
+                    axisLabel: {show: false},
+                    axisLine: {
+                        show: false
+                    }
+                },
+                polar: {
+                    center: ['72%', '55%'],
+                    radius: "65%",
+                },
+                series: [
+                    {
+                        name: '抖音',
+                        type: 'bar',
+                        stack: '总量',
+                        barWidth: 0.4*this.rem,
+                        itemStyle: {
+                            color: '#5304EC',
+                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
+                        },
+                        label: {
+                            normal: {
+                                show: false,
 
-                                ],
-                            gridIndex:3,
-                            orient:'vertical',
-                            right:"44%",
-                            bottom:"6%",
-                            itemWidth:7,
-                            itemHeight:7,
-                            textStyle:{
-                            color:'#00CCFF',
-                            fontSize:10
+                                position: 'insideRight'
                             }
                         },
-                    grid: {
-                        top:'15%',
-                        left: '3%',
-                        right: '50%',
-                        bottom: '5%',
-                        containLabel: true
+                        data: [100, 90, 80, 70, 60, 50, 40, 30, 20, 15]
                     },
-                    xAxis:  {
-                        type: 'value',
-                        axisLabel:{show:false},
-                        axisTick:{show:false},
-                        splitLine:{show:false},
-                        axisLine:{show:false}
-                    },
-                    yAxis: {
-                        type: 'category',
-                        axisTick:{show:false},
-                        splitLine:{show:false},
-                        axisLine:{show:false},
-                        axisLabel:{
-                            color:'#fff',
-                            backgroundColor:'#A34FFA',
-                            borderRadius:3,
-                            margin:0,
-                            padding: [1, 3, 1, 3]
+                    {
+                        name: '快手',
+                        type: 'bar',
+                        stack: '总量',
+                        barWidth: 0.4*this.rem,
+                        itemStyle: {
+                            color: '#6829EE',
+                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
                         },
-                        inverse:true,
-                        data: ['1','2','3','4','5','6','7','8','9','10']
-                    },
-                    angleAxis: {
-                        type: 'category',
-                        axisLine:{
-                            lineStyle:{
-                                color:'#172E6E'
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'insideRight'
                             }
                         },
-                        startAngle:135,
-                        axisLabel:{
-                            color:'#04E8EB',
-                            fontSize:10
-                        },
-                        axisTick:{show:false},
-                        data: ['游戏充值', '其他', '直播打赏', '彩票'],
-                        z: 10
+                        data: [100, 90, 80, 70, 60, 50, 40, 30, 20, 15]
                     },
-                    radiusAxis: {
-                        splitLine:{
-                            lineStyle:{
-                                color:'#172E6E'
+                    {
+                        name: '花椒',
+                        type: 'bar',
+                        stack: '总量',
+                        barWidth: 0.4*this.rem,
+                        itemStyle: {
+                            color: '#8040ED',
+                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
+                        },
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'insideRight'
                             }
                         },
-                        axisTick:{show:false},
-                        axisLabel:{show:false},
-                        axisLine:{
-                           show:false
-                        }
+                        data: [100, 90, 80, 70, 60, 50, 40, 30, 20, 15]
                     },
-                    polar: {
-                         center:['72%','55%'],
-                          radius: "65%",
+                    {
+                        name: '其他',
+                        type: 'bar',
+                        barWidth: 0.4*this.rem,
+                        stack: '总量',
+                        itemStyle: {
+                            color: '#9D50EC',
+                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
+                        },
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'insideRight'
+                            }
+                        },
+                        data: [100, 90, 80, 70, 60, 50, 40, 30, 20, 15]
                     },
-                    series: [
-                        {
-                            name: '抖音',
-                            type: 'bar',
-                            stack: '总量',
-                            barWidth:8,
-                            itemStyle:{
-                                color:'#5304EC',
-                                barBorderRadius:[0,8,8,0]
-                            },
-                            label: {
-                                normal: {
-                                    show: false,
+                    {
+                        name: '其他',
+                        type: 'bar',
+                        barWidth: 0.4*this.rem,
+                        stack: '总量',
+                        itemStyle: {
+                            color: '#A77BDE',
+                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
+                        },
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'insideRight'
+                            }
+                        },
+                        data: [100, 90, 80, 70, 60, 50, 40, 30, 20, 15]
+                    },
+                    {
+                        type: 'bar',
+                        data: [1, 2, 3, 4],
+                        coordinateSystem: 'polar',
+                        name: '金额',
+                        itemStyle: {
+                            color: '#0AB9FE'
+                        },
+                        stack: 'a'
+                    }, {
+                        type: 'bar',
+                        data: [2, 4, 6, 1],
+                        coordinateSystem: 'polar',
+                        name: '人数',
+                        itemStyle: {
+                            color: { // 颜色线性渐变
+                                type: 'linear',
+                                x: 0,
+                                y: 1,
+                                x2: 0,
+                                y2: 0,
+                                colorStops: [{
+                                    offset: 0, color: 'rgba(104,18,147,1)' // 0% 处的颜色
+                                }, {
+                                    offset: 1, color: '#1D2584' // 100% 处的颜色
+                                }],
+                                globalCoord: false // 缺省为 false
+                            }
+                        },
+                        stack: 'a'
+                    }
 
-                                    position: 'insideRight'
-                                }
-                            },
-                            data: [100, 90, 80, 70, 60, 50, 40,30,20,15]
-                        },
-                        {
-                            name: '快手',
-                            type: 'bar',
-                            stack: '总量',
-                            barWidth:8,
-                            itemStyle:{
-                                color:'#6829EE',
-                                barBorderRadius:[0,8,8,0]
-                            },
-                            label: {
-                                normal: {
-                                    show: false,
-                                    position: 'insideRight'
-                                }
-                            },
-                            data: [100, 90, 80, 70, 60, 50, 40,30,20,15]
-                        },
-                        {
-                            name: '花椒',
-                            type: 'bar',
-                            stack: '总量',
-                            barWidth:8,
-                            itemStyle:{
-                                color:'#8040ED',
-                                barBorderRadius:[0,8,8,0]
-                            },
-                            label: {
-                                normal: {
-                                    show: false,
-                                    position: 'insideRight'
-                                }
-                            },
-                             data: [100, 90, 80, 70, 60, 50, 40,30,20,15]
-                        },
-                        {
-                            name: '其他',
-                            type: 'bar',
-                            barWidth:8,
-                            stack: '总量',
-                            itemStyle:{
-                                color:'#9D50EC',
-                                barBorderRadius:[0,8,8,0]
-                            },
-                            label: {
-                                normal: {
-                                    show: false,
-                                    position: 'insideRight'
-                                }
-                            },
-                            data: [100, 90, 80, 70, 60, 50, 40,30,20,15]
-                        },
-                        {
-                            name: '其他',
-                            type: 'bar',
-                            barWidth:8,
-                            stack: '总量',
-                            itemStyle:{
-                                color:'#A77BDE',
-                                barBorderRadius:[0,8,8,0]
-                            },
-                            label: {
-                                normal: {
-                                    show: false,
-                                    position: 'insideRight'
-                                }
-                            },
-                             data: [100, 90, 80, 70, 60, 50, 40,30,20,15]
-                        },
-                        {
-                            type: 'bar',
-                            data: [1, 2, 3, 4],
-                            coordinateSystem: 'polar',
-                            name: '金额',
-                            itemStyle:{
-                                color: '#0AB9FE'
-                            },
-                            stack: 'a'
-                        }, {
-                            type: 'bar',
-                            data: [2, 4, 6, 1],
-                            coordinateSystem: 'polar',
-                            name: '人数',
-                            itemStyle:{
-                                color: { // 颜色线性渐变
-                                        type: 'linear',
-                                        x: 0,
-                                        y: 1,
-                                        x2: 0,
-                                        y2: 0,
-                                        colorStops: [{
-                                            offset: 0, color: 'rgba(104,18,147,1)' // 0% 处的颜色
-                                        }, {
-                                            offset: 1, color: '#1D2584' // 100% 处的颜色
-                                        }],
-                                        globalCoord: false // 缺省为 false
-                                    }
-                            },
-                            stack: 'a'
-                        }
+                ]
+            };
+            let myChart = this.$echarts.init(document.getElementById('right_2'));
 
-                    ]
-                };
-                 let myChart = this.$echarts.init(document.getElementById('right_2'));
-
-                    myChart.clear();
-                    myChart.resize(
-                        {
-                            width:document.getElementById('right_2').width,
-                        height:document.getElementById('right_2').heidth
-                        }
-                    )
-                    myChart.setOption(option);
-            },
+            myChart.clear();
+            myChart.resize(
+                {
+                    width: document.getElementById('right_2').width,
+                    height: document.getElementById('right_2').heidth
+                }
+            )
+            myChart.setOption(option);
         },
-        mounted() {
-            this.setDeviceSafe ();
-        },
-    }
+    },
+    mounted() {
+        this.setDeviceSafe();
+    },
+}
 </script>
 
 <style lang="less" scoped>
-    #right_2 {
-        height:100%;
-    }
+#right_2 {
+    height: 100%;
+}
 </style>
