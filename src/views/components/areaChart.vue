@@ -1,12 +1,11 @@
 <template>
-    <div class="area" :id="id"></div>
+    <div class="area"></div>
 </template>
 
 <script>
 export default {
     name: "areaChart",
-    props: ['id', 'config', 'selectRangeDate'],
-    inject: ['rem'],
+    props: [ 'config', 'selectRangeDate'],
     data() {
         return {}
     },
@@ -86,7 +85,7 @@ export default {
                     text: this.config.title,
                     textStyle: {
                         color: this.config.color,
-                        fontSize: 0.6*this.rem,
+                        fontSize: 12,
                         fontWeight: 'normal'
                     },
                     top: '12%',
@@ -100,7 +99,7 @@ export default {
                     backgroundColor: '#11367a',
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
 
                     formatter: function (params) {
@@ -115,11 +114,11 @@ export default {
                     {
                         top: this.config.title?'23%': '11%',
                         left: 'center',
-                        itemWidth: 0.35*this.rem,
-                        itemHeight: 0.35*this.rem,
+                        itemWidth: 7,
+                        itemHeight:7,
                         textStyle: {
                             color: this.config.color,
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12
                         },
                     },
                 grid:
@@ -137,7 +136,7 @@ export default {
                         axisLabel: {
                             interval: 0,
                             color: this.config.color,
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'center'
                         },
                         axisLine: {
@@ -163,7 +162,7 @@ export default {
                         },
                         axisLabel: {
                             color: this.config.color,
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             showMaxLabel: false,
                         },
                         axisTick: {
@@ -173,7 +172,7 @@ export default {
                         nameGap: -5,
                         nameTextStyle: {
                             color: this.config.color,
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'right'
                         },
                         splitLine: {show: false}
@@ -194,13 +193,13 @@ export default {
                         },
                         axisLabel: {
                             color: this.config.color,
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             showMaxLabel: false,
                         },
                         name: this.config.name[1],
                         nameTextStyle: {
                             color: this.config.color,
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'left'
                         },
                         nameGap: -5,
@@ -214,13 +213,13 @@ export default {
                 option.xAxis.axisLabel.showMaxLabel = false;
                 option.xAxis.axisLabel.align = 'left';
             }
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
             myChart.resize(
                 {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
+                    width: this.$el.offsetWidth,
+                    height: this.$el.offsetHeight
                 }
             )
             myChart.setOption(option);

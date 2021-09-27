@@ -1,13 +1,11 @@
 <template>
-    <div class="behaviorBar" :id="id"></div>
+    <div class="behaviorBar"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
     props: {
-        id: String,
         data: Array
     },
     data() {
@@ -32,7 +30,7 @@ export default {
                     text: '【交友方式好友数量】',
                     textStyle: {
                         color: '#75deef',
-                        fontSize: 0.6* this.rem,
+                        fontSize: 12,
                         fontWeight: 'normal'
                     },
                     top: '5%',
@@ -47,7 +45,7 @@ export default {
                     formatter: "{b}:{c1}",
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                 },
                 grid:
@@ -65,7 +63,7 @@ export default {
                         axisLabel: {
                             interval: 0,
                             color: '#75deef',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             showMinLabel: true
                         },
                         axisLine: {
@@ -85,16 +83,16 @@ export default {
                         max: 300,
                         axisLabel: {
                             color: '#75deef',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             showMaxLabel: false,
                         },
                         name: '(个)',
                         nameGap: -5,
                         nameTextStyle: {
                             color: '#75deef',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'right',
-                            padding: [0, 0.3*this.rem, 0, 0]
+                            padding: [0, 6, 0, 0]
                         },
                         axisTick: {
                             length: 3
@@ -113,7 +111,7 @@ export default {
                     {
                         name: '辅助',
                         type: 'bar',
-                        barWidth: 0.6*this.rem,
+                        barWidth: 12,
                         itemStyle: {
                             color: "#252448",
                         },
@@ -122,7 +120,7 @@ export default {
                     {
                         name: '添加好友',
                         type: 'bar',
-                        barWidth: 0.6*this.rem,
+                        barWidth: 12,
                         barGap: '-100%',
 
                         data: this.data
@@ -130,15 +128,10 @@ export default {
                 ]
             };
 
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         }
     },

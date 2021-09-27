@@ -1,11 +1,10 @@
 <template>
-    <div id="right_3"></div>
+    <div class="hotWords"></div>
 </template>
 
 <script>
 export default {
-    name: '',
-    inject: ['rem'],
+    name: 'hotWords',
     data() {
         return {}
     },
@@ -28,11 +27,11 @@ export default {
                     gridIndex: 3,
                     left: "28.5%",
                     top: "4%",
-                    itemWidth: 0.35*this.rem,
-                    itemHeight: 0.35*this.rem,
+                    itemWidth: 7,
+                    itemHeight: 7,
                     textStyle: {
                         color: '#00CCFF',
-                        fontSize: 0.5*this.rem
+                        fontSize: 10
                     }
                 },
                 grid: [
@@ -611,15 +610,9 @@ export default {
                 ]
 
             };
-            let myChart = this.$echarts.init(document.getElementById('right_3'));
-
+            let myChart = this.$echarts(this.$el);
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById('right_3').width,
-                    height: document.getElementById('right_3').heidth
-                }
-            )
+            myChart.resize();
             myChart.setOption(option);
         },
     },
@@ -630,7 +623,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#right_3 {
+.hotWords {
     height: 100%;
+    width: 70%;
+    float: right;
 }
 </style>

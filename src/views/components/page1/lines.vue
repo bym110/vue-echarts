@@ -12,34 +12,37 @@
 </template>
 
 <script>
+import echarts from 'echarts'
 export default {
     name: '',
-    inject: ['rem'],
     data() {
         return {
             value: 2,
             xAxisData: [],
             seriesData: [],
             selected: {},
-            year: 2018,
-            month: 12,
+            legendData: []
         }
     },
     methods: {
         handleSelect(val) {
             this.xAxisData = [];
             this.seriesData = [];
+            this.legendData = [];
             this.selected = {};
             this.value = val;
+            let curYear = new Date().getFullYear();
+            let curMonth = new Date().getMonth();
 
             let colorList = ['#bf232a', '#feed2c', '#2c7bfe', '#feac2c', '#ff7b7e', '#2cd9fe', '#a262f2', '#2ca8fe'];
             if (val == 1) {
-                let year = ['2017', '2018'];
+                let year = [curYear - 1, curYear];
                 for (let i = 0; i < 12; i++) {
                     this.xAxisData.push((i + 1) + '月');
                 }
                 ;
                 for (let i = 0; i < year.length; i++) {
+                    this.legendData.push(year[i] + '年');
                     let obj = {
                         name: year[i] + '年',
                         type: 'line',
@@ -57,7 +60,6 @@ export default {
                     for (let j = 0; j < 12; j++) {
                         obj.data.push((Math.random() * 300).toFixed(0));
                     }
-                    ;
                     let obj1 = {
                         name: year[i] + '年',
                         type: 'line',
@@ -77,19 +79,18 @@ export default {
                     for (let j = 0; j < 12; j++) {
                         obj1.data.push((Math.random() * 300).toFixed(0));
                     }
-                    ;
                     this.seriesData.push(obj);
                     this.seriesData.push(obj1);
                 }
-                ;
 
             } else {
-                let dateLength = new Date(this.year, this.month, 0).getDate();
+                let dateLength = new Date(curYear, curMonth, 0).getDate();
                 for (let i = 0; i < dateLength; i++) {
                     this.xAxisData.push((i + 1) + '号');
 
                 }
                 for (let i = 0; i < 12; i++) {
+                    this.legendData.push((i + 1) + '月');
                     this.selected[(i + 1) + '月'] = false;
                     if (i < 4) {
                         this.selected[(i + 1) + '月'] = true;
@@ -111,7 +112,6 @@ export default {
                     for (let j = 0; j < dateLength; j++) {
                         obj.data.push((Math.random() * 300).toFixed(0));
                     }
-                    ;
                     let obj1 = {
                         name: (i + 1) + '月',
                         type: 'line',
@@ -146,7 +146,7 @@ export default {
                     {
                         text: '【交易笔数分析】',
                         textStyle: {
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                             color: '#75deef',
                             fontWeight: 'normal'
                         },
@@ -156,7 +156,7 @@ export default {
                     {
                         text: '【交易金额分析】',
                         textStyle: {
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                             color: '#75deef',
                             fontWeight: 'normal'
                         },
@@ -201,7 +201,7 @@ export default {
                     },
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                 },
                 legend: {
@@ -210,18 +210,19 @@ export default {
                     textStyle: {
                         color: '#75deef',
                         padding: [3, 0, 0, 0],
-                        fontSize: 0.6*this.rem
+                        fontSize: 12
                     },
                     pageTextStyle: {
                         color: '#75deef'
                     },
-                    pageIconSize: 0.5*this.rem,
+                    pageIconSize: 10,
                     pageIconColor: '#75deef',
-                    itemWidth: 0.6*this.rem,
-                    itemHeight: 0.35*this.rem,
+                    itemWidth: 12,
+                    itemHeight: 7,
                     right: "15%",
                     left: '15%',
-                    selected: this.selected
+                    selected: this.selected,
+                    data: this.legendData
                 },
                 xAxis: [
                     {
@@ -229,7 +230,7 @@ export default {
                         data: this.xAxisData,
                         boundaryGap: false,
                         axisLabel: {
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             color: '#75deef',
                             interval: 0,
                             showMaxLabel: true,
@@ -269,7 +270,7 @@ export default {
                         type: 'category',
                         data: this.xAxisData,
                         axisLabel: {
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             color: '#75deef',
                             interval: 0,
                             showMaxLabel: true,
@@ -318,16 +319,16 @@ export default {
                         splitNumber: 5,
                         axisLabel: {
                             showMaxLabel: false,
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             color: '#75deef'
                         },
                         name: '(笔)',
                         nameGap: -5,
                         nameTextStyle: {
                             color: '#75deef',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'right',
-                            padding: [0, 0.3*this.rem, 0, 0]
+                            padding: [0, 6, 0, 0]
                         },
                         axisLine: {
                             lineStyle: {
@@ -350,16 +351,16 @@ export default {
                         },
                         axisLabel: {
                             showMaxLabel: false,
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             color: '#75deef'
                         },
                         name: '(元)',
                         nameGap: -5,
                         nameTextStyle: {
                             color: '#75deef',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'right',
-                            padding: [0, 0.3*this.rem, 0, 0]
+                            padding: [0, 6, 0, 0]
                         },
                         axisLine: {
                             lineStyle: {
@@ -373,15 +374,10 @@ export default {
                 ],
                 series: this.seriesData
             };
-            let myChart = this.$echarts.init(document.getElementById('bottom_1'));
+            let myChart = this.$echarts(document.getElementById('bottom_1'));
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById('bottom_1').offsetWidth,
-                    height: document.getElementById('bottom_1').offsetHidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
             myChart.on('legendselectchanged', (params) => {
                 let arr = [];
@@ -426,8 +422,8 @@ export default {
     .switchButton {
         position: absolute;
         z-index: 5;
-        right: 0.5rem;
-        top: 0.75rem;
+        right: 10px;
+        top: 15px;
         border: 1px solid #028bff;
         border-radius: 5px;
         padding: 0;

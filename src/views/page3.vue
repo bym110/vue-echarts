@@ -1,191 +1,189 @@
 <template>
-    <div class="mapList">
-        <Row class="charts">
-            <Col style="width:26%;">
-                <div class="left">
-                    <span class='title'><span class="title-text">网赌网炒风险分析</span></span>
+    <Row class="page3">
+        <Col style="width:26%;">
+            <div class="left">
+                <span class='title'><span class="title-text">网赌网炒风险分析</span></span>
+                <span class="angle1"></span>
+                <span class="angle2"></span>
+                <span class="angle3"></span>
+                <span class="angle4"></span>
+                <div class="left1" style="height:50%;">
+                    <div style="height:65%;">
+                        <channel-bar
+                            id="left_1"
+                            title="网赌网炒渠道分析"
+                            :data="data1"
+                            ref="channelBar1"
+                        ></channel-bar>
+                        <distribution-solider
+                            id="left_2"
+                            :data="data2"
+                            ref="distributionSolider1"
+                        ></distribution-solider>
+                    </div>
+                    <div style="height: 35%;display: flex">
+                        <div style="height: 100%; width: 33.33%;">
+                            <pie ref="chart3" id="pie_1" :data="pieData1"></pie>
+                        </div>
+                        <div style="height: 100%; width: 33.33%;">
+                            <pie ref="chart3" id="pie_3" :data="pieData2"></pie>
+                        </div>
+                        <div style="height: 100%; width: 33.33%;">
+                            <pie ref="chart3" id="pie_2" :data="pieData3"></pie>
+                        </div>
+                    </div>
+                </div>
+                <div class="left1" style="height:28%;">
+                    <red-pocket ref="redPocket"></red-pocket>
+                </div>
+                <div style="height:22%;">
+                    <div style="height:100%;">
+                        <channel-bar
+                            id="left_5"
+                            title="炒股借贷渠道分析"
+                            :data="data3"
+                            ref="channelBar2"
+                        ></channel-bar>
+                        <distribution-solider
+                            id="left_6"
+                            :data="data4"
+                            ref="distributionSolider2"
+                        ></distribution-solider>
+                    </div>
+                    <!--                        <div style="height:45%;"></div>-->
+                </div>
+            </div>
+        </Col>
+        <Col style="width:48%;padding:0 1%;">
+            <div class="center-top">
+                <china-map ref="chinaMap"></china-map>
+            </div>
+            <div class="center-bottom">
+                <span class='title'><span class="title-text">社会泄密风险分析</span></span>
+                <span class="angle1"></span>
+                <span class="angle2"></span>
+                <span class="angle3"></span>
+                <span class="angle4"></span>
+                <Row class="bottom-radars">
+                    <Col span="6">
+                        <radar
+                            id='bottom_1_1'
+                            :data=data5
+                            ref="chart1"
+                        ></radar>
+                    </Col>
+                    <Col span="6">
+                        <radar
+                            id='bottom_1_2'
+                            :data=data6
+                            ref="chart2"
+                        ></radar>
+                    </Col>
+                    <Col span="6">
+                        <radar
+                            id='bottom_1_3'
+                            :data=data7
+                            ref="chart3"
+                        ></radar>
+                    </Col>
+                    <Col span="6">
+                        <radar
+                            id='bottom_1_4'
+                            :data=data8
+                            ref="chart4"
+                        ></radar>
+                    </Col>
+                </Row>
+                <Row class="bottom-bars">
+                    <Col span="6">
+                        <double-bar
+                            id="bottom_2_1"
+                            :data="data9"
+                            ref="chart5"
+                        ></double-bar>
+                    </Col>
+                    <Col span="6">
+                        <double-bar
+                            id="bottom_2_2"
+                            :data="data10"
+                            ref="chart6"
+                        ></double-bar>
+                    </Col>
+                    <Col span="6">
+                        <double-bar
+                            id="bottom_2_3"
+                            :data="data11"
+                            ref="chart7"
+                        ></double-bar>
+                    </Col>
+                    <Col span="6">
+                        <double-bar
+                            id="bottom_2_4"
+                            :data="data12"
+                            ref="chart8"
+                        ></double-bar>
+                    </Col>
+                </Row>
+            </div>
+        </Col>
+        <Col style="width:26%">
+            <div class="right-1">
+                <div class="right1-1">
+                    <span class='title'><span class="title-text">网播风险分析</span></span>
                     <span class="angle1"></span>
                     <span class="angle2"></span>
                     <span class="angle3"></span>
                     <span class="angle4"></span>
-                    <div class="left1" style="height:50%;">
-                        <div style="height:65%;">
-                            <channel-bar
-                                id="left_1"
-                                title="网赌网炒渠道分析"
-                                :data="data1"
-                                ref="channelBar1"
-                            ></channel-bar>
-                            <distribution-solider
-                                id="left_2"
-                                :data="data2"
-                                ref="distributionSolider1"
-                            ></distribution-solider>
-                        </div>
-                        <div style="height: 35%;display: flex">
-                            <div style="height: 100%; width: 33.33%;">
-                                <pie ref="chart3" id="pie_1" :data="pieData1"></pie>
-                            </div>
-                            <div style="height: 100%; width: 33.33%;">
-                                <pie ref="chart3" id="pie_3" :data="pieData2"></pie>
-                            </div>
-                            <div style="height: 100%; width: 33.33%;">
-                                <pie ref="chart3" id="pie_2" :data="pieData3"></pie>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="left1" style="height:28%;">
-                        <red-pocket ref="redPocket"></red-pocket>
-                    </div>
-                    <div style="height:22%;">
-                        <div style="height:100%;">
-                            <channel-bar
-                                id="left_5"
-                                title="炒股借贷渠道分析"
-                                :data="data3"
-                                ref="channelBar2"
-                            ></channel-bar>
-                            <distribution-solider
-                                id="left_6"
-                                :data="data4"
-                                ref="distributionSolider2"
-                            ></distribution-solider>
-                        </div>
-<!--                        <div style="height:45%;"></div>-->
-                    </div>
+                    <webcasts-risk ref='webcastsRisk'></webcasts-risk>
                 </div>
-            </Col>
-            <Col style="width:48%;padding:0 1%;">
-                <div class="center-top">
-                    <china-map ref="chinaMap"></china-map>
-                </div>
-                <div class="center-bottom">
-                    <span class='title'><span class="title-text">社会泄密风险分析</span></span>
+            </div>
+            <div class="right-1">
+                <div class="right1-1">
+                    <span class='title'><span class="title-text">设备安全性风险分析</span></span>
                     <span class="angle1"></span>
                     <span class="angle2"></span>
                     <span class="angle3"></span>
                     <span class="angle4"></span>
-                    <Row class="bottom-radars">
-                        <Col span="6">
-                            <radar
-                                id='bottom_1_1'
-                                :data=data5
-                                ref="chart1"
-                            ></radar>
-                        </Col>
-                        <Col span="6">
-                            <radar
-                                id='bottom_1_2'
-                                :data=data6
-                                ref="chart2"
-                            ></radar>
-                        </Col>
-                        <Col span="6">
-                            <radar
-                                id='bottom_1_3'
-                                :data=data7
-                                ref="chart3"
-                            ></radar>
-                        </Col>
-                        <Col span="6">
-                            <radar
-                                id='bottom_1_4'
-                                :data=data8
-                                ref="chart4"
-                            ></radar>
-                        </Col>
-                    </Row>
-                    <Row class="bottom-bars">
-                        <Col span="6">
-                            <double-bar
-                                id="bottom_2_1"
-                                :data="data9"
-                                ref="chart5"
-                            ></double-bar>
-                        </Col>
-                        <Col span="6">
-                            <double-bar
-                                id="bottom_2_2"
-                                :data="data10"
-                                ref="chart6"
-                            ></double-bar>
-                        </Col>
-                        <Col span="6">
-                            <double-bar
-                                id="bottom_2_3"
-                                :data="data11"
-                                ref="chart7"
-                            ></double-bar>
-                        </Col>
-                        <Col span="6">
-                            <double-bar
-                                id="bottom_2_4"
-                                :data="data12"
-                                ref="chart8"
-                            ></double-bar>
-                        </Col>
-                    </Row>
+                    <device-safe-risk ref='deviceSafeRisk'></device-safe-risk>
                 </div>
-            </Col>
-            <Col style="width:26%">
-                <div class="right-1">
-                    <div class="right1-1">
-                        <span class='title'><span class="title-text">网播风险分析</span></span>
-                        <span class="angle1"></span>
-                        <span class="angle2"></span>
-                        <span class="angle3"></span>
-                        <span class="angle4"></span>
-                        <webcasts-risk ref='webcastsRisk'></webcasts-risk>
-                    </div>
-                </div>
-                <div class="right-1">
-                    <div class="right1-1">
-                        <span class='title'><span class="title-text">设备安全性风险分析</span></span>
-                        <span class="angle1"></span>
-                        <span class="angle2"></span>
-                        <span class="angle3"></span>
-                        <span class="angle4"></span>
-                        <device-safe-risk ref='deviceSafeRisk'></device-safe-risk>
-                    </div>
-                </div>
-                <div class="right-2">
-                    <div class="right1-1">
-                        <span class='title'><span class="title-text">舆论/心理风险分析</span></span>
-                        <span class="angle1"></span>
-                        <span class="angle2"></span>
-                        <span class="angle3"></span>
-                        <span class="angle4"></span>
-                        <div class="circular">
-                            <div class="canvas">
-                                <div class="subtitle">话题分布</div>
-                                <div class="canvasList">
-                                    <double-ring
-                                        id='canvas_1'
-                                        title="自杀抑郁"
-                                        color='#00CCFF'
-                                        ref="ring1"
-                                    ></double-ring>
-                                    <double-ring
-                                        id='canvas_2'
-                                        title="药品枪支"
-                                        color='#EDCE43'
-                                        ref="ring2"
-                                    ></double-ring>
-                                    <double-ring
-                                        id='canvas_3'
-                                        title="色情同性恋"
-                                        color='#F83552'
-                                        ref="ring3"
-                                    ></double-ring>
-                                </div>
+            </div>
+            <div class="right-2">
+                <div class="right1-1">
+                    <span class='title'><span class="title-text">舆论/心理风险分析</span></span>
+                    <span class="angle1"></span>
+                    <span class="angle2"></span>
+                    <span class="angle3"></span>
+                    <span class="angle4"></span>
+                    <div class="circular">
+                        <div class="canvas">
+                            <div class="subtitle">话题分布</div>
+                            <div class="canvasList">
+                                <double-ring
+                                    id='canvas_1'
+                                    title="自杀抑郁"
+                                    color='#00CCFF'
+                                    ref="ring1"
+                                ></double-ring>
+                                <double-ring
+                                    id='canvas_2'
+                                    title="药品枪支"
+                                    color='#EDCE43'
+                                    ref="ring2"
+                                ></double-ring>
+                                <double-ring
+                                    id='canvas_3'
+                                    title="色情同性恋"
+                                    color='#F83552'
+                                    ref="ring3"
+                                ></double-ring>
                             </div>
-                            <hot-words ref="hotWords"></hot-words>
                         </div>
+                        <hot-words ref="hotWords"></hot-words>
                     </div>
                 </div>
-            </Col>
-        </Row>
-    </div>
+            </div>
+        </Col>
+    </Row>
 </template>
 
 <script>
@@ -202,7 +200,7 @@ const doubleRing = ()=> import('./components/page3/doubleRing');
 const hotWords =() => import('./components/page3/hotWords');
 
 export default {
-    name: '',
+    name: 'page3',
     components: {
         chinaMap,
         channelBar,
@@ -726,175 +724,112 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.mapList {
+.page3 {
     height: 100%;
     width: 100%;
-    padding: 0.5rem 1rem 1rem;
+    padding: 14px 20px 20px;
     background: #03044A;
     overflow: hidden;
-
-    .charts {
+    .ivu-col {
         height: 100%;
+        float: left;
+    }
 
-        .ivu-col {
+    .left, .right1-1, .center-bottom {
+        height: 100%;
+        border: 1px solid #0D2451;
+        position: relative;
+        background: #151456;
+
+        #left_5 {
             height: 100%;
+            width: 45%;
             float: left;
         }
 
-        .left, .right1-1, .center-bottom {
+        #left_6 {
             height: 100%;
-            border: 1px solid #0D2451;
-            position: relative;
+            width: 55%;
+            float: left;
+        }
+
+        .circular {
+            height: 100%;
+
+            .canvas {
+                height: 100%;
+                width: 30%;
+                float: left;
+
+                .subtitle {
+                    font-size: 12px;
+                    font-weight: bold;
+                    color: #fff;
+                    height: 25px;
+                    padding: 10px 0 ;
+                    text-align: center;
+                }
+
+                .canvasList {
+                    height: calc(~'100% - 25px');
+                    text-align: center
+                }
+            }
+        }
+
+        .left1 {
+            border-bottom: 1px solid #0D2451;
             background: #151456;
-
-            #left_5 {
-                height: 100%;
-                width: 45%;
-                float: left;
-            }
-
-            #left_6 {
-                height: 100%;
-                width: 55%;
-                float: left;
-            }
-
-            .circular {
-                height: 100%;
-
-                .canvas {
-                    height: 100%;
-                    width: 30%;
-                    float: left;
-
-                    .subtitle {
-                        font-size: 0.6rem;
-                        font-weight: bold;
-                        color: #fff;
-                        height: 1.25rem;
-                        padding: 0.5rem 0 ;
-                        text-align: center;
-                    }
-
-                    .canvasList {
-                        height: calc(~'100% - 1.25rem');
-                        text-align: center
-                    }
-                }
-
-                #right_3 {
-                    height: 100%;
-                    width: 70%;
-                    float: right;
-                }
-            }
-
-            .left1 {
-                border-bottom: 1px solid #0D2451;
-                background: #151456;
-            }
-
-            .angle1 {
-                display: inline-block;
-                position: absolute;
-                width: 0.5rem;
-                height: 0.5rem;
-                top: 0;
-                left: 0;
-                border-top: 1px solid #1C5AB3;
-                border-left: 1px solid #1C5AB3;
-
-            }
-
-            .angle2 {
-                display: inline-block;
-                position: absolute;
-                width: 0.5rem;
-                height: 0.5rem;
-                top: 0;
-                right: 0;
-                border-top: 1px solid #1C5AB3;
-                border-right: 1px solid #1C5AB3;
-
-            }
-
-            .angle3 {
-                display: inline-block;
-                position: absolute;
-                width: 0.5rem;
-                height: 0.5rem;
-                bottom: 0;
-                left: 0;
-                border-bottom: 1px solid #1C5AB3;
-                border-left: 1px solid #1C5AB3;
-
-            }
-
-            .angle4 {
-                display: inline-block;
-                position: absolute;
-                width: 0.5rem;
-                height: 0.5rem;
-                bottom: 0;
-                right: 0;
-                border-bottom: 1px solid #1C5AB3;
-                border-right: 1px solid #1C5AB3;
-
-            }
-
-            .title {
-                position: absolute;
-                display: inline-block;
-                color: #6EDDF1;
-                border: 2px solid #6EDDF1;
-                height: 0.9rem;
-                padding: 0 2px;
-                left: 50%;
-                transform: translate(-50%, -50%);
-
-                .title-text {
-                    position: relative;
-                    font-size: 0.8rem;
-                    background: #09102E;
-                    display: inline-block;
-                    padding: 0 4px;
-                    margin-top: -5px;
-                }
-            }
         }
 
-        .center-top {
-            height: 60%;
+        .title {
+            position: absolute;
+            display: inline-block;
+            color: #6EDDF1;
+            border: 2px solid #6EDDF1;
+            height: 18px;
+            padding: 0 2px;
+            left: 50%;
+            transform: translate(-50%, -50%);
 
-            #chinaMap {
-                height: 100%;
+            .title-text {
+                position: relative;
+                font-size: 16px;
+                background: #09102E;
+                display: inline-block;
+                padding: 0 4px;
+                margin-top: -5px;
             }
         }
+    }
 
-        .center-bottom {
-            height: 40%;
+    .center-top {
+        height: 60%;
+    }
 
-            .bottom-radars {
-                height: 55%;
-            }
+    .center-bottom {
+        height: 40%;
 
-            .bottom-bars {
-                height: 45%;
-            }
+        .bottom-radars {
+            height: 55%;
         }
 
-        .right-1 {
-            height: 30%;
-
-            .right1-1 {
-                height: 92%;
-            }
+        .bottom-bars {
+            height: 45%;
         }
+    }
 
-        .right-2 {
-            height: 40%;
+    .right-1 {
+        height: 30%;
 
+        .right1-1 {
+            height: 92%;
         }
+    }
+
+    .right-2 {
+        height: 40%;
+
     }
 }
 </style>

@@ -1,13 +1,12 @@
 <template>
-    <div id="chinaMap"></div>
+    <div class="chinaMap"></div>
 </template>
 
 <script>
-import "../../../../node_modules/echarts/map/js/china.js"
+import "echarts/map/js/china.js"
 
 export default {
     name: '',
-    inject: ['rem'],
     data() {
         return {}
     },
@@ -241,7 +240,7 @@ export default {
 
                         textStyle: {
                             color: '#fff',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                             fontWeight: 'normal',
                         }
                     },
@@ -252,7 +251,7 @@ export default {
 
                         textStyle: {
                             color: '#fff',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                             fontWeight: 'normal',
                         }
                     },
@@ -263,7 +262,7 @@ export default {
 
                         textStyle: {
                             color: '#fff',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                             fontWeight: 'normal',
                         }
                     },
@@ -274,7 +273,7 @@ export default {
 
                         textStyle: {
                             color: '#fff',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                             fontWeight: 'normal',
                         }
                     },
@@ -285,7 +284,7 @@ export default {
 
                         textStyle: {
                             color: '#fff',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                             fontWeight: 'normal',
                         }
                     },
@@ -296,7 +295,7 @@ export default {
 
                         textStyle: {
                             color: '#fff',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                             fontWeight: 'normal',
                         }
                     }
@@ -829,15 +828,10 @@ export default {
                     }
                 ]
             };
-            let myChart = this.$echarts.init(document.getElementById('chinaMap'));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById('chinaMap').width,
-                    height: document.getElementById('chinaMap').heidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         },
     },
@@ -848,5 +842,8 @@ export default {
 </script>
 
 <style lang="" scoped>
+.chinaMap {
+    height: 100%;
+}
 
 </style>

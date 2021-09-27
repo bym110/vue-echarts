@@ -1,11 +1,10 @@
 <template>
-    <div id="right_2"></div>
+    <div class="popularBar"></div>
 </template>
 
 <script>
 export default {
-    name: '',
-    inject: ['rem'],
+    name: 'popularBar',
     data() {
         return {}
     },
@@ -62,7 +61,7 @@ export default {
                     backgroundColor: '#11367a',
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                     formatter: (params) => {
                         if (params[5].seriesName == '人数') {
@@ -89,8 +88,8 @@ export default {
                         inverse: true,
                         axisLabel: {
                             show: false,
-                            fontSize: 0.5*this.rem,
-                            margin: 0.2*this.rem,
+                            fontSize: 10,
+                            margin: 4,
                             inside: true,
                             color: 'rgb(113,227,247)'
                         }
@@ -112,8 +111,8 @@ export default {
                         inverse: true,
                         axisLabel: {
                             show: false,
-                            fontSize: 0.5*this.rem,
-                            margin: 0.2*this.rem,
+                            fontSize: 10,
+                            margin: 4,
                             inside: true,
                             color: 'rgb(113,227,247)'
                         }
@@ -127,16 +126,16 @@ export default {
                     axisLabel: {
                         show: true,
                         color: '#75deef',
-                        fontSize: 0.45*this.rem,
+                        fontSize: 9,
                         showMaxLabel: false,
                     },
                     name: '(人)',
                     nameGap: -5,
                     nameTextStyle: {
                         color: '#75deef',
-                        fontSize: 0.45*this.rem,
+                        fontSize: 9,
                         align: 'left',
-                        padding: [0, 0, -1.2*this.rem, 0]
+                        padding: [0, 0, -24, 0]
                     },
                     max: 60,
                     splitNumber: 6,
@@ -158,16 +157,16 @@ export default {
                         axisLabel: {
                             show: true,
                             color: '#75deef',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             showMaxLabel: false,
                         },
                         name: '(次)',
                         nameGap: -10,
                         nameTextStyle: {
                             color: '#75deef',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'right',
-                            padding: [0, 0, -1.2*this.rem, 0]
+                            padding: [0, 0, -24, 0]
                         },
                         max: 60,
                         splitNumber: 7,
@@ -186,7 +185,7 @@ export default {
                         name: '辅助',
                         type: 'bar',
                         stack: 'a',
-                        barWidth: 0.25*this.rem,
+                        barWidth: 5,
                         itemStyle: {
                             normal: {
                                 color: 'rgba(0,0,0,0)'
@@ -198,7 +197,7 @@ export default {
                         name: '辅助',
                         type: 'bar',
                         stack: 'a',
-                        barWidth: 0.25*this.rem,
+                        barWidth: 5,
                         itemStyle: {
                             normal: {
                                 color: 'rgba(0,0,0,0)'
@@ -210,7 +209,7 @@ export default {
                         type: 'bar',
                         stack: 'a',
                         silent: true,
-                        barWidth: 0.25*this.rem,
+                        barWidth: 5,
                         barGap: '-100%', // Make series be overlap
                         data: [50, 50, 50, 50, 50, 50, 50],
                         itemStyle: {
@@ -222,7 +221,7 @@ export default {
                         name: '辅助',
                         type: 'bar',
                         stack: 'b',
-                        barWidth: 0.25*this.rem,
+                        barWidth: 5,
                         itemStyle: {
                             normal: {
                                 color: 'rgba(0,0,0,0)'
@@ -234,7 +233,7 @@ export default {
                         name: '辅助',
                         type: 'bar',
                         stack: 'b',
-                        barWidth: 0.25*this.rem,
+                        barWidth: 5,
                         itemStyle: {
                             normal: {
                                 color: '#c0232a'
@@ -245,16 +244,16 @@ export default {
                     {
                         name: '人数',
                         type: 'bar',
-                        barWidth: 0.25*this.rem,
+                        barWidth: 5,
                         stack: 'b',
-                        barCategoryGap: this.rem,
+                        barCategoryGap: 20,
                         z: 10,
                         label: {
                             show: true,
                             formatter: '{b}',
                             position: 'insideBottomLeft',
-                            offset: [-0.5*this.rem, 0],
-                            fontSize: 0.6*this.rem,
+                            offset: [-10, 0],
+                            fontSize: 12,
                             color: '#75deef'
                         },
                         data: this.setOptionData(),
@@ -266,7 +265,7 @@ export default {
                         yAxisIndex: 1,
                         type: 'bar',
                         stack: 'c',
-                        barWidth: 0.25*this.rem,
+                        barWidth: 5,
                         itemStyle: {
                             normal: {
                                 color: 'rgba(0,0,0,0)'
@@ -280,7 +279,7 @@ export default {
                         xAxisIndex: 1,
                         yAxisIndex: 1,
                         stack: 'c',
-                        barWidth: 0.25*this.rem,
+                        barWidth: 5,
                         itemStyle: {
                             normal: {
                                 color: 'rgba(0,0,0,0)'
@@ -294,7 +293,7 @@ export default {
                         yAxisIndex: 1,
                         stack: 'c',
                         silent: true,
-                        barWidth: 0.25*this.rem,
+                        barWidth: 5,
                         barGap: '-100%', // Make series be overlap
                         data: [50, 50, 50, 50, 50, 50, 50],
                         itemStyle: {
@@ -308,7 +307,7 @@ export default {
                         yAxisIndex: 1,
                         type: 'bar',
                         stack: 'd',
-                        barWidth: 0.25*this.rem,
+                        barWidth: 5,
                         itemStyle: {
                             normal: {
                                 color: 'rgba(0,0,0,0)'
@@ -322,7 +321,7 @@ export default {
                         xAxisIndex: 1,
                         yAxisIndex: 1,
                         stack: 'd',
-                        barWidth: 0.25*this.rem,
+                        barWidth: 5,
                         itemStyle: {
                             normal: {
                                 color: '#c0232a'
@@ -333,18 +332,18 @@ export default {
                     {
                         name: '次数',
                         type: 'bar',
-                        barWidth: 0.25*this.rem,
+                        barWidth: 5,
                         xAxisIndex: 1,
                         yAxisIndex: 1,
                         stack: 'd',
-                        barCategoryGap:this.rem,
+                        barCategoryGap:20,
                         z: 10,
                         label: {
                             show: true,
                             formatter: '{b}',
                             position: 'insideBottomRight',
-                            offset: [0.5*this.rem, 0],
-                            fontSize: 0.6*this.rem,
+                            offset: [10, 0],
+                            fontSize: 12,
                             color: '#75deef'
                         },
                         data: this.setOptionData(),
@@ -352,14 +351,9 @@ export default {
                     }
                 ]
             };
-            let myChart = this.$echarts.init(document.getElementById('right_2'));
+            let myChart = this.$echarts(this.$el);
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById('right_2').offsetWidth,
-                    height: document.getElementById('right_2').offsetHidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         }
     },
@@ -370,7 +364,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#right_2 {
+.popularBar {
     height: 100%;
     width: 100%;
 }

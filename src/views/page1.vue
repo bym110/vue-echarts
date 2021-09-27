@@ -1,146 +1,143 @@
 <template>
-    <div class='soldierMoon'>
-        <div class="listCharts">
-            <Row class="listTop">
-                <Col span="7">
-                    <div class="leftTop">
-                        <span class='title'><span>模块一分析</span></span>
-                        <span class="angle1"></span>
-                        <span class="angle2"></span>
-                        <span class="angle3"></span>
-                        <span class="angle4"></span>
-                        <div class="left1">
-                            <double-area :selectRangeDate="selectRangeDate" ref='chart1'></double-area>
+    <div class="page1">
+        <Row class="listTop">
+            <Col span="7">
+                <div class="leftTop">
+                    <span class='title'><span class="title-6">模块一分析</span></span>
+                    <span class="angle1"></span>
+                    <span class="angle2"></span>
+                    <span class="angle3"></span>
+                    <span class="angle4"></span>
+                    <div class="left1">
+                        <double-area :selectRangeDate="selectRangeDate" ref='chart1'></double-area>
+                    </div>
+                    <div class="left2">
+                        <web-bar ref="chart2" :data="data1"></web-bar>
+                        <div style="width: 40%;float: left;height: 100%;">
+                            <pie ref="chart3" id="left_2_2" :data="data2"></pie>
                         </div>
-                        <div class="left2">
-                            <web-bar ref="chart2" id="left_2_1" :data="data1"></web-bar>
-                            <div style="width: 40%;float: left;height: 100%;">
-                                <pie ref="chart3" id="left_2_2" :data="data2"></pie>
-                            </div>
 
-                        </div>
-                        <div class="left3">
-                            <web-bar ref="chart4" id="left_3_1" :data="data3"></web-bar>
-                            <div style="width: 40%;float: left;height: 100%;">
-                                <pie ref="chart5" id="left_3_2" :data="data4"></pie>
-                            </div>
-                        </div>
                     </div>
-                </Col>
-                <Col span="10">
-                    <radar-part ref="chart6"></radar-part>
-                </Col>
-                <Col span="7">
-                    <div class="rightTop-1">
-                        <span class='title'><span>世界地图分析</span></span>
-                        <span class="angle1"></span>
-                        <span class="angle2"></span>
-                        <span class="angle3"></span>
-                        <span class="angle4"></span>
-                        <world-map ref="chart7"></world-map>
-                    </div>
-                    <div class="rightTop-2">
-                        <span class='title'><span>模块六分析</span></span>
-                        <span class="angle1"></span>
-                        <span class="angle2"></span>
-                        <span class="angle3"></span>
-                        <span class="angle4"></span>
-                        <div class="rightTop-list">
-                            <div class="list">
-                                <popular-bar ref="chart8"></popular-bar>
-                            </div>
-                            <div class="list">
-                                <ring ref="chart9" id="right_3" :data="data5"></ring>
-                            </div>
-                            <div class="list">
-                                <ring ref="chart10" id="right_4" :data="data6"></ring>
-                            </div>
+                    <div class="left3">
+                        <web-bar ref="chart4" :data="data3"></web-bar>
+                        <div style="width: 40%;float: left;height: 100%;">
+                            <pie ref="chart5" id="left_3_2" :data="data4"></pie>
                         </div>
                     </div>
-                </Col>
-            </Row>
-            <Row class="listBottom">
-                <Col span='9'>
-                    <div class="content">
-                        <span class="title"><span>模块二分析</span></span>
-                        <span class="angle1"></span>
-                        <span class="angle2"></span>
-                        <span class="angle3"></span>
-                        <span class="angle4"></span>
-                        <Row class="topLine">
-                            <Col span="24">
-                                <lines ref="chart11"></lines>
-                            </Col>
-                        </Row>
-                        <Row class="bottomPie">
-                            <Col span="12">
-                                <pie-ring ref="chart12" id="bottom_2" :data="data7"></pie-ring>
-                            </Col>
-                            <Col span="12">
-                                <pie-ring ref="chart13" id="bottom_3" :data="data8"></pie-ring>
-                            </Col>
-                        </Row>
-                    </div>
-                </Col>
-                <Col span='4'>
-                    <div class="content">
-                        <span class="title1"><span>模块三分析</span></span>
-                        <span class="angle1"></span>
-                        <span class="angle2"></span>
-                        <span class="angle3"></span>
-                        <span class="angle4"></span>
-                        <div class="behavior">
-                            <area-chart style="height: 55%" ref="chart14" id="bottom_6" :select-range-date="selectRangeDate"
-                                       :config="configData9"></area-chart>
-                            <colors-bar ref="chart15" id="bottom_7" :data="colorsData"></colors-bar>
+                </div>
+            </Col>
+            <Col span="10">
+                <radar-part ref="chart6"></radar-part>
+            </Col>
+            <Col span="7">
+                <div class="rightTop-1">
+                    <span class='title'><span class="title-8">世界地图分析</span></span>
+                    <span class="angle1"></span>
+                    <span class="angle2"></span>
+                    <span class="angle3"></span>
+                    <span class="angle4"></span>
+                    <world-map ref="chart7"></world-map>
+                </div>
+                <div class="rightTop-2">
+                    <span class='title'><span class="title-6">模块六分析</span></span>
+                    <span class="angle1"></span>
+                    <span class="angle2"></span>
+                    <span class="angle3"></span>
+                    <span class="angle4"></span>
+                    <div class="rightTop-list">
+                        <div class="list">
+                            <popular-bar ref="chart8"></popular-bar>
+                        </div>
+                        <div class="list">
+                            <ring ref="chart9" :data="data5"></ring>
+                        </div>
+                        <div class="list">
+                            <ring ref="chart10" :data="data6"></ring>
                         </div>
                     </div>
-                </Col>
-                <Col span='4'>
-                    <div class="content">
-                        <span class="angle1"></span>
-                        <span class="angle2"></span>
-                        <span class="angle3"></span>
-                        <span class="angle4"></span>
-                        <span class="title"><span>模块四分析</span></span>
-                        <funnel ref="chart16" id="bottom_8"></funnel>
+                </div>
+            </Col>
+        </Row>
+        <Row class="listBottom">
+            <Col span='9'>
+                <div class="content">
+                    <span class="title"><span class="title-6">模块二分析</span></span>
+                    <span class="angle1"></span>
+                    <span class="angle2"></span>
+                    <span class="angle3"></span>
+                    <span class="angle4"></span>
+                    <Row class="topLine">
+                        <Col span="24">
+                            <lines ref="chart11"></lines>
+                        </Col>
+                    </Row>
+                    <Row class="bottomPie">
+                        <Col span="12">
+                            <pie-ring ref="chart12" :data="data7"></pie-ring>
+                        </Col>
+                        <Col span="12">
+                            <pie-ring ref="chart13" :data="data8"></pie-ring>
+                        </Col>
+                    </Row>
+                </div>
+            </Col>
+            <Col span='4'>
+                <div class="content">
+                    <span class="title"><span class="title-6">模块三分析</span></span>
+                    <span class="angle1"></span>
+                    <span class="angle2"></span>
+                    <span class="angle3"></span>
+                    <span class="angle4"></span>
+                    <div class="behavior">
+                        <area-chart style="height: 55%" ref="chart14" :select-range-date="selectRangeDate"
+                                    :config="configData9"></area-chart>
+                        <colors-bar ref="chart15" :data="colorsData"></colors-bar>
                     </div>
-                </Col>
-                <Col span='7'>
-                    <div class="content">
-                        <span class="title"><span>模块五分析</span></span>
-                        <span class="angle1"></span>
-                        <span class="angle2"></span>
-                        <span class="angle3"></span>
-                        <span class="angle4"></span>
-                        <div class="appUse">
-                            <line-bar ref="chart17" id="bottom_9"></line-bar>
-                        </div>
+                </div>
+            </Col>
+            <Col span='4'>
+                <div class="content">
+                    <span class="angle1"></span>
+                    <span class="angle2"></span>
+                    <span class="angle3"></span>
+                    <span class="angle4"></span>
+                    <span class="title"><span class="title-6">模块四分析</span></span>
+                    <funnel ref="chart16"></funnel>
+                </div>
+            </Col>
+            <Col span='7'>
+                <div class="content">
+                    <span class="title"><span class="title-6">模块五分析</span></span>
+                    <span class="angle1"></span>
+                    <span class="angle2"></span>
+                    <span class="angle3"></span>
+                    <span class="angle4"></span>
+                    <div class="appUse">
+                        <line-bar ref="chart17"></line-bar>
                     </div>
-                </Col>
-            </Row>
-        </div>
-
+                </div>
+            </Col>
+        </Row>
     </div>
 </template>
 
 <script>
-const radarPart = ()=> import('./components/page1/radarPart.vue');
-const doubleArea= ()=> import('./components/page1/doubleArea.vue');
-const webBar = ()=> import('./components/page1/webBar.vue');
-const pie = ()=> import('./components/pie')
-const worldMap= ()=> import('./components/page1/worldMap');
-const ring = ()=> import('./components/page1/ring');
-const popularBar = ()=> import('./components/page1/popularBar');
+const radarPart = () => import('./components/page1/radarPart.vue');
+const doubleArea = () => import('./components/page1/doubleArea.vue');
+const webBar = () => import('./components/page1/webBar.vue');
+const pie = () => import('./components/pie')
+const worldMap = () => import('./components/page1/worldMap');
+const ring = () => import('./components/page1/ring');
+const popularBar = () => import('./components/page1/popularBar');
 const lines = () => import('./components/page1/lines');
-const pieRing = ()=> import('./components/page1/pieRing');
-const colorsBar = ()=> import('./components/page1/colorsBar');
-const funnel = ()=> import('./components/page1/funnel');
+const pieRing = () => import('./components/page1/pieRing');
+const colorsBar = () => import('./components/page1/colorsBar');
+const funnel = () => import('./components/page1/funnel');
 const lineBar = () => import('./components/page1/lineBar');
-const areaChart = ()=> import('./components/areaChart');
+const areaChart = () => import('./components/areaChart');
 
 export default {
-    name: 'radar',
+    name: 'page1',
     props: {
         selectRangeDate: Array
     },
@@ -462,17 +459,17 @@ export default {
                     },
                     {
                         name: '好友总数',
-                        color: ['#2871ea','#0a1b41'],
+                        color: ['#2871ea', '#0a1b41'],
                         data: [20, 102, 101, 134, 190, 150, 120]
                     },
                     {
                         name: '新增群数',
-                        color: ['#935adf','#230f3e'],
+                        color: ['#935adf', '#230f3e'],
                         data: [100, 32, 101, 134, 150, 110, 180]
                     },
                     {
                         name: '群总数',
-                        color: ['#e65f2d','#551f0b'],
+                        color: ['#e65f2d', '#551f0b'],
                         data: [120, 122, 141, 144, 60, 220, 120]
                     }
                 ]
@@ -570,206 +567,119 @@ export default {
 </script>
 
 <style lang="less">
-.soldierMoon {
+.page1 {
     height: 100%;
     width: 100%;
+    padding: 14px 20px 20px;
+    background: #03044A;
+    overflow: hidden;
 
-    .listCharts {
-        height: 100%;
-        padding: 0.7rem 1rem 1rem;
-        background: #03044A;
-        overflow: hidden;
+    .listTop {
+        height: 60%;
 
-        .angle1 {
-            display: inline-block;
-            position: absolute;
-            width: 0.5rem;
-            height: 0.5rem;
-            top: 0;
-            left: 0;
-            border-top: 1px solid #1C5AB3;
-            border-left: 1px solid #1C5AB3;
+        .ivu-col {
+            height: 100%;
 
-        }
+            .leftTop {
+                width: 100%;
+                height: 100%;
+                border: 1px solid #0D2451;
+                position: relative;
 
-        .angle2 {
-            display: inline-block;
-            position: absolute;
-            width: 0.5rem;
-            height: 0.5rem;
-            top: 0;
-            right: 0;
-            border-top: 1px solid #1C5AB3;
-            border-right: 1px solid #1C5AB3;
+                .left1 {
+                    width: 100%;
+                    height: 40%;
+                }
 
-        }
-
-        .angle3 {
-            display: inline-block;
-            position: absolute;
-            width: 0.5rem;
-            height: 0.5rem;
-            bottom: 0;
-            left: 0;
-            border-bottom: 1px solid #1C5AB3;
-            border-left: 1px solid #1C5AB3;
-
-        }
-
-        .angle4 {
-            display: inline-block;
-            position: absolute;
-            width: 0.5rem;
-            height: 0.5rem;
-            bottom: 0;
-            right: 0;
-            border-bottom: 1px solid #1C5AB3;
-            border-right: 1px solid #1C5AB3;
-
-        }
-
-        .title {
-            position: absolute;
-            display: inline-block;
-            color: #6EDDF1;
-            background: #14418E;
-            left: 50%;
-            transform: translate(-50%, -50%);
-
-            span {
-                display: inline-block;
-                padding: 0.25rem 0.75rem;
-                font-size: 1.2em;
-                //border-radius: 5px;
-                background: radial-gradient(3rem 1rem ellipse, rgba(7, 9, 34, .8) 60%, rgb(21, 67, 145));
+                .left2, .left3 {
+                    width: 100%;
+                    height: 30%;
+                    padding: 10px 0;
+                }
             }
 
-        }
+            .rightTop-1 {
+                width: 100%;
+                height: 55%;
+                border: 1px solid #0D2451;
+                position: relative;
+            }
 
-        .listTop {
-            height: 60%;
+            .rightTop-2 {
+                width: 100%;
+                margin-top: 5%;
+                height: 40%;
+                border: 1px solid #0D2451;
+                position: relative;
 
-            .ivu-col {
-                height: 100%;
-
-                .leftTop {
+                .rightTop-list {
                     width: 100%;
                     height: 100%;
-                    border: 1px solid #0D2451;
-                    position: relative;
 
-                    .left1 {
-                        width: 100%;
-                        height: 40%;
-                    }
-
-                    .left2, .left3 {
-                        width: 100%;
-                        height: 30%;
-                        padding: 0.5rem 0;
-                    }
-                }
-
-                .rightTop-1 {
-                    width: 100%;
-                    height: 55%;
-                    border: 1px solid #0D2451;
-                    position: relative;
-                }
-
-                .rightTop-2 {
-                    width: 100%;
-                    margin-top: 5%;
-                    height: 40%;
-                    border: 1px solid #0D2451;
-                    position: relative;
-
-                    .rightTop-list {
-                        width: 100%;
+                    .list {
+                        width: 30%;
                         height: 100%;
+                        float: left;
 
-                        .list {
-                            width: 30%;
-                            height: 100%;
-                            float: left;
-
-                            &:first-child {
-                                width: 40%;
-                            }
+                        &:first-child {
+                            width: 40%;
                         }
                     }
                 }
-
             }
+
+        }
+    }
+
+    .listBottom {
+        height: 40%;
+
+        .ivu-col-span-9 {
+            width: 33.5%;
+            margin-right: 0.6667%;
         }
 
-        .listBottom {
-            height: 40%;
+        .ivu-col-span-4 {
+            width: 17.66667%;
+            margin-right: 0.6667%;
+        }
 
-            .ivu-col-span-9 {
-                width: 33.5%;
-                margin-right: 0.6667%;
-            }
+        .ivu-col {
+            height: 100%;
 
-            .ivu-col-span-4 {
-                width: 17.66667%;
-                margin-right: 0.6667%;
-            }
+            .content {
+                margin-top: 30px;
+                height: calc(~"100% - 30px");
+                border: 1px solid #0D2451;
+                position: relative;
 
-            .ivu-col {
-                height: 100%;
-
-                .content {
-                    margin-top: 1.5rem;
-                    height: calc(~"100% - 1.5rem");
-                    border: 1px solid #0D2451;
-                    position: relative;
-
-                    .title1 {
-                        position: absolute;
-                        display: inline-block;
-                        color: #6EDDF1;
-                        background: #14418E;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-
-                        span {
-                            display: inline-block;
-                            padding: 0.25rem 0.75rem;
-                            font-size: 1.2em;
-                            background: radial-gradient(2.5rem 1.025rem ellipse, rgba(7, 9, 34, .8) 50%, rgb(21, 67, 145));
-                        }
-
+                .ivu-row {
+                    &.topLine {
+                        height: 55%;
                     }
 
-                    .ivu-row {
-                        &.topLine {
-                            height: 55%;
-                        }
+                    &.bottomPie {
+                        height: 45%;
+                    }
 
-                        &.bottomPie {
-                            height: 45%;
-                        }
+                    .ivu-col {
+                        height: 100%;
 
-                        .ivu-col {
+                        .charts-list {
                             height: 100%;
-
-                            .charts-list {
-                                height: 100%;
-                                width: 100%;
-                            }
+                            width: 100%;
                         }
                     }
+                }
 
-                    .behavior {
-                        width: 100%;
-                        height: 100%;
-                    }
+                .behavior {
+                    width: 100%;
+                    height: 100%;
+                }
 
-                    .appUse {
-                        width: 100%;
-                        height: 100%;
-                    }
+                .appUse {
+                    width: 100%;
+                    height: 100%;
                 }
             }
         }

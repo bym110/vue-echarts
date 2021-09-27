@@ -1,5 +1,5 @@
 <template>
-    <div class="chart" :id="id"></div>
+    <div class="chart"></div>
 </template>
 
 <style lang="less" scoped>
@@ -11,9 +11,7 @@
 <script>
 export default {
     name: '',
-    inject: ['rem'],
     props: {
-        id: String,
         data: Object
     },
     data() {
@@ -57,7 +55,7 @@ export default {
                     left: this.data.position[0],
                     textStyle: {
                         color: '#fff',
-                        fontSize: 0.6*this.rem,
+                        fontSize:12,
                     }
                 },
                 legend: {
@@ -66,11 +64,11 @@ export default {
                     }),
                     left: "center",
                     top: this.data.position[1],
-                    itemWidth: 0.35*this.rem,
-                    itemHeight: 0.35*this.rem,
+                    itemWidth: 7,
+                    itemHeight: 7,
                     textStyle: {
                         color: '#67C3D6',
-                        fontSize: 0.5*this.rem
+                        fontSize: 10
                     }
                 },
                 radar: {
@@ -83,7 +81,7 @@ export default {
                     name: {
                         textStyle: {
                             color: '#0DECF0',
-                            fontSize: 0.4*this.rem,
+                            fontSize: 8,
                         }
                     },
                     nameGap: 3,
@@ -123,13 +121,13 @@ export default {
             if (this.id == 'bottom_1_2') {
                 option.legend.left = '5%';
             }
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
             myChart.resize(
                 {
-                    width: document.getElementById(this.id).width,
-                    height: document.getElementById(this.id).heidth
+                    width: this.$el.offsetWidth,
+                    height: this.$el.offsetHeight
                 }
             )
             myChart.setOption(option);

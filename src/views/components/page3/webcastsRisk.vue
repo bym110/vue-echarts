@@ -1,14 +1,13 @@
 <template>
-    <div id="right_1"></div>
+    <div class="webcastsRisk"></div>
 </template>
 
 <script>
 export default {
-    name: '',
+    name: 'webcastsRisk',
     data() {
         return {}
     },
-    inject: ['rem'],
     methods: {
         // 网播风险分析
         setWebcasts() {
@@ -18,7 +17,7 @@ export default {
                     text: '重点用户关注排行',
                     textStyle: {
                         color: "#fff",
-                        fontSize: 0.6*this.rem
+                        fontSize: 12
                     },
                     top: '4%',
                     left: '4%'
@@ -39,11 +38,11 @@ export default {
                     gridIndex: 3,
                     right: "5%",
                     top: "6%",
-                    itemWidth: 0.35*this.rem,
-                    itemHeight: 0.35*this.rem,
+                    itemWidth: 7,
+                    itemHeight: 7,
                     textStyle: {
                         color: '#00CCFF',
-                        fontSize: 0.5*this.rem
+                        fontSize: 10
                     }
                 },
                 grid: {
@@ -80,10 +79,10 @@ export default {
                         name: '抖音',
                         type: 'bar',
                         stack: '总量',
-                        barWidth: 0.4*this.rem,
+                        barWidth: 8,
                         itemStyle: {
                             color: '#142AFE',
-                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
+                            barBorderRadius: [0, 8, 8, 0]
                         },
                         label: {
                             normal: {
@@ -98,10 +97,10 @@ export default {
                         name: '快手',
                         type: 'bar',
                         stack: '总量',
-                        barWidth: 0.4*this.rem,
+                        barWidth: 8,
                         itemStyle: {
                             color: '#1456FE',
-                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
+                            barBorderRadius: [0, 8, 8, 0]
                         },
                         label: {
                             normal: {
@@ -115,10 +114,10 @@ export default {
                         name: '花椒',
                         type: 'bar',
                         stack: '总量',
-                        barWidth: 0.4*this.rem,
+                        barWidth: 8,
                         itemStyle: {
                             color: '#1493FE',
-                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
+                            barBorderRadius: [0, 8, 8, 0]
                         },
                         label: {
                             normal: {
@@ -131,11 +130,11 @@ export default {
                     {
                         name: '其他',
                         type: 'bar',
-                        barWidth: 0.4*this.rem,
+                        barWidth: 8,
                         stack: '总量',
                         itemStyle: {
                             color: '#00CCFF',
-                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
+                            barBorderRadius: [0, 8, 8, 0]
                         },
                         label: {
                             normal: {
@@ -201,15 +200,10 @@ export default {
                     }
                 ]
             };
-            let myChart = this.$echarts.init(document.getElementById('right_1'));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById('right_1').width,
-                    height: document.getElementById('right_1').heidth
-                }
-            )
+            myChart.resize();
             myChart.setOption(option);
         },
     },
@@ -220,7 +214,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#right_1 {
+.webcastsRisk {
     height: 100%;
 }
 </style>

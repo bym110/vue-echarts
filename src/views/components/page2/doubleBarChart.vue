@@ -1,14 +1,10 @@
 <template>
-    <div class="doubleBarChart" :id="id"></div>
+    <div class="doubleBarChart"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
-    props: {
-        id: String
-    },
     data() {
         return {}
     },
@@ -23,15 +19,15 @@ export default {
                     backgroundColor: '#11367a',
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                 },
                 legend: [
                     {
                         top: '8%',
                         right: '5%',
-                        itemWidth: 0.35*this.rem,
-                        itemHeight: 0.35*this.rem,
+                        itemWidth: 7,
+                        itemHeight: 7,
                         textStyle: {
                             color: '#5CB1C1',
                         }
@@ -51,7 +47,7 @@ export default {
                         axisLabel: {
                             interval: 0,
                             color: '#61B9C8',
-                            fontSize: 0.5*this.rem
+                            fontSize: 10
                         },
                         axisLine: {
                             symbol: ['none', 'arrow'],
@@ -72,7 +68,7 @@ export default {
                         max: 300,
                         axisLabel: {
                             color: '#61B9C8',
-                            fontSize: 0.4*this.rem,
+                            fontSize: 9,
                             showMaxLabel: false,
                         },
                         axisLine: {
@@ -90,9 +86,9 @@ export default {
                         nameGap: -5,
                         nameTextStyle: {
                             color: '#61B9C8',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'right',
-                            padding: [0, 0.3*this.rem, 0, 0]
+                            padding: [0, 6, 0, 0]
                         },
                         splitLine: {show: false}
 
@@ -101,44 +97,46 @@ export default {
                     {
                         name: '添加好友',
                         type: 'bar',
-                        barWidth: 0.35*this.rem,
+                        barWidth: 7,
                         stack: '总数',
                         itemStyle: {
-                            color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                offset: 0, color: 'rgba(252,147,134,1)' // 0% 处的颜色
-                            }, {
-                                offset: 0.4, color: 'rgba(248,123,134,1)' // 0% 处的颜色
-                            }, {
-                                offset: 1, color: 'rgba(243,96,135,1)' // 100% 处的颜色
-                            }]), //背景渐变色
-                            barBorderRadius: [0.175*this.rem, 0.175*this.rem, 0, 0],
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0, color: '#FC9386' // 0% 处的颜色
+                                },
+                                    {
+                                        offset: 0.4, color: '#F87B86' // 40% 处的颜色
+                                    }, {
+                                        offset: 1, color: '#F36087' // 100% 处的颜色
+                                    }],
+                                global: false // 缺省为 false
+                            }, //背景渐变色
+                            barBorderRadius: [3.5, 3.5, 0, 0],
                         },
                         data: [120, 102, 101, 134, 190, 130, 120, 190, 130, 120]
                     },
                     {
                         name: '好友总数',
                         type: 'bar',
-                        barWidth: 0.35*this.rem,
+                        barWidth: 7,
                         stack: '总数',
                         itemStyle: {
                             color: '#8C14EA',
-                            barBorderRadius: [0.175*this.rem, 0.175*this.rem, 0, 0,],
+                            barBorderRadius: [3.5, 3.5, 0, 0,],
                         },
                         data: [120, 132, 101, 134, 90, 130, 110, 90, 130, 120]
                     },
 
                 ]
             };
-            let myChart = this.$echarts.init(document.getElementById(this.id));
-
+            let myChart = this.$echarts(this.$el);
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
-                }
-            )
-
+            myChart.resize()
             myChart.setOption(option);
         }
     },

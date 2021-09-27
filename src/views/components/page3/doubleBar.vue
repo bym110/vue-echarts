@@ -1,5 +1,5 @@
 <template>
-    <div class="chart" :id="id"></div>
+    <div class="chart"></div>
 </template>
 
 <style lang="less" scoped>
@@ -12,10 +12,8 @@
 export default {
     name: '',
     props: {
-        id: String,
         data: Object
     },
-    inject: ['rem'],
     data() {
         return {}
     },
@@ -36,7 +34,7 @@ export default {
                         left: '5%',
                         textStyle: {
                             color: '#fff',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                         }
                     },
                 legend:
@@ -48,12 +46,12 @@ export default {
                         left: "center",
                         top: "17%",
                         orient: 'horizontal',
-                        itemWidth: 0.35*this.rem,
-                        itemHeight: 0.35*this.rem,
+                        itemWidth: 7,
+                        itemHeight: 7,
                         itemGap: 10,
                         textStyle: {
                             color: '#67C3D6',
-                            fontSize: 0.5*this.rem
+                            fontSize: 10
                         }
                     },
                 grid:
@@ -72,7 +70,7 @@ export default {
                         },
                         axisLabel: {
                             color: '#0DF5F8',
-                            fontSize: 0.4*this.rem,
+                            fontSize: 8,
                             interval: 0,
                         },
                         axisTick: {
@@ -127,15 +125,10 @@ export default {
                 ]
 
             };
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).width,
-                    height: document.getElementById(this.id).heidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         }
     },

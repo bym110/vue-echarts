@@ -29,12 +29,7 @@ const router = new Router({
                     path: '/page3',
                     name: 'page3',
                     component: () => import('@/views/page3')
-                },
-                {
-                    path: 'map',
-                    name: 'map',
-                    component: () => import('@/views/map')
-                },
+                }
             ]
         }
     ]

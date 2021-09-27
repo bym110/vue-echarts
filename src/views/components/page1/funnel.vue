@@ -1,14 +1,10 @@
 <template>
-    <div class="funnel" :id="id"></div>
+    <div class="funnel"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
-    props: {
-        id: String
-    },
     data() {
         return {}
     },
@@ -22,7 +18,7 @@ export default {
                     backgroundColor: '#11367a',
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                 },
 
@@ -31,10 +27,10 @@ export default {
                     right: "7%",
                     orient: "vertical",
                     itemWidth: 0,
-                    itemGap: 1.35*this.rem,
+                    itemGap: 27,
                     textStyle: {
                         color: '#75deef',
-                        fontSize: 0.7*this.rem
+                        fontSize: 14
                     },
                     data: ['陌生手机', '破解攻击', '离线断网', '异常操作', '策略违规']
                 },
@@ -128,15 +124,10 @@ export default {
                 ]
             };
 
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         },
     },

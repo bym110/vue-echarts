@@ -1,7 +1,7 @@
 <template>
     <div style="height:100%;">
-        <div class="banner">
-            <div style="float: left;" class="selectRange">
+        <div class="header">
+            <div class="selectRange">
                 <Menu mode="horizontal" @on-select="(name) =>$router.push(name)" :active-name="$route.name">
                     <MenuItem name="page1">
                         page1
@@ -14,7 +14,7 @@
                     </MenuItem>
                 </Menu>
             </div>
-            <div class="title">
+            <div class="header-title">
                 大数据可视化平台
             </div>
             <div class="selectRange">
@@ -45,10 +45,10 @@
             @on-ok="getMonthBetween(startTime,endTime)"
         >
             <DatePicker @on-change="pickStartDate" :options="optionStart" type="date" placeholder="选择开始日期"
-                        style="width: 10rem"></DatePicker>
-            <span style="padding:0 1rem;color:#75deef">至</span>
+                        style="width: 200px"></DatePicker>
+            <span style="padding:0 20px;color:#75deef">至</span>
             <DatePicker @on-change="pickEndDate" :options="optionEnd" type="date" placeholder="选择结束日期"
-                        style="width: 10rem"></DatePicker>
+                        style="width: 200px"></DatePicker>
         </Modal>
         <div class="page">
             <router-view v-if="flag" :selectRangeDate='selectRangeDate'></router-view>
@@ -60,11 +60,6 @@
 <script>
 export default {
     name: '',
-    provide() {
-        return {
-            rem: this.fontsize
-        }
-    },
     data() {
         return {
             activeName: 'month',// 默认显示近一月
@@ -79,43 +74,33 @@ export default {
                 }
             },
             optionEnd: {},
-            resizeFn: null,
-            fontsize: 20
+            resizeFn: null
         }
     },
     mounted() {
-        this.fontsize = parseInt(window.getComputedStyle(window.document.documentElement)["fontSize"]);
-        this.resizeFn = this.$debounce(()=> {
-            this.fontsize = parseInt(window.getComputedStyle(window.document.documentElement)["fontSize"]);
-        },)
         window.addEventListener('resize', this.resizeFn);
         this.handleSelect(this.activeName); // 默认显示近一个月
     },
-    beforeDestroy() {
-        window.removeEventListener('resize', this.resizeFn);
-    },
     methods: {
         pickStartDate(date) { // 选择开始时间的回调
-            this.startTime = date,
-                this.optionEnd = {
-                    disabledDate(d) { // 禁止选择开始时间之前的日期
-                        return d && d.valueOf() < new Date(date).valueOf() - 86400000;
-                    }
+            this.startTime = date;
+            this.optionEnd = {
+                disabledDate(d) { // 禁止选择开始时间之前的日期
+                    return d && d.valueOf() < new Date(date).valueOf() - 86400000;
                 }
-
+            }
         },
         pickEndDate(date) { // 选择结束时间的回调
-            this.endTime = date
-
+            this.endTime = date;
         },
         getMonthBetween(start, end) {  // 获取开始时间和结束时间之内的所有月份
             this.selectRangeDate = [];
-            var s = start.split("-");  // 字符串装换数组
-            var e = end.split("-");
-            var date = new Date();
-            var min = date.setFullYear(s[0], s[1] - 1); // 设置最小时间
-            var max = date.setFullYear(e[0], e[1] - 1); // 设置最大时间
-            var curr = min;
+            let s = start.split("-");  // 字符串装换数组
+            let e = end.split("-");
+            let date = new Date();
+            let min = date.setFullYear(s[0], s[1] - 1); // 设置最小时间
+            let max = date.setFullYear(e[0], e[1] - 1); // 设置最大时间
+            let curr = min;
             while (curr <= max) {  // 循环添加月份
                 var month = curr.getMonth();
                 var arr = [curr.getFullYear(), month + 1];
@@ -154,7 +139,6 @@ export default {
                     break;
                 case 'filter':
                     this.modal = true;
-
                     break;
                 default:
                     break;
@@ -264,15 +248,21 @@ export default {
 
 }
 
-.banner {
-    height: 4rem;
+.header {
+    height: 80px;
     background: #03044A;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &-title {
+        color: #75deef;
+        font-size: 30px;
+        letter-spacing: 10px;
+    }
+
     .selectRange {
         height: 100%;
-        float: right;
 
         .ivu-menu-horizontal {
             background: rgba(255, 255, 255, 0);
@@ -288,6 +278,7 @@ export default {
 
             .ivu-menu-item, .ivu-menu-submenu {
                 color: #75deef;
+
                 &:hover {
                     border-bottom: 2px solid #264e5e;
                 }
@@ -298,6 +289,7 @@ export default {
 
                 .ivu-menu-item {
                     color: #75deef;
+
                     &:hover {
 
                         border-bottom: 2px solid #264e5e;
@@ -317,15 +309,10 @@ export default {
             }
         }
     }
-    .title {
-        color: #75deef;
-        font-size: 1.5rem;
-        letter-spacing: 0.5rem;
-    }
 }
 
 .page {
-    height: calc(~ '100% - 4rem');
+    height: calc(~ '100% - 80px');
 
 }
 </style>

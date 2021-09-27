@@ -1,14 +1,13 @@
 <template>
-    <div id="left_4"></div>
+    <div class="redPocket"></div>
 </template>
 
 <script>
 export default {
-    name: '',
+    name: 'redPocket',
     data() {
         return {}
     },
-    inject: ['rem'],
     methods: {
         // 红包装账
         setPocket() {
@@ -25,7 +24,7 @@ export default {
                     left: '2%',
                     textStyle: {
                         color: '#fff',
-                        fontSize: 0.7*this.rem
+                        fontSize: 14
                     }
                 },
                 grid: {
@@ -37,14 +36,14 @@ export default {
                     name: '次数',
                     nameTextStyle: {
                         color: "#0FB9CD",
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10
                     },
                     axisLine: {
                         show: false
                     },
                     axisLabel: {
                         color: '#0FB9CD',
-                        fontSize: 0.4*this.rem,
+                        fontSize: 8
                     },
                     axisTick: {
                         color: '#14336D'
@@ -62,13 +61,13 @@ export default {
                     name: '金额',
                     nameTextStyle: {
                         color: "#0FB9CD",
-                        fontSize: 0.5*this.rem,
-                        padding: [0, 3.25*this.rem, -0.5*this.rem, 0]
+                        fontSize: 10,
+                        padding: [0, 65, -10, 0]
                     },
                     axisTick: {show: false},
                     axisLabel: {
                         color: '#0FB9CD',
-                        fontSize: 0.4*this.rem,
+                        fontSize: 8
                     },
                     axisLine: {
                         lineStyle: {
@@ -129,15 +128,10 @@ export default {
                         ],
                     }]
             };
-            let myChart = this.$echarts.init(document.getElementById('left_4'));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById('left_4').width,
-                    height: document.getElementById('left_4').heidth
-                }
-            )
+            myChart.resize();
             myChart.setOption(option);
         },
     }, mounted() {
@@ -147,7 +141,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#left_4 {
+.redPocket {
     height: 100%
 }
 </style>

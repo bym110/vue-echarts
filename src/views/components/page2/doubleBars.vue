@@ -1,14 +1,10 @@
 <template>
-    <div class="doubleBars" :id="id"></div>
+    <div class="doubleBars"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
-    props: {
-        id: String
-    },
     data() {
         return {}
     },
@@ -18,11 +14,11 @@ export default {
                 legend: {
                     left: "8%",
                     top: "10%",
-                    itemWidth: 0.35*this.rem,
-                    itemHeight: 0.35*this.rem,
+                    itemWidth: 7,
+                    itemHeight: 7,
                     textStyle: {
                         color: '#5CB1C1',
-                        fontSize: 0.5*this.rem
+                        fontSize: 10
                     }
                 },
                 grid: [{
@@ -90,7 +86,7 @@ export default {
                         axisLabel: {
                             show: true,
                             color: '#61B9C8',
-                            fontSize: 0.4*this.rem,
+                            fontSize: 8,
                             showMinLabel: true,
                             showMaxLabel: true,
                             interval: 0
@@ -116,14 +112,18 @@ export default {
                     barWidth: "40%",
                     itemStyle: {
                         normal: {
-                            color: new this.$echarts.graphic.LinearGradient(
-                                0, 0, 1, 0,
-                                [
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 1,
+                                y2: 0,
+                                colorStops: [
                                     {offset: 0, color: 'rgba(1,176,223,1)'},
                                     {offset: 1, color: 'rgba(1,176,223,0)'}
-
-                                ]
-                            ),
+                                ],
+                                global: false // 缺省为 false
+                            },
                             barBorderRadius: 5,
                         },
 
@@ -142,14 +142,18 @@ export default {
 
                     itemStyle: {
                         normal: {
-                            color: new this.$echarts.graphic.LinearGradient(
-                                0, 0, 1, 0,
-                                [
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 1,
+                                y2: 0,
+                                colorStops: [
                                     {offset: 0, color: 'rgba(126,19,212,0)'},
                                     {offset: 1, color: 'rgba(126,19,212,1)'}
-
-                                ]
-                            ),
+                                ],
+                                global: false // 缺省为 false
+                            },
                             barBorderRadius: 5,
 
                         },
@@ -161,15 +165,10 @@ export default {
                 }]
             };
 
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         }
     },

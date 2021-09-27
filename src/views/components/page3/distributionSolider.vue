@@ -1,13 +1,11 @@
 <template>
-    <div class="rightBar" :id="id"></div>
+    <div class="rightBar"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
     props: {
-        id: String,
         data: Array
     },
     data() {
@@ -62,8 +60,8 @@ export default {
                                 offset: [3, 0],
                                 distance: 2,
                                 color: '#88B6C7',
-                                fontSize: 0.45*this.rem,
-                                lineHeight: 0.45*this.rem,
+                                fontSize: 9,
+                                lineHeight: 9,
                                 rich: {
                                     a: {
                                         // 没有设置 `verticalAlign`，则 `verticalAlign` 为 bottom
@@ -119,7 +117,7 @@ export default {
                     left: 0,
                     top: 10,
                     textStyle: {
-                        fontSize: 0.6*this.rem,
+                        fontSize: 12,
                         color: "#FFF"
                     }
                 },
@@ -128,15 +126,10 @@ export default {
                 yAxis: this.setSoliderData('y'),
                 series: this.setSoliderData('s')
             };
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).width,
-                    height: document.getElementById(this.id).heidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         },
     },

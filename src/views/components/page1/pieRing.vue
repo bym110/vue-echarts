@@ -1,13 +1,11 @@
 <template>
-    <div class="pieMain" :id="id"></div>
+    <div class="pieMain"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
     props: {
-        id: String,
         data: Object
     },
     data() {
@@ -23,7 +21,7 @@ export default {
                     top: 0,
                     textStyle: {
                         color: '#75deef',
-                        fontSize: 0.6*this.rem,
+                        fontSize: 12,
                         fontWeight: 'normal'
                     }
                 },
@@ -33,7 +31,7 @@ export default {
                     backgroundColor: '#11367a',
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                 },
                 series: [
@@ -44,7 +42,7 @@ export default {
                         label: {
                             show: true,
                             position: 'inside',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 10,
                         },
                         center: ['50%', '60%'],
                         data: this.data.data,
@@ -69,34 +67,19 @@ export default {
                             }
                         },
                         label: {
-                            normal: {
-                                position: 'outside',
-                                borderRadius: 4,
-                                color: '#fff',
-                                fontSize: 0.5*this.rem,
-                                padding: 0,
-                                lineHeight: this.rem,
-                                backgroundColor: '#183566',
-                                formatter: "{a|{b}}{c}笔/{d|{d}%}",
-                                rich: {
-                                    a: {
-                                        color: '#fff',
-                                        fontSize: 0.5*this.rem,
-                                        align: 'center'
-                                    },
-                                    d: {
-                                        color: '#edde37',
-                                        fontSize: 0.5*this.rem,
-                                        align: 'center'
-                                    }
-                                }
-                            }
+                            position: 'outside',
+                            borderRadius: 4,
+                            color: '#fff',
+                            fontSize: 10,
+                            padding: 0,
+                            backgroundColor: '#183566',
+                            formatter: "{b}{c}笔/{d}%"
                         },
                         center: ['50%', '60%'],
                         data: this.data.data1,
                         itemStyle: {
                             emphasis: {
-                                shadowBlur: 0.5*this.rem,
+                                shadowBlur: 10,
                                 shadowOffsetX: 0,
                                 shadowColor: 'rgba(0, 0, 0, 0.5)'
                             }
@@ -104,15 +87,10 @@ export default {
                     }
                 ]
             };
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
-                }
-            )
+            myChart.resize()
 
             myChart.setOption(option);
             let obj = {

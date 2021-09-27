@@ -14,7 +14,6 @@
 <script>
 export default {
     name: '',
-    inject: ['rem'],
     props: {
         id: String,
         data: Object
@@ -30,7 +29,7 @@ export default {
                     backgroundColor: '#11367a',
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10
                     },
                     formatter: "{b}:{d}%"
                 },
@@ -41,7 +40,7 @@ export default {
                         center: ['50%', '50%'],
                         label: {
                             color: '#75deef',
-                            fontSize: 0.4*this.rem,
+                            fontSize: 8,
                             formatter: function (data) {
                                 return data.data.name + ' ' + (data.percent).toFixed(0) + '%';
                             }
@@ -57,13 +56,13 @@ export default {
                     }
                 ]
             };
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(document.getElementById(this.id));
 
             myChart.clear();
             myChart.resize(
                 {
                     width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
+                    height: document.getElementById(this.id).offsetHeight
                 }
             );
 

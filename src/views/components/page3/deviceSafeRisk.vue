@@ -1,11 +1,10 @@
 <template>
-    <div id='right_2'></div>
+    <div class='deviceSafeRisk'></div>
 </template>
 
 <script>
 export default {
-    name: '',
-    inject: ['rem'],
+    name: 'deviceSafeRisk',
     data() {
         return {}
     },
@@ -18,7 +17,7 @@ export default {
                         text: '重点用户关注排行',
                         textStyle: {
                             color: "#fff",
-                            fontSize: 0.6*this.rem
+                            fontSize: 12
                         },
                         top: '4%',
                         left: '4%'
@@ -27,7 +26,7 @@ export default {
                         text: "异常微信网购类型排名",
                         textStyle: {
                             color: "#fff",
-                            fontSize: 0.6*this.rem
+                            fontSize: 12
                         },
                         top: '4%',
                         left: '55%'
@@ -49,11 +48,11 @@ export default {
                     orient: 'vertical',
                     right: "44%",
                     bottom: "6%",
-                    itemWidth: 0.35*this.rem,
-                    itemHeight: 0.35*this.rem,
+                    itemWidth: 7,
+                    itemHeight: 7,
                     textStyle: {
                         color: '#00CCFF',
-                        fontSize: 0.5*this.rem
+                        fontSize: 10
                     }
                 },
                 grid: {
@@ -95,7 +94,7 @@ export default {
                     startAngle: 135,
                     axisLabel: {
                         color: '#04E8EB',
-                        fontSize: 0.5*this.rem
+                        fontSize: 10
                     },
                     axisTick: {show: false},
                     data: ['游戏充值', '其他', '直播打赏', '彩票'],
@@ -122,10 +121,10 @@ export default {
                         name: '抖音',
                         type: 'bar',
                         stack: '总量',
-                        barWidth: 0.4*this.rem,
+                        barWidth: 8,
                         itemStyle: {
                             color: '#5304EC',
-                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
+                            barBorderRadius: [0, 8, 8, 0]
                         },
                         label: {
                             normal: {
@@ -140,10 +139,10 @@ export default {
                         name: '快手',
                         type: 'bar',
                         stack: '总量',
-                        barWidth: 0.4*this.rem,
+                        barWidth: 8,
                         itemStyle: {
                             color: '#6829EE',
-                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
+                            barBorderRadius: [0, 8, 8, 0]
                         },
                         label: {
                             normal: {
@@ -157,10 +156,10 @@ export default {
                         name: '花椒',
                         type: 'bar',
                         stack: '总量',
-                        barWidth: 0.4*this.rem,
+                        barWidth: 8,
                         itemStyle: {
                             color: '#8040ED',
-                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
+                            barBorderRadius: [0, 8, 8, 0]
                         },
                         label: {
                             normal: {
@@ -173,11 +172,11 @@ export default {
                     {
                         name: '其他',
                         type: 'bar',
-                        barWidth: 0.4*this.rem,
+                        barWidth: 8,
                         stack: '总量',
                         itemStyle: {
                             color: '#9D50EC',
-                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
+                            barBorderRadius: [0, 8, 8, 0]
                         },
                         label: {
                             normal: {
@@ -190,11 +189,11 @@ export default {
                     {
                         name: '其他',
                         type: 'bar',
-                        barWidth: 0.4*this.rem,
+                        barWidth: 8,
                         stack: '总量',
                         itemStyle: {
                             color: '#A77BDE',
-                            barBorderRadius: [0, 0.4*this.rem, 0.4*this.rem, 0]
+                            barBorderRadius: [0, 8, 8, 0]
                         },
                         label: {
                             normal: {
@@ -238,15 +237,10 @@ export default {
 
                 ]
             };
-            let myChart = this.$echarts.init(document.getElementById('right_2'));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById('right_2').width,
-                    height: document.getElementById('right_2').heidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         },
     },
@@ -257,7 +251,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#right_2 {
+.deviceSafeRisk {
     height: 100%;
 }
 </style>

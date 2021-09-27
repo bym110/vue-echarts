@@ -702,7 +702,7 @@ export default {
             this.isIE = true;
         }
     },
-    destroyed() { // 离开页面动画初始化
+    beforeDestroy() { // 离开页面动画初始化
         $(".text").css('opacity', 0);
         $(".swap1").css('strokeDashoffset', 130);
         $(".swap2").css('strokeDashoffset', 190);
@@ -757,8 +757,8 @@ export default {
 
     .href {
         position: absolute;
-        right: 1rem;
-        top: 1.5rem;
+        right: 20px;
+        top: 30px;
         color: #00C0FF;
         z-index: 2;
         cursor: pointer;
@@ -777,7 +777,7 @@ export default {
         }
 
         .title_1 {
-            font-size: 0.75rem;
+            font-size: 15px;
             cursor: pointer;
 
             .title-text-box {
@@ -791,20 +791,20 @@ export default {
                     width: 100%;
                     background: rgba(0, 0, 0, 0);
                     color: #A0E8FF;
-                    font-size: 0.75rem;
+                    font-size: 15px;
                     text-align: center;
 
                     .titleText {
-                        margin-left: -0.25rem;
-                        font-size: 0.75rem;
+                        margin-left: -5px;
+                        font-size: 15px;
                         display: block;
                     }
 
                     .ivu-rate {
-                        font-size: 0.7rem;
+                        font-size: 14px;
 
                         .ivu-rate-star {
-                            margin-right: 0.3rem;
+                            margin-right: 6px;
                         }
                     }
 
@@ -815,7 +815,7 @@ export default {
         .text {
             opacity: 0;
             color: #fff;
-            font-size: 0.75rem;
+            font-size: 15px;
             text-align: center;
 
             .text-box {
@@ -827,26 +827,26 @@ export default {
                 .promptBox {
                     width: 100%;
                     height: 100%;
-                    padding: 0.5rem 1rem;
+                    padding: 10px 20px;
 
                     .promptTitle {
                         color: #fff;
-                        font-size: 0.8rem;
+                        font-size: 16px;
                         font-weight: bold;
-                        margin-bottom: 0.25rem;
+                        margin-bottom: 5px;
                     }
 
                     p {
                         background: rgba(0, 0, 0, 0);
                         color: #A0E8FF;
-                        font-size: 0.8rem;
+                        font-size: 16px;
                         text-align: left;
                     }
                 }
 
                 .psychologyContent {
                     color: #AFE5FB;
-                    font-size: 0.8rem;
+                    font-size: 16px;
                     text-align: left;
 
                     div {

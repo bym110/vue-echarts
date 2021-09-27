@@ -1,14 +1,10 @@
 <template>
-    <div class="threeBarChart" :id="id"></div>
+    <div class="threeBarChart"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
-    props: {
-        id: String
-    },
     data() {
         return {}
     },
@@ -27,11 +23,11 @@ export default {
                 legend: {
                     left: "8%",
                     top: "10%",
-                    itemWidth: 0.35*this.rem,
-                    itemHeight: 0.35*this.rem,
+                    itemWidth: 7,
+                    itemHeight: 7,
                     textStyle: {
                         color: '#5CB1C1',
-                        fontSize: 0.5*this.rem
+                        fontSize: 10
                     }
                 },
                 calculable: true,
@@ -48,7 +44,7 @@ export default {
                         axisLabel: {
                             color: '#61B9C8',
                             showMaxLabel: false,
-                            fontSize: 0.5*this.rem,
+                            fontSize: 10
                         },
                         data: ['2017', '4', '7', '10', '2018', '4', '7', '0']
                     }
@@ -70,7 +66,7 @@ export default {
                         axisLabel: {
                             color: '#61B9C8',
                             showMaxLabel: false,
-                            fontSize: 0.5*this.rem
+                            fontSize: 10
                         },
                         splitLine: {
                             show: false,
@@ -79,9 +75,9 @@ export default {
                         nameGap: -10,
                         nameTextStyle: {
                             color: '#61B9C8',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'right',
-                            padding: [0, 0.3*this.rem, 0, 0]
+                            padding: [0, 6, 0, 0]
                         }
                     },
                     {
@@ -102,7 +98,7 @@ export default {
                         axisLabel: {
                             color: '#61B9C8',
                             showMaxLabel: false,
-                            fontSize: 0.5*this.rem
+                            fontSize: 10
                         },
                         splitLine: {
                             show: false,
@@ -111,9 +107,9 @@ export default {
                         nameGap: -10,
                         nameTextStyle: {
                             color: '#61B9C8',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'left',
-                            padding: [0, 0, 0, 0.3*this.rem]
+                            padding: [0, 0, 0, 6]
                         }
                     },
                     {
@@ -133,7 +129,7 @@ export default {
                         axisLabel: {
                             color: '#61B9C8',
                             showMaxLabel: false,
-                            fontSize: 0.5*this.rem
+                            fontSize: 10
                         },
                         splitLine: {
                             show: false,
@@ -142,9 +138,9 @@ export default {
                         nameGap: -10,
                         nameTextStyle: {
                             color: '#61B9C8',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'left',
-                            padding: [0, 0, 0, 0.3*this.rem]
+                            padding: [0, 0, 0, 6]
                         }
                     }
                 ],
@@ -153,58 +149,83 @@ export default {
                         name: '金额',
                         type: 'bar',
                         barGap: 0,
-                        barWidth: 0.3*this.rem,
+                        barWidth: 6,
                         data: [200, 49, 70, 232, 256, 76.7, 135.6],
                         itemStyle: {
-                            barBorderRadius: [0.15*this.rem, 0.15*this.rem, 0, 0],
-                            color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                offset: 0, color: 'rgba(252,145,134,1)' // 0% 处的颜色
-                            }, {
-                                offset: 1, color: 'rgba(241,88,135,1)' // 100% 处的颜色
-                            }]), //背景渐变色
+                            barBorderRadius: [3, 3, 0, 0],
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 1,
+                                y2: 0,
+                                colorStops: [
+                                    {
+                                        offset: 0, color: 'rgba(252,145,134,1)' // 0% 处的颜色
+                                    }, {
+                                        offset: 1, color: 'rgba(241,88,135,1)' // 100% 处的颜色
+                                    }
+                                ],
+                                global: false // 缺省为 false
+                            } //背景渐变色
                         }
                     },
                     {
                         name: '人数',
                         type: 'bar',
                         barGap: 0,
-                        barWidth: 0.3*this.rem,
+                        barWidth: 6,
                         data: [26, 59, 90, 264, 287, 70.7, 175.6],
                         itemStyle: {
-                            barBorderRadius: [0.15*this.rem, 0.15*this.rem, 0, 0],
-                            color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                offset: 0, color: 'rgba(144,20,238,1)' // 0% 处的颜色
-                            }, {
-                                offset: 1, color: 'rgba(74,8,211,1)' // 100% 处的颜色
-                            }]), //背景渐变色
+                            barBorderRadius: [3, 3, 0, 0],
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 1,
+                                y2: 0,
+                                colorStops: [
+                                    {
+                                        offset: 0, color: 'rgba(144,20,238,1)' // 0% 处的颜色
+                                    }, {
+                                        offset: 1, color: 'rgba(74,8,211,1)' // 100% 处的颜色
+                                    }
+                                ],
+                                global: false // 缺省为 false
+                            } //背景渐变色
                         }
                     },
                     {
                         name: '次数',
                         type: 'bar',
                         barGap: 0,
-                        barWidth: 0.3*this.rem,
+                        barWidth: 6,
                         data: [264, 287, 150, 175.6, 182.2, 48.7, 18.8],
                         itemStyle: {
-                            barBorderRadius: [0.15*this.rem, 0.15*this.rem, 0, 0],
-                            color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                offset: 0, color: 'rgba(0,204,255,1)' // 0% 处的颜色
-                            }, {
-                                offset: 1, color: 'rgba(8,59,126,1)' // 100% 处的颜色
-                            }]), //背景渐变色
+                            barBorderRadius: [3, 3, 0, 0],
+                            color:  {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 1,
+                                y2: 0,
+                                colorStops: [
+                                    {
+                                        offset: 0, color: 'rgba(0,204,255,1)' // 0% 处的颜色
+                                    }, {
+                                        offset: 1, color: 'rgba(8,59,126,1)' // 100% 处的颜色
+                                    }
+                                ],
+                                global: false // 缺省为 false
+                            } //背景渐变色
                         }
                     }
                 ]
             };
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         }
     },

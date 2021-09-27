@@ -1,13 +1,11 @@
 <template>
-    <div class="ring" :id="id"></div>
+    <div class="ring"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
     props: {
-        id: String,
         data: Object
     },
     data() {
@@ -22,7 +20,7 @@ export default {
                     x: 'center',
                     textStyle: {
                         color: '#75deef',
-                        fontSize: 0.7*this.rem,
+                        fontSize: 14,
                         fontWeight: 'normal'
                     }
                 },
@@ -32,7 +30,7 @@ export default {
                     backgroundColor: '#11367a',
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                 },
                 series: [
@@ -46,7 +44,7 @@ export default {
                             normal: {
                                 show: true,
                                 position: 'outside',
-                                fontSize: 0.5*this.rem,
+                                fontSize: 10,
                                 color: '#75deef'
                             },
                         },
@@ -64,14 +62,9 @@ export default {
                     }
                 ]
             };
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
 
         }

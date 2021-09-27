@@ -1,13 +1,12 @@
 <template>
-    <div id="right_1"></div>
+    <div class="worldMap"></div>
 </template>
 
 <script>
-import "../../../../node_modules/echarts/map/js/world.js";
+import "echarts/map/js/world.js";
 
 export default {
-    name: '',
-    inject: ['rem'],
+    name: 'worldMap',
     data() {
         return {}
     },
@@ -414,7 +413,7 @@ export default {
                     backgroundColor: '#11367a',
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                     formatter: function (data) {
                         if (data.componentSubType === 'effectScatter') {
@@ -435,7 +434,7 @@ export default {
                         left: '2%',
                         textStyle: {
                             color: '#75deef',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                         }
                     },
                 ],
@@ -444,10 +443,10 @@ export default {
                     top: '5%',
                     right: '5%',
                     data: ['通话'],
-                    itemHeight: 0.35*this.rem,
+                    itemHeight: 7,
                     textStyle: {
                         color: '#75deef',
-                        fontSize: 0.6*this.rem
+                        fontSize: 12
                     }
                 },
                 grid:
@@ -610,15 +609,10 @@ export default {
 
                 ]
             }
-            let myChart = this.$echarts.init(document.getElementById('right_1'));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById('right_1').offsetWidth,
-                    height: document.getElementById('right_1').offsetHidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         },
     },
@@ -629,7 +623,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#right_1 {
+.worldMap {
     width: 100%;
     height: 100%;
 }

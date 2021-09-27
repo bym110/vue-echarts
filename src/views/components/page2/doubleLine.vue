@@ -1,14 +1,10 @@
 <template>
-    <div class="doubleLine" :id="id"></div>
+    <div class="doubleLine"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
-    props: {
-        id: String
-    },
     data() {
         return {}
     },
@@ -21,11 +17,11 @@ export default {
                 legend: {
                     left: "11%",
                     top: "10%",
-                    itemWidth: 0.35*this.rem,
-                    itemHeight: 0.35*this.rem,
+                    itemWidth: 7,
+                    itemHeight: 7,
                     textStyle: {
                         color: '#5CB1C1',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10
                     }
                 },
                 grid: {
@@ -50,7 +46,7 @@ export default {
                     axisTick: {show: false},
                     axisLabel: {
                         color: '#61B9C8',
-                        fontSize: 0.5*this.rem
+                        fontSize: 9
                     },
                     data: ["2017", "4", "7", "10", "2018", "4", "7"]
                 },
@@ -71,15 +67,15 @@ export default {
                         axisLabel: {
                             color: '#61B9C8',
                             showMaxLabel: false,
-                            fontSize: 0.5*this.rem
+                            fontSize: 9
                         },
                         name: '(次)',
                         nameGap: -10,
                         nameTextStyle: {
                             color: '#61B9C8',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'right',
-                            padding: [0, 0.3*this.rem, 0, 0]
+                            padding: [0, 6, 0, 0]
                         },
                         splitLine: {
                             show: false,
@@ -100,15 +96,15 @@ export default {
                         axisLabel: {
                             color: '#61B9C8',
                             showMaxLabel: false,
-                            fontSize: 0.5*this.rem
+                            fontSize: 9
                         },
                         name: '(个)',
                         nameGap: -10,
                         nameTextStyle: {
                             color: '#61B9C8',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'left',
-                            padding: [0, 0, 0, 0.3*this.rem]
+                            padding: [0, 0, 0, 6]
                         },
                         interval: 50,
                         splitLine: {
@@ -147,15 +143,10 @@ export default {
                     },
                 ]
             };
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         }
     },

@@ -1,10 +1,10 @@
 <template>
-    <div class="circle">
+    <div class="page2">
         <Row class='content'>
             <Col span="8">
                 <div class="list">
                     <div class="left">
-                        <span class='title'><span class="title-6">聊天分析</span></span>
+                        <span class='title'><span class="title-4">聊天分析</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="list">
                     <div class="left">
-                        <span class='title'><span class="title-10">办公时长分析</span></span>
+                        <span class='title'><span class="title-8">办公时长分析</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
@@ -43,7 +43,7 @@
             <Col span="8">
                 <div class="list">
                     <div class="right">
-                        <span class='title'><span class="title-6">好友分析</span></span>
+                        <span class='title'><span class="title-4">好友分析</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
@@ -52,14 +52,14 @@
                             <radar-chart ref="chart5" id="right_1" :data="friendRadarData"></radar-chart>
                         </div>
                         <div class="chart-68">
-                            <double-bar-chart ref="chart6" id="right_2"></double-bar-chart>
+                            <double-bar-chart ref="chart6"></double-bar-chart>
                         </div>
 
                     </div>
                 </div>
                 <div class="list">
                     <div class="right">
-                        <span class='title'><span class="title-10">微信朋友圈分析</span></span>
+                        <span class='title'><span class="title-8">微信朋友圈分析</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
@@ -79,7 +79,7 @@
             <Col span="16">
                 <div class="list">
                     <div class="bottom">
-                        <span class='title'><span class="title-8">违规话术分布趋势</span></span>
+                        <span class='title'><span class="title-10">违规话术分布趋势</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="list">
                     <div class="bottom">
-                        <span class='title'><span class="title-10">各部门违规话术情况对比</span></span>
+                        <span class='title'><span class="title-10">各部门违规话术对比</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
@@ -125,7 +125,6 @@
 </template>
 
 <script>
-import $ from 'jquery';
 const areaChart = ()=> import('./components/areaChart');
 const radarChart = () => import('./components/radar');
 const barChart = () => import('./components/page2/barChart');
@@ -137,6 +136,7 @@ const pieChart = () => import('./components/page2/pieChart');
 const doubleBars = () => import('./components/page2/doubleBars');
 
 export default {
+    name: 'page2',
     props: ['selectRangeDate'],
     components: {
         areaChart,
@@ -581,16 +581,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.circle {
+.page2 {
     height: 100%;
     width: 100%;
-    padding: 0.5rem 2.5rem 1.5rem;
+    padding: 14px 20px 20px;
     background: #03044A;
-
-    .header {
-        text-align: center;
-        height: 2.7rem;
-    }
+    overflow: hidden;
 
     .content {
         height: 65%;
@@ -601,7 +597,7 @@ export default {
 
         .circlePie {
             height: 100%;
-            padding: 0 0 2rem;
+            padding: 0 0 40px;
             text-align: center;
             position: relative;
 
@@ -645,85 +641,6 @@ export default {
                     height: 100%;
                     float: left;
                 }
-
-                .angle1 {
-                    display: inline-block;
-                    position: absolute;
-                    width: 0.5rem;
-                    height: 0.5rem;
-                    top: 0;
-                    left: 0;
-                    border-top: 1px solid #1C5AB3;
-                    border-left: 1px solid #1C5AB3;
-
-                }
-
-                .angle2 {
-                    display: inline-block;
-                    position: absolute;
-                    width: 0.5rem;
-                    height: 0.5rem;
-                    top: 0;
-                    right: 0;
-                    border-top: 1px solid #1C5AB3;
-                    border-right: 1px solid #1C5AB3;
-
-                }
-
-                .angle3 {
-                    display: inline-block;
-                    position: absolute;
-                    width: 0.5rem;
-                    height: 0.5rem;
-                    bottom: 0;
-                    left: 0;
-                    border-bottom: 1px solid #1C5AB3;
-                    border-left: 1px solid #1C5AB3;
-
-                }
-
-                .angle4 {
-                    display: inline-block;
-                    position: absolute;
-                    width: 0.5rem;
-                    height: 0.5rem;
-                    bottom: 0;
-                    right: 0;
-                    border-bottom: 1px solid #1C5AB3;
-                    border-right: 1px solid #1C5AB3;
-
-                }
-
-                .title {
-                    position: absolute;
-                    display: inline-block;
-                    color: #6EDDF1;
-                    background: #14418E;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-
-                    .title-6 {
-                        display: inline-block;
-                        padding: 0.25rem 0.75rem;
-                        //border-radius: 5px;
-                        background: radial-gradient(2.5rem 0.9rem ellipse, rgba(7, 9, 34, .8) 60%, rgb(21, 67, 145));
-                    }
-
-                    .title-8 {
-                        display: inline-block;
-                        padding: 0.25rem 0.75rem;
-                        //border-radius: 5px;
-                        background: radial-gradient(3.75rem 0.9rem ellipse, rgba(7, 9, 34, .8) 60%, rgb(21, 67, 145));
-                    }
-
-                    .title-10 {
-                        display: inline-block;
-                        padding: 0.25rem 0.75rem;
-                        //border-radius: 5px;
-                        background: radial-gradient(4.75rem 0.9rem ellipse, rgba(7, 9, 34, .8) 60%, rgb(21, 67, 145));
-                    }
-
-                }
             }
         }
     }
@@ -741,7 +658,7 @@ export default {
                 float: left;
 
                 #bottom_4 {
-                    padding: 0 1rem;
+                    padding: 0 20px;
                 }
 
                 .bottom {
@@ -749,85 +666,6 @@ export default {
                     height: 100%;
                     border: 1px solid #0D2451;
                     position: relative;
-
-                    .angle1 {
-                        display: inline-block;
-                        position: absolute;
-                        width: 0.5rem;
-                        height: 0.5rem;
-                        top: 0;
-                        left: 0;
-                        border-top: 1px solid #1C5AB3;
-                        border-left: 1px solid #1C5AB3;
-
-                    }
-
-                    .angle2 {
-                        display: inline-block;
-                        position: absolute;
-                        width: 0.5rem;
-                        height: 0.5rem;
-                        top: 0;
-                        right: 0;
-                        border-top: 1px solid #1C5AB3;
-                        border-right: 1px solid #1C5AB3;
-
-                    }
-
-                    .angle3 {
-                        display: inline-block;
-                        position: absolute;
-                        width: 0.5rem;
-                        height: 0.5rem;
-                        bottom: 0;
-                        left: 0;
-                        border-bottom: 1px solid #1C5AB3;
-                        border-left: 1px solid #1C5AB3;
-
-                    }
-
-                    .angle4 {
-                        display: inline-block;
-                        position: absolute;
-                        width: 0.5rem;
-                        height: 0.5rem;
-                        bottom: 0;
-                        right: 0;
-                        border-bottom: 1px solid #1C5AB3;
-                        border-right: 1px solid #1C5AB3;
-
-                    }
-
-                    .title {
-                        position: absolute;
-                        display: inline-block;
-                        color: #6EDDF1;
-                        background: #14418E;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-
-                        .title-6 {
-                            display: inline-block;
-                            padding: 0.25rem 0.75rem;
-                            //border-radius: 5px;
-                            background: radial-gradient(3rem 0.9rem ellipse, rgba(7, 9, 34, .8) 60%, rgb(21, 67, 145));
-                        }
-
-                        .title-8 {
-                            display: inline-block;
-                            padding: 0.25rem 0.75rem;
-                            //border-radius: 5px;
-                            background: radial-gradient(3.75rem 0.9rem ellipse, rgba(7, 9, 34, .8) 60%, rgb(21, 67, 145));
-                        }
-
-                        .title-10 {
-                            display: inline-block;
-                            padding: 0.25rem 0.75rem;
-                            //border-radius: 5px;
-                            background: radial-gradient(4.75rem 0.9rem ellipse, rgba(7, 9, 34, .8) 60%, rgb(21, 67, 145));
-                        }
-
-                    }
                 }
             }
 

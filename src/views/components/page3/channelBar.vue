@@ -1,5 +1,5 @@
 <template>
-    <div class="leftBar" :id="id"></div>
+    <div class="leftBar"></div>
 </template>
 
 <style lang="less" scoped>
@@ -13,11 +13,9 @@
 <script>
 export default {
     props: {
-        id: String,
         title: String,
         data: Array,
     },
-    inject: ['rem'],
     name: '',
     data() {
         return {}
@@ -35,7 +33,7 @@ export default {
                             left: 10,
                             subtextStyle: {
                                 color: '#8CBCCD',
-                                fontSize: 0.45*this.rem
+                                fontSize: 9
                             }
                         }
                         break;
@@ -58,7 +56,7 @@ export default {
                     left: '5%',
                     textStyle: {
                         color: '#fff',
-                        fontSize: 0.6*this.rem
+                        fontSize: 12
                     }
                 });
             }
@@ -96,7 +94,7 @@ export default {
                 series: [{
                     type: 'bar',
                     silent: true,
-                    barWidth: 0.75*this.rem,
+                    barWidth: 15,
                     barGap: '-100%', // Make series be overlap
                     itemStyle: {
                         color: '#1F1E4E'
@@ -104,14 +102,14 @@ export default {
                     data: this.setTrenchData('b')
                 }, {
                     type: 'bar',
-                    barWidth: 0.75*this.rem,
+                    barWidth:15,
                     z: 2,
                     label: {
                         show: true,
                         position: "insideLeft",
                         color: "#fff",
                         offset: [0, 1],
-                        fontSize: 0.45*this.rem,
+                        fontSize: 9,
                         formatter: function (params) {
                             return params.name
                         },
@@ -124,15 +122,10 @@ export default {
                     data: this.setTrenchData('d')
                 }]
             };
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).width,
-                    height: document.getElementById(this.id).heidth
-                }
-            )
+            myChart.resize();
             myChart.setOption(option);
         },
 

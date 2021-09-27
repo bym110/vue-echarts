@@ -1,14 +1,10 @@
 <template>
-    <div class="barChart" :id="id"></div>
+    <div class="barChart"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
-    props: {
-        id: String
-    },
     data() {
         return {}
     },
@@ -23,14 +19,14 @@ export default {
                     backgroundColor: '#11367a',
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                 },
                 legend: {
                     left: "11%",
                     top: "15%",
-                    itemWidth: 0.35*this.rem,
-                    itemHeight: 0.35*this.rem,
+                    itemWidth: 7,
+                    itemHeight: 7,
                     textStyle: {
                         color: '#5CB1C1',
                     }
@@ -57,7 +53,7 @@ export default {
                         axisTick: {show: false},
                         axisLabel: {
                             color: '#61B9C8',
-                            fontSize: 0.5*this.rem,
+                            fontSize: 10,
                             interval: 0,
                         },
                         data: ["1部", "2部", "3部", "4部", "5部", "6部", "7部", "8部", "9部", "10部"]
@@ -80,7 +76,7 @@ export default {
                         axisLabel: {
                             color: '#61B9C8',
                             showMaxLabel: false,
-                            fontSize: 0.5*this.rem
+                            fontSize: 10
                         },
                         splitLine: {
                             show: false,
@@ -89,9 +85,9 @@ export default {
                         nameGap: -5,
                         nameTextStyle: {
                             color: '#61B9C8',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'right',
-                            padding: [0, 0.2*this.rem, 0, 0]
+                            padding: [0, 4, 0, 0]
                         },
                     }
                 ],
@@ -100,29 +96,33 @@ export default {
                         name: '办公时长',
                         type: 'bar',
                         itemStyle: {
-                            color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                offset: 0, color: 'rgba(80,162,246,1)' // 0% 处的颜色
-                            }, {
-                                offset: 0.4, color: 'rgba(148,144,249,1)' // 0% 处的颜色
-                            }, {
-                                offset: 1, color: 'rgba(223,125,253,1)' // 100% 处的颜色
-                            }]), //背景渐变色
+                            color:{
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0, color: '#50A2F6' // 0% 处的颜色
+                                },
+                                    {
+                                        offset: 0.4, color: '#9490F9' // 40% 处的颜色
+                                    }, {
+                                        offset: 1, color: '#DF7DFD' // 100% 处的颜色
+                                    }],
+                                global: false // 缺省为 false
+                            } //背景渐变色
                         },
-                        barWidth: 0.5*this.rem,
-                        barCategoryGap: 0.5*this.rem,
+                        barWidth: 10,
+                        barCategoryGap: 10,
                         data: [213, 190, 137, 99, 63, 196, 248, 212, 248, 112]
                     },
                 ]
             };
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
-                }
-            ),
+            myChart.resize()
                 myChart.setOption(option);
         }
     },

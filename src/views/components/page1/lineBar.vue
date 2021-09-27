@@ -1,14 +1,10 @@
 <template>
-    <div style="height:100%;" :id="id"></div>
+    <div style="height:100%;"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
-    props: {
-        id: String
-    },
     data() {
         return {}
     },
@@ -33,7 +29,7 @@ export default {
                     name: data[i].name,
                     type: 'bar',
                     z: 3,
-                    barWidth: 0.5*this.rem,
+                    barWidth: 10,
                     barGap: '-100%',
                     itemStyle: {
                         color: colorList[i]
@@ -85,7 +81,7 @@ export default {
                 {
                     name: '辅助',
                     type: 'bar',
-                    barWidth: 0.5*this.rem,
+                    barWidth: 10,
                     barGap: '-100%',
                     itemStyle: {
                         color: '#252448'
@@ -97,7 +93,7 @@ export default {
                     xAxisIndex: 1,
                     yAxisIndex: 1,
                     type: 'bar',
-                    barWidth: 0.5*this.rem,
+                    barWidth: 10,
                     barGap: '-100%',
                     itemStyle: {
                         color: '#252448'
@@ -109,7 +105,7 @@ export default {
                     yAxisIndex: 1,
                     type: 'bar',
                     z: 3,
-                    barWidth: 0.5*this.rem,
+                    barWidth: 10,
                     itemStyle: {
                         color: '#2c7bfe'
                     },
@@ -152,7 +148,7 @@ export default {
                     backgroundColor: '#11367a',
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                     formatter: (data) => {
                         if (data.componentSubType == 'bar' && data.seriesName != '辅助') {
@@ -167,7 +163,7 @@ export default {
                         text: '【应用类型统计】',
                         textStyle: {
                             color: '#75deef',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                             fontWeight: 'normal'
                         },
                         top: '12%',
@@ -177,7 +173,7 @@ export default {
                         text: '【应用时长TOP10】',
                         textStyle: {
                             color: '#75deef',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                             fontWeight: 'normal'
                         },
                         top: '12%',
@@ -187,7 +183,7 @@ export default {
                         text: '【应用使用时长日分布】',
                         textStyle: {
                             color: '#75deef',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                             fontWeight: 'normal'
                         },
                         top: '53%',
@@ -197,7 +193,7 @@ export default {
                         text: '【应用使用时长时段分布】',
                         textStyle: {
                             color: '#75deef',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                             fontWeight: 'normal'
                         },
                         top: '53%',
@@ -208,11 +204,11 @@ export default {
                     {
                         top: '6%',
                         left: 'center',
-                        itemWidth: 0.35*this.rem,
-                        itemHeight: 0.35*this.rem,
+                        itemWidth: 7,
+                        itemHeight: 7,
                         textStyle: {
                             color: '#75deef',
-                            fontSize: 0.6*this.rem,
+                            fontSize: 12,
                         },
                         z: 2,
                         data: [
@@ -263,7 +259,7 @@ export default {
                         data: ['社交', '游戏', '直播', '金融理财', '生活', '购物', '办公', '其他'],
                         axisLabel: {
                             interval: 0,
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             color: '#75deef'
                         },
                         axisLine: {show: false},
@@ -278,7 +274,7 @@ export default {
                         axisLine: {show: false},
                         axisLabel: {
                             interval: 0,
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             color: '#75deef'
                         },
                         axisTick: {
@@ -298,7 +294,7 @@ export default {
                         },
                         axisLabel: {
                             interval: 0,
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             color: '#75deef'
                         },
                         axisTick: {
@@ -318,7 +314,7 @@ export default {
                         },
                         axisLabel: {
                             interval: 0,
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             color: '#75deef'
                         },
                         axisTick: {
@@ -351,7 +347,7 @@ export default {
                         gridIndex: 2,
                         axisLabel: {
                             interval: 0,
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             color: '#75deef',
                             showMaxLabel: false
                         },
@@ -359,9 +355,9 @@ export default {
                         nameGap: -5,
                         nameTextStyle: {
                             color: '#75deef',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'right',
-                            padding: [0, 0.2*this.rem, 0, 0]
+                            padding: [0, 4, 0, 0]
                         },
                         min: 0,
                         max: 6,
@@ -391,7 +387,7 @@ export default {
                         gridIndex: 3,
                         axisLabel: {
                             interval: 0,
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             color: '#75deef',
                             showMaxLabel: false
                         },
@@ -399,9 +395,9 @@ export default {
                         nameGap: -5,
                         nameTextStyle: {
                             color: '#75deef',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'right',
-                            padding: [0, 0.2*this.rem, 0, 0]
+                            padding: [0, 4, 0, 0]
                         },
                         min: 0,
                         max: 6,
@@ -432,15 +428,10 @@ export default {
                 ],
                 series: this.setOptionData()
             };
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         }
     },

@@ -1,14 +1,10 @@
 <template>
-    <div class="pieChart" :id="id"></div>
+    <div class="pieChart"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
-    props: {
-        id: String
-    },
     data() {
         return {}
     },
@@ -22,7 +18,7 @@ export default {
                         bottom: '6%',
                         textStyle: {
                             color: "#fff",
-                            fontSize: 0.6*this.rem
+                            fontSize: 12
                         }
                     },
                     {
@@ -31,7 +27,7 @@ export default {
                         bottom: '6%',
                         textStyle: {
                             color: "#fff",
-                            fontSize: 0.6*this.rem
+                            fontSize: 12
                         }
                     },
                     {
@@ -40,7 +36,7 @@ export default {
                         bottom: '6%',
                         textStyle: {
                             color: "#fff",
-                            fontSize: 0.6*this.rem
+                            fontSize: 12
                         }
                     }
                 ],
@@ -58,11 +54,11 @@ export default {
                     ],
                     left: "8%",
                     top: "10%",
-                    itemWidth: 0.35*this.rem,
-                    itemHeight: 0.35*this.rem,
+                    itemWidth: 7,
+                    itemHeight: 7,
                     textStyle: {
                         color: '#00CCFF',
-                        fontSize: 0.5*this.rem
+                        fontSize: 10
                     }
                 },
                 series: [
@@ -79,7 +75,7 @@ export default {
                             {value: 1548, name: '五部'}
                         ],
                         label: {
-                            fontSize: 0.4*this.rem,
+                            fontSize: 8,
                             color: '#00CCFF'
                         },
                         labelLine: {
@@ -114,7 +110,7 @@ export default {
                             {value: 1548, name: '五部'}
                         ],
                         label: {
-                            fontSize: 0.4*this.rem,
+                            fontSize: 8,
                             color: '#00CCFF'
                         },
                         labelLine: {
@@ -149,7 +145,7 @@ export default {
                             {value: 1548, name: '五部'}
                         ],
                         label: {
-                            fontSize: 0.4*this.rem,
+                            fontSize: 8,
                             color: '#00CCFF'
                         },
                         labelLine: {
@@ -173,15 +169,10 @@ export default {
                     },
                 ]
             };
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).width,
-                    height: document.getElementById(this.id).heidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         }
     },
@@ -195,6 +186,6 @@ export default {
 .pieChart {
     height: 100%;
     width: 100%;
-    padding: 0 1rem;
+    padding: 0 20px;
 }
 </style>

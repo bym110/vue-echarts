@@ -1,5 +1,5 @@
 <template>
-    <div id="left_1"></div>
+    <div class="doubleArea"></div>
 </template>
 
 <script>
@@ -8,8 +8,6 @@ export default {
     props: {
         selectRangeDate: Array
     },
-    // 注入当前根元素的fontSize
-    inject: ['rem'],
     data() {
         return {}
     },
@@ -47,11 +45,11 @@ export default {
             let option = {
 
                 legend: { // 图例信息
-                    itemWidth: 0.35* this.rem,
-                    itemHeight: 0.35* this.rem,
+                    itemWidth: 7,
+                    itemHeight: 7,
                     textStyle: {
                         color: '#75deef',
-                        fontSize: 0.6*this.rem,
+                        fontSize: 12,
                     },
                     right: '5%',
                     top: '5%',
@@ -86,8 +84,8 @@ export default {
                     name: "(次)",
                     nameTextStyle: {
                         color: "#75deef",
-                        fontSize: 0.5* this.rem,
-                        padding: [0, 0.75*this.rem, -0.5* this.rem, 0]
+                        fontSize: 10,
+                        padding: [0, 15, -10, 0]
                     },
                     axisTick: {
                         show: true
@@ -97,7 +95,7 @@ export default {
                         showMaxLabel: true,
                         textStyle: {
                             color: '#75deef',
-                            fontSize: 0.45* this.rem,
+                            fontSize: 9,
                             fontWeight: 'normal'
                         }
                     },
@@ -114,8 +112,8 @@ export default {
                         nameLocation: 'end',
                         nameTextStyle: {
                             color: "#75deef",
-                            fontSize: 0.5* this.rem,
-                            padding: [-0.5* this.rem, 1.25* this.rem, 0, 0]
+                            fontSize: 10,
+                            padding: [-10, 25, 0, 0]
                         },
                         axisLine: {
                             show: true,
@@ -131,7 +129,7 @@ export default {
                             show: true,
                             textStyle: {
                                 color: '#75deef',
-                                fontSize: 0.45*this.rem,
+                                fontSize: 9,
                                 fontWeight: 'normal'
                             },
                             showMaxLabel: true,
@@ -174,8 +172,8 @@ export default {
                         axisLine: {
                             show: true,
                             symbol: ['none', 'arrow'],
-                            symbolSize: [0.2*this.rem, 0.4*this.rem],
-                            symbolOffset: [0, 0.4*this.rem],
+                            symbolSize: [4, 8],
+                            symbolOffset: [0, 8],
                             lineStyle: {
                                 color: '#1a3c58'
                             }
@@ -200,15 +198,15 @@ export default {
                         nameLocation: 'end',
                         nameTextStyle: {
                             color: "#75deef",
-                            fontSize: 0.45*this.rem,
-                            padding: [1.25*this.rem, 0, 0, -1.25*this.rem]
+                            fontSize: 9,
+                            padding: [25, 0, 0, -25]
                         },
                         boundaryGap: false,
                         axisLine: { // 轴线
                             show: true,
                             symbol: ['none', 'arrow'],
-                            symbolSize: [0.2*this.rem, 0.4*this.rem],
-                            symbolOffset: [0, 0.4*this.rem],
+                            symbolSize: [4, 8],
+                            symbolOffset: [0, 8],
                             lineStyle: {
                                 color: '#1a3c58'
                             }
@@ -227,7 +225,7 @@ export default {
                             textStyle: {
                                 align: "left",
                                 color: '#75deef',
-                                fontSize: 0.45*this.rem,
+                                fontSize: 9,
                                 fontWeight: 'normal',
                             },
 
@@ -239,12 +237,12 @@ export default {
                 tooltip: { // hover 提示框
                     trigger: 'axis',
                     axisPointer: {
-                        type: 'none'
+                        type: 'line'
                     },
                     backgroundColor: '#11367a',
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                     formatter: (data, index) => {
                         if (data[0].componentIndex == 0) { // hover 到上图的时候
@@ -477,15 +475,9 @@ export default {
                 option.xAxis[2].axisLabel.showMaxLabel = false;
 
             }
-            let myChart = this.$echarts.init(document.getElementById('left_1'));
-
+            let myChart = this.$echarts(this.$el);
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById('left_1').offsetWidth,
-                    height: document.getElementById('left_1').offsetHidth
-                }
-            )
+            myChart.resize()
             myChart.setOption(option);
         },
     },
@@ -501,7 +493,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#left_1 {
+.doubleArea {
     width: 100%;
     height: 100%;
 }

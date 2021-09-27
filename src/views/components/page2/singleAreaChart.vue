@@ -1,13 +1,11 @@
 <template>
-    <div class="singleAreaChart" :id="id"></div>
+    <div class="singleAreaChart"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
     props: {
-        id: String,
         selectRangeDate: Array
     },
     data() {
@@ -44,7 +42,7 @@ export default {
                     backgroundColor: '#11367a',
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                 },
                 grid: {
@@ -56,8 +54,8 @@ export default {
                 legend: {
                     right: '5%',
                     top: '10%',
-                    itemWidth: 0.35*this.rem,
-                    itemHeight: 0.35*this.rem,
+                    itemWidth: 7,
+                    itemHeight: 7,
                     textStyle: {
                         color: '#5CB1C1',
                     }
@@ -67,7 +65,7 @@ export default {
                     boundaryGap: false,
                     axisLabel: {
                         color: '#61B9C8',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                     axisLine: {
                         symbol: ['none', 'arrow'],
@@ -101,7 +99,7 @@ export default {
                         axisLabel: {
                             color: '#61B9C8',
                             showMaxLabel: false,
-                            fontSize: 0.5*this.rem,
+                            fontSize: 10
                         },
                         splitLine: {
                             show: false,
@@ -110,9 +108,9 @@ export default {
                         nameGap: -10,
                         nameTextStyle: {
                             color: '#61B9C8',
-                            fontSize: 0.45*this.rem,
+                            fontSize: 9,
                             align: 'right',
-                            padding: [0, 0.3*this.rem, 0, 0]
+                            padding: [0, 6, 0, 0]
                         },
                     },
 
@@ -124,39 +122,52 @@ export default {
                     data: this.setData('s'),
                     lineStyle: {
                         width: 1,
-                        color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                            offset: 0, color: 'rgba(178,19,86,1)' // 0% 处的颜色
-                        }, {
-                            offset: 0.4, color: 'rgba(178,19,86,1)' // 0% 处的颜色
-                        }, {
-                            offset: 1, color: 'rgba(245,145,17,1)' // 100% 处的颜色
-                        }]), //背景渐变色
+                        color:{
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 0,
+                            y2: 1,
+                            colorStops: [{
+                                offset: 0, color: '#B21356' // 0% 处的颜色
+                            },
+                                {
+                                    offset: 0.5, color: '#B21356' // 40% 处的颜色
+                                }, {
+                                    offset: 1, color: '#F59111' // 100% 处的颜色
+                                }],
+                            global: false // 缺省为 false
+                        } //背景渐变色
                     },
                     itemStyle: {
                         color: 'rgb(212,37,43)'
                     },
                     areaStyle: {
-                        color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                            offset: 0, color: 'rgba(164,27,104,1)' // 0% 处的颜色
-                        }, {
-                            offset: 0.5, color: 'rgba(112,20,82,1)' // 0% 处的颜色
-                        }, {
-                            offset: 1, color: 'rgba(112,20,82,0)' // 100% 处的颜色
-                        }]), //背景渐变色
+                        color: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 0,
+                            y2: 1,
+                            colorStops: [{
+                                offset: 0, color: '#A41B68' // 0% 处的颜色
+                            },
+                                {
+                                    offset: 0.5, color: 'rgba(112,20,82,1)' // 40% 处的颜色
+                                }, {
+                                    offset: 1, color: 'rgba(112,20,82,0)' // 100% 处的颜色
+                                }],
+                            global: false // 缺省为 false
+                        }, //背景渐变色
                         origin: 'start'
                     }
                 },
                 ]
             };
-            let myChart = this.$echarts.init(document.getElementById(this.id));
+            let myChart = this.$echarts(this.$el);
 
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
-                }
-            )
+            myChart.resize()
 
             myChart.setOption(option);
         }

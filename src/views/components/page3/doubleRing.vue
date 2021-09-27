@@ -12,7 +12,6 @@ export default {
         color: String
     },
     name: '',
-    inject: ['rem'],
     data() {
         return {}
     },
@@ -54,7 +53,7 @@ export default {
             context.stroke();
             context.restore();
             context.save();
-            context.font = 0.5*this.rem+'px Microsoft YaHei';
+            context.font = '10px Microsoft YaHei';
             context.fillStyle = '#fff';
             if (this.title.length > 4) {
                 context.fillText(this.title, canvas.width / 2 - 25, canvas.height / 2 + 3);

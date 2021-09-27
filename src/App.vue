@@ -6,7 +6,30 @@
 
 <script>
 export default {
-    name: 'App'
+    name: 'App',
+    data() {
+        return {
+            resizeFn: null
+        }
+    },
+    mounted() {
+        const documentWidth = document.body.offsetWidth;
+        const ratio = documentWidth / 1920;
+        if (documentWidth > 1920) {
+            document.body.style.transform = `scale(${ratio}, ${ratio})`
+        }
+        this.resizeFn = this.$debounce(function () {
+            const documentWidth = document.body.offsetWidth;
+            const ratio = documentWidth / 1920;
+            if (documentWidth > 1920) {
+                document.body.style.transform = `scale(${ratio}, ${ratio})`
+            }
+        }, 200)
+        window.addEventListener('resize',this.resizeFn);
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.resizeFn);
+    }
 }
 </script>
 
@@ -17,16 +40,12 @@ html,body {
     padding:0;
     margin:0;
 }
-// 根据不同的大屏宽度设置根的fontsize
-@media screen and (max-width: 1920px){
-    html {
-        font-size: 20px;
-    }
+html {
+    font-size: 20px;
 }
-@media screen and (max-width: 3840px) and (min-width: 1921px){
-    html {
-        font-size: 24px;
-    }
+body {
+    transform-origin: left top;
+    background-size: 100% 100%;
 }
 #app {
     height: 100%;

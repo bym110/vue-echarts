@@ -1,13 +1,11 @@
 <template>
-    <div class="webBar" :id='id'></div>
+    <div class="webBar"></div>
 </template>
 
 <script>
 export default {
     name: '',
-    inject: ['rem'],
     props: {
-        id: String,
         data: Object
     },
     data() {
@@ -33,7 +31,7 @@ export default {
                     backgroundColor: '#11367a',
                     textStyle: {
                         color: '#6dd0e3',
-                        fontSize: 0.5*this.rem,
+                        fontSize: 10,
                     },
                     formatter: (params) => {
                         params[1].number = this.data.number
@@ -63,8 +61,8 @@ export default {
                         },
                         axisLabel: {
                             show: true,
-                            margin: 0.65*this.rem,
-                            fontSize: 0.5*this.rem,
+                            margin: 13,
+                            fontSize: 10,
                             color: '#75deef'
                         },
                         data: this.data.data
@@ -91,8 +89,8 @@ export default {
                         name: '辅助',
                         type: 'bar',
                         stack: '总量',
-                        barCategoryGap: this.rem,
-                        barWidth: 0.4*this.rem,
+                        barCategoryGap: 20,
+                        barWidth: 8,
                         itemStyle: {
                             normal: {
                                 color: 'rgba(0,0,0,0)'
@@ -104,8 +102,8 @@ export default {
                         name: this.data.name,
                         type: 'bar',
                         stack: '总量',
-                        barCategoryGap: this.rem,
-                        barWidth: 0.4*this.rem,
+                        barCategoryGap: 20,
+                        barWidth: 8,
                         itemStyle: {
                             normal: {
                                 color: { // 颜色线性渐变
@@ -128,17 +126,9 @@ export default {
                     },
                 ]
             };
-
-
-            let myChart = this.$echarts.init(document.getElementById(this.id));
-
+            let myChart = this.$echarts(this.$el);
             myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHidth
-                }
-            );
+            myChart.resize();
 
             myChart.setOption(option);
         },
