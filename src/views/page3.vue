@@ -798,7 +798,7 @@ export default {
                 background: #09102E;
                 display: inline-block;
                 padding: 0 4px;
-                margin-top: -5px;
+                transform: translateY(-5px);
             }
         }
     }
