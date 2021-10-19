@@ -1,4 +1,4 @@
-# vueapp
+# vue-echarts
 
 > A Vue.js project
 数据可视化
@@ -11,7 +11,7 @@ https://bym110.github.io/vue-echarts/preview
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm run serve
 
 # build for production with minification
 npm run build

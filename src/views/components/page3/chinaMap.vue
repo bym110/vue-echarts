@@ -841,7 +841,7 @@ export default {
 }
 </script>
 
-<style lang="" scoped>
+<style lang="less" scoped>
 .chinaMap {
     height: 100%;
 }

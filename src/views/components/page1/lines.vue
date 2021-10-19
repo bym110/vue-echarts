@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import echarts from 'echarts'
 export default {
     name: '',
     data() {
@@ -40,7 +39,6 @@ export default {
                 for (let i = 0; i < 12; i++) {
                     this.xAxisData.push((i + 1) + '月');
                 }
-                ;
                 for (let i = 0; i < year.length; i++) {
                     this.legendData.push(year[i] + '年');
                     let obj = {
@@ -240,12 +238,10 @@ export default {
                                     if (index % 2 == 1) {
                                         return value
                                     }
-                                    ;
                                 } else {
                                     if ((index + 1) % 5 == 0) {
                                         return value
                                     }
-                                    ;
                                 }
                                 if (index == 0) {
                                     return value
@@ -280,12 +276,10 @@ export default {
                                     if (index % 2 == 1) {
                                         return value
                                     }
-                                    ;
                                 } else {
                                     if ((index + 1) % 5 == 0) {
                                         return value
                                     }
-                                    ;
                                 }
                                 if (index == 0) {
                                     return value

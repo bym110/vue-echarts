@@ -19,19 +19,16 @@ export default {
                     for (let i = 0; i < this.selectRangeDate.length; i++) {
                         arr.push(this.selectRangeDate[i][0] + '.' + this.selectRangeDate[i][1] + '.' + this.selectRangeDate[i][2])
                     }
-                    ;
                     break;
                 case 's':// 访问次数数据模拟
                     for (let i = 0; i < this.selectRangeDate.length; i++) {
                         arr.push((Math.random() * 6).toFixed(0))
                     }
-                    ;
                     break;
                 case 'n': // 访问人数数据
                     for (let i = 0; i < this.selectRangeDate.length; i++) {
                         arr.push((Math.random() * 600).toFixed(0))
                     }
-                    ;
                     break;
 
                 default:
@@ -244,7 +241,7 @@ export default {
                         color: '#6dd0e3',
                         fontSize: 10,
                     },
-                    formatter: (data, index) => {
+                    formatter: (data) => {
                         if (data[0].componentIndex == 0) { // hover 到上图的时候
                             return data[0].name + '<br>' + data[0].seriesName + ":" + data[0].value + "次" + '<br>' + data[1].seriesName + ":" + data[1].value + "次"
                         } else {
@@ -482,7 +479,7 @@ export default {
         },
     },
     watch: {
-        selectRangeDate: function (params) { // 检测selectRangeDate 数据变化
+        selectRangeDate: function () { // 检测selectRangeDate 数据变化
             this.setChart()
         }
     },

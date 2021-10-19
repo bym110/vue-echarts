@@ -542,7 +542,7 @@ export default {
     },
     methods: {},
     watch: {
-        selectRangeDate: function (val) {
+        selectRangeDate: function () {
             for (let i = 1; i < 18; i++) {
                 this.$refs['chart' + i].setChart();
             }

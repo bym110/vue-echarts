@@ -12,18 +12,6 @@ export default {
         return {}
     },
     methods: {
-        setOptionData() {
-            let arr = []
-            for (let i = 0; i < this.data.length; i++) {
-                let obj = {
-                    itemStyle: {
-                        color: this.data[i].color
-                    },
-                    name: this.data[i].name,
-                    value: this.data[i].value
-                }
-            }
-        },
         setChart() {
             let option = {
                 title: {

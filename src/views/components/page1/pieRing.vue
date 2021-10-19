@@ -101,7 +101,7 @@ export default {
                 obj.name.push(this.data.data[i].name)
             }
             myChart.dispatchAction(obj);
-            myChart.on('mouseout', function (params) {
+            myChart.on('mouseout', function () {
                 myChart.dispatchAction(obj);
             });
         },

@@ -2,11 +2,11 @@
     <div class="main">
         <svg class="guideLine" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 783 500">
             <image x="5%" y="20" :xlink:href="$images.center" width="90%" height="100%"/>
-            <image v-if='!status' id="textBox" x="250" y="320" :xlink:href="$images.normal_bg" width="250"
+            <image v-if='!status' x="250" y="320" :style="{opacity: number}" :xlink:href="$images.normal_bg" width="250"
                    height="170"/>
             <image v-else id="textBox_1" x="220" y="110" :xlink:href="$images.sensitive_bg" width="300" height="170"/>
             <template v-if="isIE">
-                <g class="title_2" id="title_1">
+                <g class="title_1" id="title_1" @mouseenter="onmouseenter" @mouseleave="onmouseleave">
                     <image class="bg_img" x="85" y="354"
                            :xlink:href="psychologicalStatus?$images.sensitive_title:$images.normal_title" width="130"
                            height="50"/>
@@ -25,7 +25,7 @@
                     <polyline points="177,389 190.5,389 179.5,398 183.8,384 189,398 177,389" fill-opacity="0.8"
                               :fill="psychologicalRate>=5?'#FED723':'#fff'"></polyline>
                 </g>
-                <g class="text promptTitle" id="text_1">
+                <g class="text promptTitle" ref="text_1">
                     <text x="340" y="345" fill='#fff' style="font-size: 18px;font-weight: 600">
                         心理特征
                     </text>
@@ -45,10 +45,10 @@
                             情绪消极，需关注心理健康
                         </text>
                     </template>
-                    <path id='line_1' class='swap swap1' d="M150,402 L150,432 250,432" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_1' class='swap1' d="M150,402 L150,432 250,432" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
-                <g class="title_1" id="title_2">
+                <g class="title_1" id="title_2" @mouseenter="onmouseenter"  @mouseleave="onmouseleave">
                     <image class="bg_img" x="58" y="224"
                            :xlink:href="speechStatus?$images.sensitive_title:$images.normal_title" width="130"
                            height="50"/>
@@ -66,7 +66,7 @@
                     <polyline points="152,260 165.5,260 154.5,269 158.5,255 163,269 152,260" fill-opacity="0.8"
                               :fill="speechRate>=5?'#FED723':'#fff'"></polyline>
                 </g>
-                <g class="text" id="text_2">
+                <g class="text" ref="text_2">
                     <text x="340" y="345" fill='#fff' style="font-size: 18px;font-weight: 600">
                         言论特征
                     </text>
@@ -91,10 +91,10 @@
                     <text fill='#fff'>
 
                     </text>
-                    <path id='line_2' class='swap swap2' d="M125,272 L125,337 250,337" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_2' class='swap2' d="M125,272 L125,337 250,337" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
-                <g class="title_1" id="title_3">
+                <g class="title_1" id="title_3" @mouseenter="onmouseenter" @mouseleave="onmouseleave">
                     <image class="bg_img" x="87" y="110"
                            :xlink:href="internetPreferenceStatus?$images.sensitive_title:$images.normal_title"
                            width="130" height="50"/>
@@ -112,7 +112,7 @@
                     <polyline points="177,145 190.5,145 179.5,154 183.5,140 188,154 177,145" fill-opacity="0.8"
                               :fill="internetPreferenceRate>=5?'#FED723':'#fff'"></polyline>
                 </g>
-                <g class="text" id="text_3">
+                <g class="text" ref="text_3">
                     <text x="340" y="345" fill='#fff' style="font-size: 18px;font-weight: 600">
                         上网偏好
                     </text>
@@ -122,13 +122,13 @@
                         <tspan>{{ internetPreferencePercent }}</tspan>
                         ){{ showInternetPreference ? '上网访问存在风险' : '上网访问无风险' }}
                     </text>
-                    <text v-for="(item,index) in internetPreferenceUrl" x="270" fill="#AFE5FB" :y="405+index*30">
+                    <text v-for="(item,index) in internetPreferenceUrl" :key="item" x="270" fill="#AFE5FB" :y="405+index*30">
                         {{ item }}
                     </text>
-                    <path id='line_3' class='swap swap3' d="M207,135 L260,135 260,322" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_3' class='swap3' d="M207,135 L260,135 260,322" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
-                <g class="title_1" id="title_4">
+                <g class="title_1" id="title_4" @mouseenter="onmouseenter" @mouseleave="onmouseleave">
                     <image class="bg_img" x="310" y="40"
                            :xlink:href="riskStatus?$images.sensitive_title:$images.normal_title" width="130"
                            height="50"/>
@@ -146,7 +146,7 @@
                     <polyline points="400,75 413.5,75 402.5,84 406.5,70 411,84 400,75" fill-opacity="0.8"
                               :fill="riskRate>=5?'#FED723':'#fff'"></polyline>
                 </g>
-                <g class="text" id="text_4">
+                <g class="text" ref="text_4">
                     <text x="340" y="345" fill='#fff' style="font-size: 18px;font-weight: 600">
                         合规状态
                     </text>
@@ -170,10 +170,10 @@
                               fill='#AFE5FB' v-if="existRoot">警惕设备被破解风险
                         </text>
                     </template>
-                    <path id='line_4' class='swap swap4' d="M319,66 L279,66 279,321" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_4' class='swap4' d="M319,66 L279,66 279,321" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
-                <g class="title_1" id="title_5">
+                <g class="title_1" id="title_5" @mouseenter="onmouseenter" @mouseleave="onmouseleave">
                     <image class="bg_img" x="530" y="110"
                            :xlink:href="entertainmentPreferenceStatus?$images.sensitive_title:$images.normal_title"
                            width="130" height="50"/>
@@ -191,7 +191,7 @@
                     <polyline points="622,145 635.5,145 624.5,154 628.5,140 633,154 622,145" fill-opacity="0.8"
                               :fill="entertainmentPreferenceRate>=5?'#FED723':'#fff'"></polyline>
                 </g>
-                <g class="text" id="text_5">
+                <g class="text" ref="text_5">
                     <text x="325" y="345" fill='#fff' style="font-size: 18px;font-weight: 600">
                         娱乐作息偏好
                     </text>
@@ -209,10 +209,10 @@
                         </text>
                         <text x="270" y="405" fill='#AFE5FB'>{{ entertainmentPreferenceContent }}</text>
                     </template>
-                    <path id='line_5' class='swap swap3' d="M538,135 L485,135 485,322" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_5' class='swap3' d="M538,135 L485,135 485,322" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
-                <g class="title_1" id="title_6">
+                <g class="title_1" id="title_6" @mouseenter="onmouseenter" @mouseleave="onmouseleave">
                     <image class="bg_img" x="560" y="224"
                            :xlink:href="makeFriendStatus?$images.sensitive_title:$images.normal_title" width="130"
                            height="50"/>
@@ -230,7 +230,7 @@
                     <polyline points="655,260 668.5,260 657.5,269 661.5,255 666,269 655,260" fill-opacity="0.8"
                               :fill="makeFriendRate>=5?'#FED723':'#fff'"></polyline>
                 </g>
-                <g class="text" id="text_6">
+                <g class="text" ref="text_6">
                     <text x="340" y="345" fill='#fff' style="font-size: 18px;font-weight: 600">
                         社交偏好
                     </text>
@@ -248,10 +248,10 @@
                         </text>
                         <text x="270" y="405" fill='#AFE5FB'>人际关系较复杂，需关注陌生人交友问题</text>
                     </template>
-                    <path id='line_6' class='swap swap2' d="M625,272 L625,337 500,337" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_6' class='swap2' d="M625,272 L625,337 500,337" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
-                <g class="title_1" id="title_7">
+                <g class="title_1" id="title_7" @mouseenter="onmouseenter" @mouseleave="onmouseleave">
                     <image class="bg_img" x="538" y="354"
                            :xlink:href="consumptionCharacteristicsStatus?$images.sensitive_title:$images.normal_title"
                            width="130" height="50"/>
@@ -269,7 +269,7 @@
                     <polyline points="632,390 645.5,390 634.5,399 638.5,385 643,399 632,390" fill-opacity="0.8"
                               :fill="consumptionCharacteristicsRate>=5?'#FED723':'#fff'"></polyline>
                 </g>
-                <g class="text" id="text_7">
+                <g class="text" ref="text_7">
                     <text x="340" y="345" fill='#fff' style="font-size: 18px;font-weight: 600">
                         消费特征
                     </text>
@@ -287,7 +287,7 @@
                         </text>
                         <text x="270" y="405" fill='#AFE5FB'>资金波动明显，需警惕高风险消费</text>
                     </template>
-                    <path id='line_7' class='swap swap1' d="M600,402 L600,432 500,432" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_7' class='swap1' d="M600,402 L600,432 500,432" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
             </template>
@@ -296,7 +296,7 @@
                     <image class="bg_img" x="85" y="354"
                            :xlink:href="psychologicalStatus?$images.sensitive_title:$images.normal_title" width="130"
                            height="50"/>
-                    <foreignObject class="title_1" x="102" y="364" id="title_1" width="100" height="40">
+                    <foreignObject class="title_1" @mouseenter="onmouseenter" @mouseleave="onmouseleave" x="102" y="364" id="title_1" width="100" height="40">
                         <div class="title-text-box" xmlns="http://www.w3.org/1999/xhtml">
                             <p :style="{color:psychologicalStatus?'#FFDBDB':''}">
                                 <span class="titleText">心理特征</span>
@@ -304,7 +304,7 @@
                             </p>
                         </div>
                     </foreignObject>
-                    <foreignObject class="text" x="250" y="320" id="text_1" width="250" height="170">
+                    <foreignObject class="text" x="250" y="320" ref="text_1" width="250" height="170">
                         <div class="text-box" xmlns="http://www.w3.org/1999/xhtml">
                             <div class="promptBox">
                                 <div class="promptTitle">心理特征</div>
@@ -319,14 +319,14 @@
                             </div>
                         </div>
                     </foreignObject>
-                    <path id='line_1' class='swap swap1' d="M150,402 L150,432 250,432" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_1' class='swap1' d="M150,402 L150,432 250,432" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
                 <g>
                     <image class="bg_img" x="58" y="224"
                            :xlink:href="speechStatus?$images.sensitive_title:$images.normal_title" width="130"
                            height="50"/>
-                    <foreignObject class="title_1" x="76" y="232" id="title_2" width="100" height="40">
+                    <foreignObject class="title_1" @mouseenter="onmouseenter" @mouseleave="onmouseleave" x="76" y="232" id="title_2" width="100" height="40">
                         <div class="title-text-box" xmlns="http://www.w3.org/1999/xhtml">
                             <p :style="{color:speechStatus?'#FFDBDB':''}">
                                 <span class="titleText">言论特征</span>
@@ -334,7 +334,7 @@
                             </p>
                         </div>
                     </foreignObject>
-                    <foreignObject class="text" x="250" y="320" id="text_2" width="250" height="170">
+                    <foreignObject class="text" x="250" y="320" ref="text_2" width="250" height="170">
                         <div class="text-box" xmlns="http://www.w3.org/1999/xhtml">
                             <div class="promptBox">
                                 <div class="promptTitle">言论特征</div>
@@ -350,14 +350,14 @@
                             </div>
                         </div>
                     </foreignObject>
-                    <path id='line_2' class='swap swap2' d="M125,272 L125,337 250,337" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_2' class='swap2' d="M125,272 L125,337 250,337" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
                 <g>
                     <image class="bg_img" x="87" y="110"
                            :xlink:href="internetPreferenceStatus?$images.sensitive_title:$images.normal_title"
                            width="130" height="50"/>
-                    <foreignObject class="title_1" x="105" y="118" id="title_3" width="100" height="40">
+                    <foreignObject class="title_1" @mouseenter="onmouseenter" @mouseleave="onmouseleave" x="105" y="118" id="title_3" width="100" height="40">
                         <div class="title-text-box" xmlns="http://www.w3.org/1999/xhtml">
                             <p :style="{color:internetPreferenceStatus?'#FFDBDB':''}">
                                 <span class="titleText">上网偏好</span>
@@ -366,7 +366,7 @@
                             </p>
                         </div>
                     </foreignObject>
-                    <foreignObject class="text" x="250" y="320" id="text_3" width="250" height="170">
+                    <foreignObject class="text" x="250" y="320" ref="text_3" width="250" height="170">
                         <div class="text-box" xmlns="http://www.w3.org/1999/xhtml">
                             <div class="promptBox">
                                 <div class="promptTitle">上网偏好</div>
@@ -374,19 +374,19 @@
                                     <div>
                                         <span>{{ internetPreference }}人</span>(<span>{{ internetPreferencePercent }}</span>){{ showInternetPreference ? '上网访问存在风险' : '上网访问无风险' }}
                                     </div>
-                                    <div v-for="item in internetPreferenceUrl">{{ item }}</div>
+                                    <div v-for="item in internetPreferenceUrl" :key="item">{{ item }}</div>
                                 </div>
                             </div>
                         </div>
                     </foreignObject>
-                    <path id='line_3' class='swap swap3' d="M207,135 L260,135 260,322" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_3' class='swap3' d="M207,135 L260,135 260,322" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
                 <g>
                     <image class="bg_img" x="310" y="40"
                            :xlink:href="riskStatus?$images.sensitive_title:$images.normal_title" width="130"
                            height="50"/>
-                    <foreignObject class="title_1" x="328" y="49" id="title_4" width="100" height="40">
+                    <foreignObject class="title_1" @mouseenter="onmouseenter" @mouseleave="onmouseleave" x="328" y="49" id="title_4" width="100" height="40">
                         <div class="title-text-box" xmlns="http://www.w3.org/1999/xhtml">
                             <p :style="{color:riskStatus?'#FFDBDB':''}">
                                 <span class="titleText">合规状态</span>
@@ -395,7 +395,7 @@
                             </p>
                         </div>
                     </foreignObject>
-                    <foreignObject class="text" x="250" y="320" id="text_4" width="250" height="170">
+                    <foreignObject class="text" x="250" y="320" ref="text_4" width="250" height="170">
                         <div class="text-box" xmlns="http://www.w3.org/1999/xhtml">
                             <div class="promptBox">
                                 <div class="promptTitle">合规状态</div>
@@ -411,14 +411,14 @@
                             </div>
                         </div>
                     </foreignObject>
-                    <path id='line_4' class='swap swap4' d="M319,66 L279,66 279,321" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_4' class='swap4' d="M319,66 L279,66 279,321" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
                 <g>
                     <image class="bg_img" x="530" y="110"
                            :xlink:href="entertainmentPreferenceStatus?$images.sensitive_title:$images.normal_title"
                            width="130" height="50"/>
-                    <foreignObject class="title_1" x="538" y="118" id="title_5" width="120" height="40">
+                    <foreignObject class="title_1" @mouseenter="onmouseenter" @mouseleave="onmouseleave" x="538" y="118" id="title_5" width="120" height="40">
                         <div class="title-text-box" xmlns="http://www.w3.org/1999/xhtml">
                             <p :style="{color:entertainmentPreferenceStatus?'#FFDBDB':''}">
                                 <span style="font-size: 15px;display: block;">娱乐作息偏好</span>
@@ -428,7 +428,7 @@
                             </p>
                         </div>
                     </foreignObject>
-                    <foreignObject class="text" x="250" y="320" id="text_5" width="250" height="170">
+                    <foreignObject class="text" x="250" y="320" ref="text_5" width="250" height="170">
                         <div class="text-box" xmlns="http://www.w3.org/1999/xhtml">
 
                             <div class="promptBox">
@@ -445,14 +445,14 @@
                             </div>
                         </div>
                     </foreignObject>
-                    <path id='line_5' class='swap swap3' d="M538,135 L485,135 485,322" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_5' class='swap3' d="M538,135 L485,135 485,322" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
                 <g>
                     <image class="bg_img" x="560" y="224"
                            :xlink:href="makeFriendStatus?$images.sensitive_title:$images.normal_title" width="130"
                            height="50"/>
-                    <foreignObject class="title_1" x="578" y="232" id="title_6" width="100" height="40">
+                    <foreignObject class="title_1" @mouseenter="onmouseenter" @mouseleave="onmouseleave" x="578" y="232" id="title_6" width="100" height="40">
                         <div class="title-text-box" xmlns="http://www.w3.org/1999/xhtml">
                             <p :style="{color:makeFriendStatus?'#FFDBDB':''}">
                                 <span class="titleText">社交偏好</span>
@@ -461,7 +461,7 @@
                             </p>
                         </div>
                     </foreignObject>
-                    <foreignObject class="text" x="250" y="320" id="text_6" width="250" height="170">
+                    <foreignObject class="text" x="250" y="320" ref="text_6" width="250" height="170">
                         <div class="text-box" xmlns="http://www.w3.org/1999/xhtml">
                             <div class="promptBox">
                                 <div class="promptTitle">社交偏好</div>
@@ -476,14 +476,14 @@
                             </div>
                         </div>
                     </foreignObject>
-                    <path id='line_6' class='swap swap2' d="M625,272 L625,337 500,337" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_6' class='swap2' d="M625,272 L625,337 500,337" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
                 <g>
                     <image class="bg_img" x="538" y="354"
                            :xlink:href="consumptionCharacteristicsStatus?$images.sensitive_title:$images.normal_title"
                            width="130" height="50"/>
-                    <foreignObject class="title_1" x="555" y="364" id="title_7" width="100" height="40">
+                    <foreignObject class="title_1" @mouseenter="onmouseenter" @mouseleave="onmouseleave" x="555" y="364" id="title_7" width="100" height="40">
                         <div class="title-text-box" xmlns="http://www.w3.org/1999/xhtml">
                             <p :style="{color:consumptionCharacteristicsStatus?'#FFDBDB':''}">
                                 <span class="titleText">消费特征</span>
@@ -493,7 +493,7 @@
                             </p>
                         </div>
                     </foreignObject>
-                    <foreignObject class="text" x="250" y="320" id="text_7" width="250" height="170">
+                    <foreignObject class="text" x="250" y="320" ref="text_7" width="250" height="170">
                         <div class="text-box" xmlns="http://www.w3.org/1999/xhtml">
                             <div class="promptBox">
                                 <div class="promptTitle">消费特征</div>
@@ -509,7 +509,7 @@
                             </div>
                         </div>
                     </foreignObject>
-                    <path id='line_7' class='swap swap1' d="M600,402 L600,432 500,432" stroke="#AFE5FB" stroke-width="2"
+                    <path id='line_7' class='swap1' d="M600,402 L600,432 500,432" stroke="#AFE5FB" stroke-width="2"
                           fill="none"/>
                 </g>
             </template>
@@ -519,7 +519,6 @@
 </template>
 
 <script>
-import $ from 'jquery';
 
 export default {
     name: '',
@@ -530,34 +529,34 @@ export default {
     data() {
         return {
             psychology: '',
-            showPsychology: true,
+            showPsychology: false,
             psychologyPercent: '',
             speech: "",
-            showSpeech: true,
+            showSpeech: false,
             speechPercent: '',
             showBisexual: false,
             showViolate: false,
             showIdeology: false,
             risk: '',
-            showRisk: true,
+            showRisk: false,
             riskPercent: '',
             existOutOfControl: false,
             existRoot: false,
             existViolations: false,
             makeFriend: '',
-            showMakeFriend: true,
+            showMakeFriend: false,
             makeFriendPercent: '',
             timer1: null,
             entertainmentPreference: '',
-            showEntertainmentPreference: true,
+            showEntertainmentPreference: false,
             entertainmentPreferencePercent: '',
             entertainmentPreferenceContent: '',
             internetPreference: '',
-            showInternetPreference: true,
+            showInternetPreference: false,
             internetPreferencePercent: '',
             internetPreferenceUrl: [],
             consumptionCharacteristics: '',
-            showConsumptionCharacteristics: true,
+            showConsumptionCharacteristics: false,
             consumptionCharacteristicsPercent: '',
             status: false,
             timer: null,
@@ -585,26 +584,45 @@ export default {
         }
     },
     methods: {
+        // mouseenter
+        onmouseenter(e) {
+            document.querySelectorAll('.text').forEach(item=>item.style.opacity = 0);
+            document.querySelectorAll('.swap1').forEach(item=>item.style.strokeDashoffset = 130);
+            document.querySelectorAll('.swap2').forEach(item=>item.style.strokeDashoffset = 190);
+            document.querySelectorAll('.swap3').forEach(item=>item.style.strokeDashoffset = 240);
+            document.querySelectorAll('.swap4').forEach(item=>item.style.strokeDashoffset = 295);
+            cancelAnimationFrame(this.rid);
+            this.rid = null;
+            clearTimeout(this.timer)
+            this.timer = null;
+            this.animation(Number(e.currentTarget.id.substr(e.currentTarget.id.length - 1, 1)), true);
+        },
+        //mouseleave
+        onmouseleave() {
+            this.animation(1, false);
+        },
         frame() {
             cancelAnimationFrame(this.rid);
             this.rid = null;
             this.rid = requestAnimationFrame(this.frame);
-            window["line_" + this.index].style.strokeDashoffset = this.frames;
-            document.getElementById("line_" + this.index).getPointAtLength(this.length - this.frames);
-            document.getElementById("line_" + this.index).getPointAtLength((this.length - this.frames + 2) % this.length);
+            let line = document.querySelector("#line_" + this.index);
+            line.style.strokeDashoffset = this.frames;
+            line.getPointAtLength(this.length - this.frames);
+            line.getPointAtLength((this.length - this.frames + 2) % this.length);
             if (this.index > 1) {
-                $("#text_" + (this.index - 1)).css('opacity', 0)
-                window[("line_" + (this.index - 1))].style.strokeDashoffset = window[("line_" + (this.index - 1))].style.strokeDasharray;
+                line = document.querySelector("#line_" + (this.index - 1));
+                this.$refs["text_" + (this.index - 1)].style.opacity = 0;
+                line.style.strokeDashoffset = line.style.strokeDasharray;
             }
             if (this.index == 1) {
                 for (let i = 2; i < 8; i++) {
-                    $("#text_" + i).css('opacity', 0);
-                    window[("line_" + i)].style.strokeDashoffset = window[("line_" + i)].style.strokeDasharray;
+                    line = document.querySelector("#line_" + i);
+                    this.$refs["text_" + i].style.opacity = 0;
+                    line.style.strokeDashoffset = line.style.strokeDasharray;
 
                 }
             }
-            $("#text_" + this.index).css('opacity', this.number);
-            $("#textBox").css('opacity', this.number);
+            this.$refs["text_" + this.index].style.opacity = this.number;
             this.number += 5 / this.length;
             this.frames -= 5;
             if (this.frames <= -5) {
@@ -659,10 +677,10 @@ export default {
                 default:
                     break
             }
-            this.length = window["line_" + i].getTotalLength();
-            this.length = document.getElementById("line_" + i).getTotalLength();
-            document.getElementById("line_" + i).style.strokeDasharray = this.length;
-            document.getElementById("line_" + i).style.strokeDashoffset = this.length;
+            const line = document.querySelector("#line_" + i);
+            this.length = line.getTotalLength();
+            line.style.strokeDasharray = this.length;
+            line.style.strokeDashoffset = this.length;
             this.frames = this.length;
             this.index = i;
             this.number = 0;
@@ -703,11 +721,11 @@ export default {
         }
     },
     beforeDestroy() { // 离开页面动画初始化
-        $(".text").css('opacity', 0);
-        $(".swap1").css('strokeDashoffset', 130);
-        $(".swap2").css('strokeDashoffset', 190);
-        $(".swap3").css('strokeDashoffset', 240);
-        $(".swap4").css('strokeDashoffset', 295);
+        document.querySelectorAll('.text').forEach(item=>item.style.opacity = 0);
+        document.querySelectorAll('.swap1').forEach(item=>item.style.strokeDashoffset = 130);
+        document.querySelectorAll('.swap2').forEach(item=>item.style.strokeDashoffset = 190);
+        document.querySelectorAll('.swap3').forEach(item=>item.style.strokeDashoffset = 240);
+        document.querySelectorAll('.swap4').forEach(item=>item.style.strokeDashoffset = 295);
         cancelAnimationFrame(this.rid);
         this.rid = null;
         clearTimeout(this.timer)
@@ -724,53 +742,20 @@ export default {
     },
     mounted() {
         this.setChart();
-        let _this = this;
-        $(".title_1").mouseenter(function (e) {
-            $(".text").css('opacity', 0);
-            $(".swap1").css('strokeDashoffset', 130);
-            $(".swap2").css('strokeDashoffset', 190);
-            $(".swap3").css('strokeDashoffset', 240);
-            $(".swap4").css('strokeDashoffset', 295);
-            cancelAnimationFrame(_this.rid);
-            _this.rid = null;
-            clearTimeout(_this.timer)
-            clearTimeout(_this.timer1)
-            _this.timer = null;
-            _this.timer1 = null;
-            _this.animation(Number(e.currentTarget.id.substr(e.currentTarget.id.length - 1, 1)), true);
-        });
-        $(".title_1").mouseleave(function () {
-            _this.animation(1, false);
-
-        });
-
     }
 }
 </script>
 
 
-<style lang="less">
+<style lang="less" scoped>
 .main {
     width: 100%;
     height: 100%;
     position: relative;
 
-    .href {
-        position: absolute;
-        right: 20px;
-        top: 30px;
-        color: #00C0FF;
-        z-index: 2;
-        cursor: pointer;
-    }
-
     .guideLine {
         width: 100%;
         height: 100%;
-
-        #textBox {
-            opacity: 0;
-        }
 
         #textBox_1 {
             opacity: 0;
@@ -800,7 +785,7 @@ export default {
                         display: block;
                     }
 
-                    .ivu-rate {
+                    /deep/ .ivu-rate {
                         font-size: 14px;
 
                         .ivu-rate-star {

@@ -39,7 +39,6 @@ export default {
 
                 arr.push(obj);
             }
-            ;
             for (let i = 0; i < data.length; i++) {
                 let obj = {
                     type: 'line',

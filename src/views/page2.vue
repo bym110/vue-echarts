@@ -431,7 +431,6 @@ export default {
             let mW = 240;
             let mH = 240;
             let sX = 0;
-            let sY = mH / 2;
             let axisLength = mW; //轴长
             let waveWidth = 0.04; //波浪宽度,数越小越宽
             let waveHeight = 12; //波浪高度,数越大越高
