@@ -3,7 +3,7 @@ import App from './App'
 import router from './router'
 import iView from 'iview';
 import './assets/less/index.less';
-import echarts from 'echarts'
+import * as echarts from 'echarts';
 import img from './lib/img'
 import utils from "./lib/utils";
 

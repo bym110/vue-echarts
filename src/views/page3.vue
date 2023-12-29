@@ -1,25 +1,25 @@
 <template>
     <Row class="page3">
-        <Col style="width:26%;">
+        <Col :span="7">
             <div class="left">
-                <span class='title'><span class="title-text">网赌网炒风险分析</span></span>
+                <span class='title'><span class="title-text">模块一分析</span></span>
                 <span class="angle1"></span>
                 <span class="angle2"></span>
                 <span class="angle3"></span>
                 <span class="angle4"></span>
                 <div class="left1" style="height:50%;">
                     <div style="height:65%;">
-                        <channel-bar
+                        <chart1
                             id="left_1"
-                            title="网赌网炒渠道分析"
+                            title="分析标题"
                             :data="data1"
                             ref="channelBar1"
-                        ></channel-bar>
-                        <distribution-solider
+                        ></chart1>
+                        <chart2
                             id="left_2"
                             :data="data2"
                             ref="distributionSolider1"
-                        ></distribution-solider>
+                        ></chart2>
                     </div>
                     <div style="height: 35%;display: flex">
                         <div style="height: 100%; width: 33.33%;">
@@ -34,32 +34,32 @@
                     </div>
                 </div>
                 <div class="left1" style="height:28%;">
-                    <red-pocket ref="redPocket"></red-pocket>
+                    <chart3 ref="redPocket"></chart3>
                 </div>
                 <div style="height:22%;">
                     <div style="height:100%;">
-                        <channel-bar
+                        <chart1
                             id="left_5"
-                            title="炒股借贷渠道分析"
+                            title="分析标题2"
                             :data="data3"
                             ref="channelBar2"
-                        ></channel-bar>
-                        <distribution-solider
+                        ></chart1>
+                        <chart2
                             id="left_6"
                             :data="data4"
                             ref="distributionSolider2"
-                        ></distribution-solider>
+                        ></chart2>
                     </div>
                     <!--                        <div style="height:45%;"></div>-->
                 </div>
             </div>
         </Col>
-        <Col style="width:48%;padding:0 1%;">
+        <Col :span="10" style="padding:0 1%;">
             <div class="center-top">
                 <china-map ref="chinaMap"></china-map>
             </div>
             <div class="center-bottom">
-                <span class='title'><span class="title-text">社会泄密风险分析</span></span>
+                <span class='title'><span class="title-text">模块二分析</span></span>
                 <span class="angle1"></span>
                 <span class="angle2"></span>
                 <span class="angle3"></span>
@@ -96,89 +96,89 @@
                 </Row>
                 <Row class="bottom-bars">
                     <Col span="6">
-                        <double-bar
+                        <chart4
                             id="bottom_2_1"
                             :data="data9"
                             ref="chart5"
-                        ></double-bar>
+                        ></chart4>
                     </Col>
                     <Col span="6">
-                        <double-bar
+                        <chart4
                             id="bottom_2_2"
                             :data="data10"
                             ref="chart6"
-                        ></double-bar>
+                        ></chart4>
                     </Col>
                     <Col span="6">
-                        <double-bar
+                        <chart4
                             id="bottom_2_3"
                             :data="data11"
                             ref="chart7"
-                        ></double-bar>
+                        ></chart4>
                     </Col>
                     <Col span="6">
-                        <double-bar
+                        <chart4
                             id="bottom_2_4"
                             :data="data12"
                             ref="chart8"
-                        ></double-bar>
+                        ></chart4>
                     </Col>
                 </Row>
             </div>
         </Col>
-        <Col style="width:26%">
+        <Col :span="7">
             <div class="right-1">
                 <div class="right1-1">
-                    <span class='title'><span class="title-text">网播风险分析</span></span>
+                    <span class='title'><span class="title-text">模块三分析</span></span>
                     <span class="angle1"></span>
                     <span class="angle2"></span>
                     <span class="angle3"></span>
                     <span class="angle4"></span>
-                    <webcasts-risk ref='webcastsRisk'></webcasts-risk>
+                    <chart5 ref='webcastsRisk'></chart5>
                 </div>
             </div>
             <div class="right-1">
                 <div class="right1-1">
-                    <span class='title'><span class="title-text">设备安全性风险分析</span></span>
+                    <span class='title'><span class="title-text">模块四分析</span></span>
                     <span class="angle1"></span>
                     <span class="angle2"></span>
                     <span class="angle3"></span>
                     <span class="angle4"></span>
-                    <device-safe-risk ref='deviceSafeRisk'></device-safe-risk>
+                    <chart6 ref='deviceSafeRisk'></chart6>
                 </div>
             </div>
             <div class="right-2">
                 <div class="right1-1">
-                    <span class='title'><span class="title-text">舆论/心理风险分析</span></span>
+                    <span class='title'><span class="title-text">模块五分析</span></span>
                     <span class="angle1"></span>
                     <span class="angle2"></span>
                     <span class="angle3"></span>
                     <span class="angle4"></span>
                     <div class="circular">
                         <div class="canvas">
-                            <div class="subtitle">话题分布</div>
+                            <div class="subtitle">标题1</div>
                             <div class="canvasList">
-                                <double-ring
+                                <chart7
                                     id='canvas_1'
-                                    title="自杀抑郁"
+                                    title="分类1"
                                     color='#00CCFF'
                                     ref="ring1"
-                                ></double-ring>
-                                <double-ring
+                                ></chart7>
+                                <chart7
                                     id='canvas_2'
-                                    title="药品枪支"
+                                    title="分类2"
                                     color='#EDCE43'
                                     ref="ring2"
-                                ></double-ring>
-                                <double-ring
+                                ></chart7>
+                                <chart7
                                     id='canvas_3'
-                                    title="色情同性恋"
+                                    title="分类3"
                                     color='#F83552'
                                     ref="ring3"
-                                ></double-ring>
+                                ></chart7>
                             </div>
                         </div>
-                        <hot-words ref="hotWords"></hot-words>
+                        <chart8 ref="hotWords"></chart8>
                     </div>
                 </div>
             </div>
@@ -188,80 +188,82 @@
 
 <script>
 const chinaMap  = () => import('./components/page3/chinaMap');
-const channelBar = ()=> import('./components/page3/channelBar');
-const distributionSolider = ()=> import('./components/page3/distributionSolider');
 const pie = ()=> import('./components/pie');
-const redPocket = ()=>import('./components/page3/redPocket');
 const radar = ()=> import('./components/radar');
-const doubleBar = ()=> import('./components/page3/doubleBar');
-const webcastsRisk = ()=> import('./components/page3/webcastsRisk');
-const deviceSafeRisk = ()=> import('./components/page3/deviceSafeRisk');
-const doubleRing = ()=> import('./components/page3/doubleRing');
-const hotWords =() => import('./components/page3/hotWords');
+const chart1 = ()=> import('./components/page3/chart1');
+const chart2 = ()=> import('./components/page3/chart2');
+const chart3 = ()=>import('./components/page3/chart3');
+const chart4 = ()=> import('./components/page3/chart4');
+const chart5 = ()=> import('./components/page3/chart5');
+const chart6 = ()=> import('./components/page3/chart6');
+const chart7 = ()=> import('./components/page3/chart7');
+const chart8 =() => import('./components/page3/chart8');
 
 export default {
     name: 'page3',
     components: {
         chinaMap,
-        channelBar,
-        distributionSolider,
+        chart1,
+        chart2,
         pie,
-        redPocket,
+        chart3,
         radar,
-        doubleBar,
-        webcastsRisk,
-        deviceSafeRisk,
-        doubleRing,
-        hotWords
+        chart4,
+        chart5,
+        chart6,
+        chart7,
+        chart8
     },
     data() {
         return {
+            //分析标题数据
             data1: [
                 {
                     subtitle: '675人（2345次/4533元）',
-                    top: '20%',
-                    data: {name: "红包转账", value: 45, color: '#0E4CFF'},
+                    top: '23%',
+                    data: {name: "数据1", value: 45, color: '#0E4CFF'},
                 },
                 {
                     subtitle: '675人（2345次/4533元）',
-                    top: '36%',
-                    data: {name: "访问涉赌网络", value: 60, color: '#B405FD'},
+                    top: '39%',
+                    data: {name: "数据2", value: 60, color: '#B405FD'},
                 },
                 {
                     subtitle: '675人（2345次/4533元）',
-                    top: '53%',
-                    data: {name: "使用涉赌应用", value: 12, color: '#FE9900'},
+                    top: '56%',
+                    data: {name: "数据3", value: 12, color: '#FE9900'},
                 },
                 {
                     subtitle: '675人（2345次/4533元）',
-                    top: '69%',
-                    data: {name: "访问炒股网络", value: 24, color: '#FF6600'},
+                    top: '72%',
+                    data: {name: "数据4", value: 24, color: '#FF6600'},
                 },
                 {
                     subtitle: '675人（2345次/4533元）',
-                    top: '85%',
-                    data: {name: "使用炒股应用", value: 21, color: '#7F05FD'}
+                    top: '88%',
+                    data: {name: "数据5", value: 21, color: '#7F05FD'}
 
                 }
             ],
+            // 分析标题1数据
             data3: [
                 {
                     subtitle: '675人（2345次/4533元）',
                     top: '29%',
-                    data: {name: "红包转账", value: 45, color: '#0E4CFF'},
+                    data: {name: "数据1", value: 45, color: '#0E4CFF'},
                 },
                 {
                     subtitle: '675人（2345次/4533元）',
                     top: '54%',
-                    data: {name: "访问涉赌应用", value: 60, color: '#FE9900'},
+                    data: {name: "数据2", value: 60, color: '#FE9900'},
                 },
                 {
                     subtitle: '675人（2345次/4533元）',
                     top: '78%',
-                    data: {name: "使用炒股应用", value: 12, color: '#7F05FD'},
+                    data: {name: "数据3", value: 12, color: '#7F05FD'},
                 },
             ],
-            data2: [ // 网赌用户排名数据
+            data2: [ // 分析标题1用户排名数据
                 {
                     top: '16%',
                     color: '14,73,245',
@@ -343,6 +345,7 @@ export default {
                     ],
                 },
             ],
+            // 分析标题1 用户排名
             data4: [
                 {
                     top: '30%',
@@ -393,146 +396,152 @@ export default {
                     ],
                 },
             ],
+            // 模块二雷达图数据1
             data5: {
-                title: '社会应用分析',
+                title: '雷达图数据1',
                 position: ['5%', '14%'],
                 center: ['50%', '60%'],
                 indicator: [
-                    {text: '微信'},
-                    {text: 'QQ'},
-                    {text: '微博'},
-                    {text: '陌陌'},
-                    {text: 'INS'},
-                    {text: '抖音'}
+                    {text: '分类1'},
+                    {text: '分类2'},
+                    {text: '分类3'},
+                    {text: '分类4'},
+                    {text: '分类5'},
+                    {text: '分类6'}
                 ],
                 data: [
                     {
-                        name: '安装量',
+                        name: '数值1',
                         color: '#0DE4EE',
                         value: [100, 8, 0.40, -80, 2000, 345]
                     },
                     {
-                        name: '使用时长',
+                        name: '数值2',
                         color: '#0D88F3',
                         value: [60, 5, 0.30, -100, 1500, 232]
                     }
                 ]
             },
+            // 模块二雷达图数据2
             data6: {
-                title: '涉军信息分析',
+                title: '雷达图数据2',
                 position: ['5%', '14%'],
                 center: ['50%', '60%'],
                 indicator: [
-                    {text: '微信'},
-                    {text: 'QQ'},
-                    {text: 'SNS'},
-                    {text: '漂流瓶'},
-                    {text: '陌陌'},
-                    {text: '摇一摇'},
-                    {text: 'INS'},
-                    {text: '抖音'},
+                    {text: '分类1'},
+                    {text: '分类2'},
+                    {text: '分类3'},
+                    {text: '分类4'},
+                    {text: '分类5'},
+                    {text: '分类6'},
+                    {text: '分类7'},
+                    {text: '分类8'},
                 ],
                 data: [
                     {
-                        name: '个人信息涉军',
+                        name: '数值1',
                         color: '#6514FF',
                         value: [100, 8, 0.40, -80, 2000, 345, 12, 654]
                     },
                     {
-                        name: '内容涉军',
+                        name: '数值2',
                         color: '#B370FD',
                         value: [60, 5, 0.30, -100, 1500, 232, 432, 43]
                     }
                 ]
             },
+            // 模块二雷达图数据3
             data7: {
-                title: '交友方式分析',
+                title: '雷达图数据3',
                 position: ['5%', '14%'],
                 center: ['50%', '60%'],
                 indicator: [
-                    {text: '面对面'},
-                    {text: '手机号'},
-                    {text: '手机联系人'},
-                    {text: '摇一摇'},
-                    {text: '微博'},
-                    {text: '微信'},
-                    {text: '名片'},
-                    {text: '快手'},
-                    {text: 'INS'},
-                    {text: '扫一扫'},
-                    {text: '附近的人'},
-                    {text: '漂流瓶'},
+                    {text: '分类1'},
+                    {text: '分类2'},
+                    {text: '分类3'},
+                    {text: '分类4'},
+                    {text: '分类5'},
+                    {text: '分类6'},
+                    {text: '分类7'},
+                    {text: '分类8'},
+                    {text: '分类9'},
+                    {text: '分类10'},
+                    {text: '分类11'},
+                    {text: '分类12'},
                 ],
                 data: [
                     {
-                        name: '主动',
+                        name: '数值1',
                         color: '#0096FE',
                         value: [100, 8, 0.40, -80, 2000, 345, 123, 21, 34, 54, 431, 876]
                     },
                     {
-                        name: '被动',
+                        name: '数值2',
                         color: '#9EEAFF',
                         value: [60, 5, 0.30, -100, 1500, 232, 78, 32, 567, 43, 765, 432,]
                     }
                 ]
             },
+            // 模块二雷达图数据4
             data8: {
-                title: '群属性分析',
+                title: '雷达图数据4',
                 position: ['5%', '14%'],
                 center: ['50%', '60%'],
                 indicator: [
-                    {text: '博彩群'},
-                    {text: '涉赌群'},
-                    {text: '营销群'},
-                    {text: '其他'},
-                    {text: '相亲群'},
-                    {text: '涉黄群'},
+                    {text: '分类1'},
+                    {text: '分类2'},
+                    {text: '分类3'},
+                    {text: '分类4'},
+                    {text: '分类5'},
+                    {text: '分类6'},
                 ],
                 data: [
                     {
-                        name: '微信',
+                        name: '分类1',
                         color: '#FD9800',
                         value: [100, 8, 0.40, -80, 2000, 345],
                     },
                     {
-                        name: 'QQ',
+                        name: '分类2',
                         color: '#FDC673',
                         value: [60, 5, 0.30, -100, 1500, 232]
                     }
                 ]
             },
+            // 模块二柱图数据1
             data9: {
-                title: '重点关注用户',
+                title: '柱图数据1',
                 data: [
                     {
-                        name: '个数',
+                        name: '人数',
                         color: '#00CCFF',
                         value: ['112', '212', '42', '232', '123', '67'],
                     },
                     {
-                        name: '使用时长',
+                        name: '次数',
                         color: '#142AFE',
                         value: ['112', '212', '42', '232', '123', '67']
                     }
                 ]
             },
+            // 模块二柱图数据1
             data10: {
-                title: '重点关注用户',
+                title: '柱图数据2',
                 data: [
                     {
-                        name: '个人信息涉军应用个数',
+                        name: '个数',
                         color: '#6514FF',
                         value: ['112', '212', '42', '232', '123', '67'],
                     },
                     {
-                        name: '涉军内容条数',
+                        name: '条数',
                         color: '#B370FD',
                         value: ['112', '212', '42', '232', '123', '67']
                     }
                 ]
             },
             data11: {
-                title: '重点关注异常交友用户',
+                title: '柱图数据3',
                 data: [
                     {
                         name: '主动',
@@ -547,7 +556,7 @@ export default {
                 ]
             },
             data12: {
-                title: '重点关注用户',
+                title: '柱图数据4',
                 data: [
                     {
                         name: '个数',
@@ -555,7 +564,7 @@ export default {
                         value: ['112', '212', '42', '232', '123', '67'],
                     },
                     {
-                        name: '使用时长',
+                        name: '人数',
                         color: '#FDC673',
                         value: ['112', '212', '42', '232', '123', '67']
                     }
@@ -732,7 +741,6 @@ export default {
     overflow: hidden;
     .ivu-col {
         height: 100%;
-        float: left;
     }
 
     .left, .right1-1, .center-bottom {

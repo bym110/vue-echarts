@@ -15,7 +15,9 @@ export default {
         data: Object
     },
     data() {
-        return {}
+        return {
+            myChart:null
+        }
     },
     methods: {
         setChart() {
@@ -31,12 +33,12 @@ export default {
                             color: item.color
                         },
                         lineStyle: {
-                            normal: {
-                                color: item.color,
-                                width: 1,
-                            },
-                            emphasis: {
-                                width: 2,
+                            color: item.color,
+                            width: 1,
+                        },
+                        emphasis: {
+                            lineStyle: {
+                                width: 2
                             }
                         }
                     }
@@ -78,13 +80,13 @@ export default {
                     startAngle: 90,
                     splitNumber: 4,
                     shape: 'circle',
-                    name: {
+                    axisName: {
                         textStyle: {
                             color: '#0DECF0',
                             fontSize: 8,
                         }
                     },
-                    nameGap: 3,
+                    axisNameGap: 3,
                     splitArea: {
                         areaStyle: {
                             color: ['#1166C4',
@@ -107,12 +109,10 @@ export default {
                 series: {
                     name: '雷达图',
                     type: 'radar',
-                    itemStyle: {
-                        emphasis: {
-                            // color: 各异,
-                            lineStyle: {
-                                width: 4
-                            }
+                    emphasis: {
+                        // color: 各异,
+                        lineStyle: {
+                            width: 4
                         }
                     },
                     data: seriesData
@@ -121,16 +121,16 @@ export default {
             if (this.id == 'bottom_1_2') {
                 option.legend.left = '5%';
             }
-            let myChart = this.$echarts(this.$el);
+            if (!this.myChart) this.myChart = this.$echarts(this.$el);
 
-            myChart.clear();
-            myChart.resize(
+            this.myChart.clear();
+            this.myChart.resize(
                 {
                     width: this.$el.offsetWidth,
                     height: this.$el.offsetHeight
                 }
             )
-            myChart.setOption(option);
+            this.myChart.setOption(option);
         }
     },
     mounted() {

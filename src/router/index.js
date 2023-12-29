@@ -29,6 +29,11 @@ const router = new Router({
                     path: '/page3',
                     name: 'page3',
                     component: () => import('@/views/page3')
+                },
+                {
+                    path: '/page4',
+                    name: 'page4',
+                    component: () => import('@/views/page4')
                 }
             ]
         }

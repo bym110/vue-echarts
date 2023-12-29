@@ -19,7 +19,9 @@ export default {
         data: Object
     },
     data() {
-        return {}
+        return {
+            myChart: null
+        }
     },
     methods: {
         setChart() {
@@ -56,17 +58,10 @@ export default {
                     }
                 ]
             };
-            let myChart = this.$echarts(document.getElementById(this.id));
-
-            myChart.clear();
-            myChart.resize(
-                {
-                    width: document.getElementById(this.id).offsetWidth,
-                    height: document.getElementById(this.id).offsetHeight
-                }
-            );
-
-            myChart.setOption(option);
+            if (!this.myChart) this.myChart = this.$echarts(document.getElementById(this.id));
+            this.myChart.clear();
+            this.myChart.resize();
+            this.myChart.setOption(option);
         }
     },
     mounted() {

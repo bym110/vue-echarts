@@ -3,12 +3,14 @@
 </template>
 
 <script>
-import "echarts/map/js/china.js"
+import "@/lib/china.js"
 
 export default {
     name: '',
     data() {
-        return {}
+        return {
+            myChart: null
+        }
     },
     methods: {
         setMap() {
@@ -234,7 +236,7 @@ export default {
             let option = {
                 title: [
                     {
-                        text: '赌博炒股风险',
+                        text: '数据1',
                         top: '4.8%',
                         left: '7.5%',
 
@@ -245,7 +247,7 @@ export default {
                         }
                     },
                     {
-                        text: '网购风险趋势',
+                        text: '数据2',
                         top: '11.5%',
                         left: '7.5%',
 
@@ -256,7 +258,7 @@ export default {
                         }
                     },
                     {
-                        text: '赌博炒股风险',
+                        text: '数据3',
                         top: '4.8%',
                         left: '37.5%',
 
@@ -267,7 +269,7 @@ export default {
                         }
                     },
                     {
-                        text: '网购风险趋势',
+                        text: '数据4',
                         top: '11.5%',
                         left: '37.5%',
 
@@ -278,7 +280,7 @@ export default {
                         }
                     },
                     {
-                        text: '赌博炒股风险',
+                        text: '数据5',
                         top: '4.8%',
                         left: '67.5%',
 
@@ -289,7 +291,7 @@ export default {
                         }
                     },
                     {
-                        text: '网购风险趋势',
+                        text: '数据6',
                         top: '11.5%',
                         left: '67.5%',
 
@@ -491,20 +493,16 @@ export default {
                 ],
                 geo: {
                     map: 'china',
-                    label: {
-                        emphasis: {
+                    emphasis: {
+                        label: {
                             show: false
-                        }
+                        },
+
                     },
                     roam: false,
                     itemStyle: {
-                        normal: {
-                            areaColor: '#2043AA',
-                            borderColor: '#111'
-                        },
-                        emphasis: {
-                            areaColor: '#2a333d'
-                        }
+                        areaColor: '#2043AA',
+                        borderColor: '#111'
                     }
                 },
                 series: [
@@ -522,26 +520,24 @@ export default {
                         // rippleEffect: { // 效果
                         //     brushType: 'stroke'
                         // },
-                        hoverAnimation: true,
+                        emphasis: {
+                            scale: true
+                        },
                         label: {
-                            normal: {
-                                formatter: '{b}',
-                                position: 'right',
-                                show: false
-                            }
+                            formatter: '{b}',
+                            position: 'right',
+                            show: false
                         },
                         itemStyle: {
-                            normal: {
-                                color: function (params) {
-                                    var colorList = ['#FFA200', '#0006FF', '#D6FC01', '#00D8FF', '#FF00CC', '#FF1200']
-                                    if (params.dataIndex <= 6) {
-                                        return colorList[params.dataIndex]
-                                    } else {
-                                        return colorList[params.dataIndex % 6]
-                                    }
-                                },
-                                shadowBlur: 10,
-                            }
+                            color: function (params) {
+                                var colorList = ['#FFA200', '#0006FF', '#D6FC01', '#00D8FF', '#FF00CC', '#FF1200']
+                                if (params.dataIndex <= 6) {
+                                    return colorList[params.dataIndex]
+                                } else {
+                                    return colorList[params.dataIndex % 6]
+                                }
+                            },
+                            shadowBlur: 10,
                         },
                         zlevel: 1
                     },
@@ -828,11 +824,11 @@ export default {
                     }
                 ]
             };
-            let myChart = this.$echarts(this.$el);
+            if (!this.myChart) this.myChart = this.$echarts(this.$el);
 
-            myChart.clear();
-            myChart.resize()
-            myChart.setOption(option);
+            this.myChart.clear();
+            this.myChart.resize()
+            this.myChart.setOption(option);
         },
     },
     mounted() {

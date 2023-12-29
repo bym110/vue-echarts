@@ -7,7 +7,9 @@ export default {
     name: "areaChart",
     props: [ 'config', 'selectRangeDate'],
     data() {
-        return {}
+        return {
+            myChart:null
+        }
     },
     methods: {
         setData(type) {
@@ -213,16 +215,10 @@ export default {
                 option.xAxis.axisLabel.showMaxLabel = false;
                 option.xAxis.axisLabel.align = 'left';
             }
-            let myChart = this.$echarts(this.$el);
-
-            myChart.clear();
-            myChart.resize(
-                {
-                    width: this.$el.offsetWidth,
-                    height: this.$el.offsetHeight
-                }
-            )
-            myChart.setOption(option);
+            if (!this.myChart) this.myChart = this.$echarts(this.$el);
+            this.myChart.clear();
+            this.myChart.resize()
+            this.myChart.setOption(option);
         }
     },
     mounted() {

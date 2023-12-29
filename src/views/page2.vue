@@ -4,7 +4,7 @@
             <Col span="8">
                 <div class="list">
                     <div class="left">
-                        <span class='title'><span class="title-4">聊天分析</span></span>
+                        <span class='title'><span class="title-gradient">模块一分析</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
@@ -19,13 +19,13 @@
                 </div>
                 <div class="list">
                     <div class="left">
-                        <span class='title'><span class="title-8">办公时长分析</span></span>
+                        <span class='title'><span class="title-gradient">模块二分析</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
                         <span class="angle4"></span>
                         <div class="chart-68">
-                            <bar-chart ref="chart3" id="left_3" :config="configData2"></bar-chart>
+                            <chart1 ref="chart3" id="left_3" :config="configData2"></chart1>
                         </div>
                         <div class="chart-32">
                             <radar-chart ref="chart4" id="left_4" :data="officeRadarData"></radar-chart>
@@ -43,7 +43,7 @@
             <Col span="8">
                 <div class="list">
                     <div class="right">
-                        <span class='title'><span class="title-4">好友分析</span></span>
+                        <span class='title'><span class="title-gradient">模块三分析</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
@@ -52,14 +52,14 @@
                             <radar-chart ref="chart5" id="right_1" :data="friendRadarData"></radar-chart>
                         </div>
                         <div class="chart-68">
-                            <double-bar-chart ref="chart6"></double-bar-chart>
+                            <chart2 ref="chart6"></chart2>
                         </div>
 
                     </div>
                 </div>
                 <div class="list">
                     <div class="right">
-                        <span class='title'><span class="title-8">微信朋友圈分析</span></span>
+                        <span class='title'><span class="title-gradient">模块四分析</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
@@ -68,7 +68,7 @@
                             <radar-chart ref="chart7" id="right_3" :data="momentsRadarData"></radar-chart>
                         </div>
                         <div class="chart-68">
-                            <single-area-chart ref="chart8" :selectRangeDate="selectRangeDate" id="right_4"></single-area-chart>
+                            <chart3 ref="chart8" :selectRangeDate="selectRangeDate" id="right_4"></chart3>
                         </div>
                     </div>
                 </div>
@@ -79,44 +79,44 @@
             <Col span="16">
                 <div class="list">
                     <div class="bottom">
-                        <span class='title'><span class="title-10">违规话术分布趋势</span></span>
+                        <span class='title'><span class="title-gradient">模块五分析</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
                         <span class="angle4"></span>
-                        <double-line ref="chart9" id="bottom_1"></double-line>
+                        <chart4 ref="chart9" id="bottom_1"></chart4>
                     </div>
                 </div>
                 <div class="list">
                     <div class="bottom">
-                        <span class='title'><span class="title-10">各部门违规话术对比</span></span>
+                        <span class='title'><span class="title-gradient">模块六分析</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
                         <span class="angle4"></span>
-                        <double-bars ref="chart10" id="bottom_2"></double-bars>
+                        <chart5 ref="chart10" id="bottom_2"></chart5>
                     </div>
                 </div>
                 <div class="list">
                     <div class="bottom">
-                        <span class='title'><span class="title-10">红包转账分布趋势</span></span>
+                        <span class='title'><span class="title-gradient">模块七分析</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
                         <span class="angle4"></span>
-                        <three-bar-chart ref="chart11" id="bottom_3"></three-bar-chart>
+                        <chart6 ref="chart11" id="bottom_3"></chart6>
                     </div>
                 </div>
             </Col>
             <Col span="8">
                 <div class="list right-bottom">
                     <div class="bottom bottom1">
-                        <span class='title'><span class="title-10">各部门红包转账对比</span></span>
+                        <span class='title'><span class="title-gradient">模块八分析</span></span>
                         <span class="angle1"></span>
                         <span class="angle2"></span>
                         <span class="angle3"></span>
                         <span class="angle4"></span>
-                        <pie-chart ref="chart12" id="bottom_4"></pie-chart>
+                        <chart7 ref="chart12" id="bottom_4"></chart7>
                     </div>
                 </div>
             </Col>
@@ -125,15 +125,15 @@
 </template>
 
 <script>
+const chart1 = () => import('./components/page2/chart1');
+const chart2 = ()=> import('./components/page2/chart2');
+const chart3 = () => import('./components/page2/chart3');
+const chart4  = () => import('./components/page2/chart4');
+const chart5 = () => import('./components/page2/chart5');
+const chart6 = () => import('./components/page2/chart6');
+const chart7 = () => import('./components/page2/chart7');
 const areaChart = ()=> import('./components/areaChart');
 const radarChart = () => import('./components/radar');
-const barChart = () => import('./components/page2/barChart');
-const doubleBarChart = ()=> import('./components/page2/doubleBarChart');
-const singleAreaChart = () => import('./components/page2/singleAreaChart');
-const doubleLine  = () => import('./components/page2/doubleLine');
-const threeBarChart = () => import('./components/page2/threeBarChart');
-const pieChart = () => import('./components/page2/pieChart');
-const doubleBars = () => import('./components/page2/doubleBars');
 
 export default {
     name: 'page2',
@@ -141,13 +141,13 @@ export default {
     components: {
         areaChart,
         radarChart,
-        barChart,
-        doubleBarChart,
-        singleAreaChart,
-        doubleLine,
-        threeBarChart,
-        pieChart,
-        doubleBars
+        chart1,
+        chart2,
+        chart3,
+        chart4,
+        chart5,
+        chart6,
+        chart7
     },
     data() {
         return {
@@ -158,18 +158,19 @@ export default {
                 y: 250,
                 radius: 218
             },
-            title: ['累计话术违规个数:456,789', '累计办公次数:123,12', '累计办公时长:134,23', '累计服务好友次数:234,234', '累计服务好友数量:123,123', '累计设备违规个数:678,123'],
+            title: ['数据1:456,789', '数据2:123,12', '数据3:134,23', '数据4:234,234', '数据5:123,123', '数据6:678,123'],
+            // 模块一面积图数据
             cnfigData1: {
                 color: '#5CB1C1',
                 name: ['（次）', '（人）'],
                 data: [
                     {
-                        name: '聊天次数',
+                        name: '次数',
                         color: ['#9e70ff', '#6e5eff'],
                         data: [200, 12, 21, 54, 260, 130, 210],
                     },
                     {
-                        name: '聊天人数',
+                        name: '人数',
                         color: ['#48cefd', '#5356f1'],
                         data: [50, 182, 234, 191, 190, 30, 10],
                     }
@@ -178,86 +179,94 @@ export default {
             configData2: {
                 data: [213, 190, 137, 99, 63, 196, 248, 212, 248, 112]
             },
+            // 模块一雷达图数据
             chatRadarData: {
-                title: '各部门聊天对比',
+                title: '标题',
                 position: ['center', '85%'],
                 center: ['50%', '50%'],
                 indicator: [
-                    {text: '一部'},
-                    {text: '二部'},
-                    {text: '三部'},
-                    {text: '四部'},
-                    {text: '五部'},
-                    {text: '六部'}
+                    {text: '分类1'},
+                    {text: '分类2'},
+                    {text: '分类3'},
+                    {text: '分类4'},
+                    {text: '分类5'},
+                    {text: '分类6'}
                 ],
                 data: [
                     {
-                        name: '聊天次数',
+                        name: '次数',
                         color: '#0DF5F8',
                         value: [100, 8, 0.40, -80, 2000, 332],
                     },
                     {
-                        name: '聊天人数',
+                        name: '人数',
                         color: '#7921AD',
                         value: [60, 5, 0.30, -100, 1500, 221],
                     }
                 ]
             },
+            // 模块二雷达图数据
             officeRadarData: {
-                title: '各部门办公时长对比',
+                title: '标题',
                 position: ['center', '85%'],
                 center: ['50%', '50%'],
                 indicator: [
-                    {text: '一部'},
-                    {text: '二部'},
-                    {text: '三部'},
-                    {text: '四部'},
-                    {text: '五部'},
-                    {text: '六部'}
+                    {text: '分类1'},
+                    {text: '分类2'},
+                    {text: '分类3'},
+                    {text: '分类4'},
+                    {text: '分类5'},
+                    {text: '分类6'},
+                    {text: '分类7'},
+                    {text: '分类8'},
+                    {text: '分类9'},
+                    {text: '分类10'}
                 ],
                 data: [
                     {
-                        name: '办公时长',
+                        name: '数据',
                         color: '#55D35B',
-                        value: [100, 8, 0.40, -80, 2000, 332],
+                        value: [213, 190, 137, 99, 63, 196, 248, 212, 248, 112],
                     }
                 ]
             },
+            // 模块三雷达图数据
             friendRadarData: {
-                title: '各部门好友数量对比',
+                title: '分类标题',
                 position: ['center', '85%'],
                 center: ['50%', '50%'],
                 indicator: [
-                    {text: '一部'},
-                    {text: '二部'},
-                    {text: '三部'},
-                    {text: '四部'},
-                    {text: '五部'},
-                    {text: '六部'}
+                    {text: '分类1'},
+                    {text: '分类2'},
+                    {text: '分类3'},
+                    {text: '分类4'},
+                    {text: '分类5'},
+                    {text: '分类6'}
                 ],
                 data: [
                     {
-                        name: '好友总数',
+                        name: '数据',
                         color: '#FA8486',
                         value: [100, 8, 0.40, -80, 2000, 332],
                     }
                 ]
             },
+            // 模块四雷达图数据
             momentsRadarData: {
-                title: '各部门朋友圈数量对比',
+                title: '标题',
                 position: ['center', '85%'],
                 center: ['50%', '50%'],
                 indicator: [
-                    {text: '一部'},
-                    {text: '二部'},
-                    {text: '三部'},
-                    {text: '四部'},
-                    {text: '五部'},
-                    {text: '六部'}
+                    {text: '分类1'},
+                    {text: '分类2'},
+                    {text: '分类3'},
+                    {text: '分类4'},
+                    {text: '分类5'},
+                    {text: '分类6'}
                 ],
                 data: [
                     {
-                        name: '朋友圈个数',
+                        name: '个数',
                         color: '#D91748',
                         value: [100, 8, 0.40, -80, 2000, 332],
                     }
@@ -471,7 +480,7 @@ export default {
             ctx.font = size + 'px Microsoft Yahei';
             ctx.textAlign = 'center';
             ctx.fillStyle = "#95EFFF";
-            ctx.fillText("平均营销质量指数", 120, 120 + size);
+            ctx.fillText("平均值", 120, 120 + size);
             ctx.restore();
         },
         // 旋转的文字

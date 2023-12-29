@@ -3,12 +3,14 @@
 </template>
 
 <script>
-import "echarts/map/js/world.js";
+import "@/lib/world.js"
 
 export default {
     name: 'worldMap',
     data() {
-        return {}
+        return {
+            myChart:null
+        }
     },
     methods: {
         // 通讯行为分析
@@ -502,19 +504,17 @@ export default {
                     left: '8%',
                     right: '8%',
                     bottom: '15%',
-                    label: {
-                        emphasis: {
+                    emphasis: {
+                        itemStyle: {
+                            areaColor: '#2a333d'
+                        },
+                        label: {
                             show: false
                         }
                     },
                     itemStyle: {
-                        normal: {
-                            areaColor: 'rgb(40,113,234)',
-                            borderColor: '#111'
-                        },
-                        emphasis: {
-                            areaColor: '#2a333d'
-                        }
+                        areaColor: 'rgb(40,113,234)',
+                        borderColor: '#111'
                     }
                 },
                 series: [
@@ -540,19 +540,16 @@ export default {
                             return val[2] / 10;
                         },
                         label: {
-                            normal: {
-                                show: false
-                            },
-                            emphasis: {
-                                show: false
-                            }
+                            show: false
                         },
-                        itemStyle: {
-                            color: 'rgb(230,215,5)',
-                            emphasis: {
+                        emphasis: {
+                            itemStyle: {
                                 borderColor: '#fff',
                                 borderWidth: 1
                             }
+                        },
+                        itemStyle: {
+                            color: 'rgb(230,215,5)'
                         }
                     },
                     {
@@ -588,32 +585,28 @@ export default {
                             width: 1,
                         },
                         areaStyle: {
-                            normal: {
-                                color: { // 颜色线性渐变
-                                    type: 'linear',
-                                    x: 0,
-                                    y: 0,
-                                    x2: 0,
-                                    y2: 1,
-                                    colorStops: [
-                                        {offset: 0, color: 'rgba(228,234,40,.8)'},
-                                        {offset: 0.5, color: 'rgba(228,234,40,.5)'},
-                                        {offset: 1, color: 'rgba(228,234,40,.1)'}
-                                    ],
-                                    globalCoord: false // 缺省为 false
-                                }
-
+                            color: { // 颜色线性渐变
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [
+                                    {offset: 0, color: 'rgba(228,234,40,.8)'},
+                                    {offset: 0.5, color: 'rgba(228,234,40,.5)'},
+                                    {offset: 1, color: 'rgba(228,234,40,.1)'}
+                                ],
+                                globalCoord: false // 缺省为 false
                             }
                         }
                     },
 
                 ]
             }
-            let myChart = this.$echarts(this.$el);
-
-            myChart.clear();
-            myChart.resize()
-            myChart.setOption(option);
+            if (!this.myChart) this.myChart = this.$echarts(this.$el);
+            this.myChart.clear();
+            this.myChart.resize()
+            this.myChart.setOption(option);
         },
     },
     mounted() {

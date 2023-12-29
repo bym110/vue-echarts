@@ -3,23 +3,23 @@
         <Row class="listTop">
             <Col span="7">
                 <div class="leftTop">
-                    <span class='title'><span class="title-6">模块一分析</span></span>
+                    <span class='title'><span class="title-gradient">模块一分析</span></span>
                     <span class="angle1"></span>
                     <span class="angle2"></span>
                     <span class="angle3"></span>
                     <span class="angle4"></span>
                     <div class="left1">
-                        <double-area :selectRangeDate="selectRangeDate" ref='chart1'></double-area>
+                        <chart1 :selectRangeDate="selectRangeDate" ref='chart1'></chart1>
                     </div>
                     <div class="left2">
-                        <web-bar ref="chart2" :data="data1"></web-bar>
+                        <chart2 ref="chart2" :data="data1"></chart2>
                         <div style="width: 40%;float: left;height: 100%;">
                             <pie ref="chart3" id="left_2_2" :data="data2"></pie>
                         </div>
 
                     </div>
                     <div class="left3">
-                        <web-bar ref="chart4" :data="data3"></web-bar>
+                        <chart2 ref="chart4" :data="data3"></chart2>
                         <div style="width: 40%;float: left;height: 100%;">
                             <pie ref="chart5" id="left_3_2" :data="data4"></pie>
                         </div>
@@ -27,11 +27,11 @@
                 </div>
             </Col>
             <Col span="10">
-                <radar-part ref="chart6"></radar-part>
+                <center ref="chart6"></center>
             </Col>
             <Col span="7">
                 <div class="rightTop-1">
-                    <span class='title'><span class="title-8">世界地图分析</span></span>
+                    <span class='title'><span class="title-gradient">世界地图分析</span></span>
                     <span class="angle1"></span>
                     <span class="angle2"></span>
                     <span class="angle3"></span>
@@ -39,20 +39,20 @@
                     <world-map ref="chart7"></world-map>
                 </div>
                 <div class="rightTop-2">
-                    <span class='title'><span class="title-6">模块六分析</span></span>
+                    <span class='title'><span class="title-gradient">模块六分析</span></span>
                     <span class="angle1"></span>
                     <span class="angle2"></span>
                     <span class="angle3"></span>
                     <span class="angle4"></span>
                     <div class="rightTop-list">
                         <div class="list">
-                            <popular-bar ref="chart8"></popular-bar>
+                            <chart3 ref="chart8"></chart3>
                         </div>
                         <div class="list">
-                            <ring ref="chart9" :data="data5"></ring>
+                            <chart4 ref="chart9" :data="data5"></chart4>
                         </div>
                         <div class="list">
-                            <ring ref="chart10" :data="data6"></ring>
+                            <chart4 ref="chart10" :data="data6"></chart4>
                         </div>
                     </div>
                 </div>
@@ -61,29 +61,29 @@
         <Row class="listBottom">
             <Col span='9'>
                 <div class="content">
-                    <span class="title"><span class="title-6">模块二分析</span></span>
+                    <span class="title"><span class="title-gradient">模块二分析</span></span>
                     <span class="angle1"></span>
                     <span class="angle2"></span>
                     <span class="angle3"></span>
                     <span class="angle4"></span>
                     <Row class="topLine">
                         <Col span="24">
-                            <lines ref="chart11"></lines>
+                            <chart5 ref="chart11"></chart5>
                         </Col>
                     </Row>
                     <Row class="bottomPie">
                         <Col span="12">
-                            <pie-ring ref="chart12" :data="data7"></pie-ring>
+                            <chart6 ref="chart12" :data="data7"></chart6>
                         </Col>
                         <Col span="12">
-                            <pie-ring ref="chart13" :data="data8"></pie-ring>
+                            <chart6 ref="chart13" :data="data8"></chart6>
                         </Col>
                     </Row>
                 </div>
             </Col>
             <Col span='4'>
                 <div class="content">
-                    <span class="title"><span class="title-6">模块三分析</span></span>
+                    <span class="title"><span class="title-gradient">模块三分析</span></span>
                     <span class="angle1"></span>
                     <span class="angle2"></span>
                     <span class="angle3"></span>
@@ -91,7 +91,7 @@
                     <div class="behavior">
                         <area-chart style="height: 55%" ref="chart14" :select-range-date="selectRangeDate"
                                     :config="configData9"></area-chart>
-                        <colors-bar ref="chart15" :data="colorsData"></colors-bar>
+                        <chart7 ref="chart15" :data="colorsData"></chart7>
                     </div>
                 </div>
             </Col>
@@ -101,19 +101,19 @@
                     <span class="angle2"></span>
                     <span class="angle3"></span>
                     <span class="angle4"></span>
-                    <span class="title"><span class="title-6">模块四分析</span></span>
-                    <funnel ref="chart16"></funnel>
+                    <span class="title"><span class="title-gradient">模块四分析</span></span>
+                    <chart8 ref="chart16"></chart8>
                 </div>
             </Col>
             <Col span='7'>
                 <div class="content">
-                    <span class="title"><span class="title-6">模块五分析</span></span>
+                    <span class="title"><span class="title-gradient">模块五分析</span></span>
                     <span class="angle1"></span>
                     <span class="angle2"></span>
                     <span class="angle3"></span>
                     <span class="angle4"></span>
                     <div class="appUse">
-                        <line-bar ref="chart17"></line-bar>
+                        <chart9 ref="chart17"></chart9>
                     </div>
                 </div>
             </Col>
@@ -122,19 +122,19 @@
 </template>
 
 <script>
-const radarPart = () => import('./components/page1/radarPart.vue');
-const doubleArea = () => import('./components/page1/doubleArea.vue');
-const webBar = () => import('./components/page1/webBar.vue');
+const chart1 = () => import('./components/page1/chart1');
+const chart2 = () => import('./components/page1/chart2');
+const chart4 = () => import('./components/page1/chart4');
+const chart3 = () => import('./components/page1/chart3');
+const chart5 = () => import('./components/page1/chart5');
+const chart6 = () => import('./components/page1/chart6');
+const chart7 = () => import('./components/page1/chart7');
+const chart8 = () => import('./components/page1/chart8');
+const chart9 = () => import('./components/page1/chart9');
+const areaChart = () => import('./components/areaChart');
 const pie = () => import('./components/pie')
 const worldMap = () => import('./components/page1/worldMap');
-const ring = () => import('./components/page1/ring');
-const popularBar = () => import('./components/page1/popularBar');
-const lines = () => import('./components/page1/lines');
-const pieRing = () => import('./components/page1/pieRing');
-const colorsBar = () => import('./components/page1/colorsBar');
-const funnel = () => import('./components/page1/funnel');
-const lineBar = () => import('./components/page1/lineBar');
-const areaChart = () => import('./components/areaChart');
+const center = () => import('./components/page1/center');
 
 export default {
     name: 'page1',
@@ -142,18 +142,18 @@ export default {
         selectRangeDate: Array
     },
     components: {
-        radarPart,// 中心
-        doubleArea, // 面积图
-        webBar, // 柱图
+        center,// 中心
+        chart1, // 面积图
+        chart2, // 柱图
         pie, // 饼图
         worldMap, // 世界地图
-        ring, // 圆环
-        popularBar, // 柱图
-        lines, //折线图
-        pieRing, // 饼环图
-        colorsBar,// 柱图
-        funnel, // 漏斗图
-        lineBar, //柱图
+        chart4, // 圆环
+        chart3, // 柱图
+        chart5, //折线图
+        chart6, // 饼环图
+        chart7,// 柱图
+        chart8, // 漏斗图
+        chart9, //柱图
         areaChart // 面积图
     },
     data() {
@@ -316,7 +316,7 @@ export default {
             },
             // 环形数据2
             data6: {
-                title: '热词传播次数',
+                title: '环形数据2',
                 data: [
                     {
                         value: 335,
@@ -355,19 +355,20 @@ export default {
                     }
                 ]
             },
+            // 模块二数据
             data7: {
-                title: '收支笔数及占比',
+                title: '标题',
                 data: [
                     {
                         value: 70,
-                        name: '收入',
+                        name: '数据1',
                         itemStyle: {
                             color: '#c0232a'
                         }
                     },
                     {
                         value: 60,
-                        name: '支出',
+                        name: '数据2',
                         itemStyle: {
                             color: '#2870e8'
                         }
@@ -376,33 +377,34 @@ export default {
                 data1: [
                     {
                         value: 40,
-                        name: '红包',
+                        name: '方式1',
                         itemStyle: {
                             color: '#c0232a'
                         }
                     },
                     {
                         value: 60,
-                        name: '转账',
+                        name: '方式2',
                         itemStyle: {
                             color: '#2870e8'
                         }
                     },
                 ]
             },
+            // 模块二数据
             data8: {
-                title: '收支金额及占比',
+                title: '标题',
                 data: [
                     {
                         value: 80,
-                        name: '收入',
+                        name: '数据1',
                         itemStyle: {
                             color: '#c0232a'
                         }
                     },
                     {
                         value: 60,
-                        name: '支出',
+                        name: '数据2',
                         itemStyle: {
                             color: '#2870e8'
                         }
@@ -411,77 +413,77 @@ export default {
                 data1: [
                     {
                         value: 40,
-                        name: '红包',
+                        name: '方式1',
                         itemStyle: {
                             color: '#c2232a'
                         }
                     },
                     {
                         value: 60,
-                        name: '购物',
+                        name: '方式2',
                         itemStyle: {
                             color: '#fe672c'
                         }
                     },
                     {
                         value: 40,
-                        name: '旅游',
+                        name: '方式3',
                         itemStyle: {
                             color: '#a262f2'
                         }
                     },
                     {
                         value: 20,
-                        name: '其他',
+                        name: '方式4',
                         itemStyle: {
                             color: '#2870e8'
                         }
                     },
                     {
                         value: 80,
-                        name: '交通',
+                        name: '方式5',
                         itemStyle: {
                             color: '#feed2c'
                         }
                     }
                 ]
             },
-            // 交友分析面积图
+            // 模块三面积图
             configData9: {
-                title: '【交友分析】',
+                title: '【标题】',
                 color: '#75deef',
                 name: ['（人）', '（人）'],
                 data: [
                     {
-                        name: '新增好友数',
+                        name: '数据1',
                         color: ['#feed2c', '#353103'],
                         data: [240, 132, 101, 134, 90, 170, 110]
                     },
                     {
-                        name: '好友总数',
+                        name: '数据2',
                         color: ['#2871ea', '#0a1b41'],
                         data: [20, 102, 101, 134, 190, 150, 120]
                     },
                     {
-                        name: '新增群数',
+                        name: '数据3',
                         color: ['#935adf', '#230f3e'],
                         data: [100, 32, 101, 134, 150, 110, 180]
                     },
                     {
-                        name: '群总数',
+                        name: '数据4',
                         color: ['#e65f2d', '#551f0b'],
                         data: [120, 122, 141, 144, 60, 220, 120]
                     }
                 ]
             },
-            // 交友方式柱图
+            // 模块三柱图
             colorsData: [
                 {
                     itemStyle: {
                         color: "#2c7bfe",
 
                     },
-                    name: '漂流瓶',
+                    name: '数据1',
                     value: 255
                 },
                 {
@@ -489,7 +491,7 @@ export default {
                         color: "#c2232a",
 
                     },
-                    name: '附近的人',
+                    name: '数据2',
                     value: 212
                 },
                 {
@@ -497,7 +499,7 @@ export default {
                         color: "#feed2c",
 
                     },
-                    name: '雷达',
+                    name: '数据3',
                     value: 155
                 },
                 {
@@ -505,35 +507,35 @@ export default {
                         color: "#a262f2",
 
                     },
-                    name: '摇一摇',
+                    name: '数据4',
                     value: 55
                 },
                 {
                     itemStyle: {
                         color: "#62d5f2",
                     },
-                    name: '搜索',
+                    name: '数据5',
                     value: 80
                 },
                 {
                     itemStyle: {
                         color: "#fe672c",
                     },
-                    name: '群聊',
+                    name: '数据6',
                     value: 160
                 },
                 {
                     itemStyle: {
                         color: "#69f262",
                     },
-                    name: '扫一扫',
+                    name: '数据7',
                     value: 114
                 },
                 {
                     itemStyle: {
                         color: "#2ca8fe",
                     },
-                    name: '其他',
+                    name: '数据8',
                     value: 20
                 },
             ],
